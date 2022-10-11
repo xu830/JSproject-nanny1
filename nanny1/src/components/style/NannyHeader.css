@@ -1,0 +1,18 @@
+h1 {
+  color: white;
+}
+
+.flex-header {
+  display: flex;
+  background-color: black;
+  justify-content: space-between;
+}
+#chuwa-header {
+  font-size: small;
+}
+#signin-btn {
+  background-color: black;
+  color: white;
+  align-items: flex-end;
+  cursor: pointer;
+}
