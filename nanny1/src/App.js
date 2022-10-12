@@ -1,13 +1,15 @@
-import logo from "./logo.svg";
-
+import { useState } from "react";
 import NannyHeader from "./components/NannyHeader";
-
+import Modal from "./components/Modal";
 import "./App.css";
 
 function App() {
+  const [ModalState, setModalState] = useState(false);
+
   return (
     <div className="APP">
-      <NannyHeader />
+      <NannyHeader openModal={setModalState} />
+      <div>{ModalState && <Modal closeModal={setModalState} />}</div>
     </div>
   );
 }
