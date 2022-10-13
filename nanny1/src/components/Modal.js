@@ -4,22 +4,39 @@ import "./style/Modal.css";
 const Modal = ({ closeModal }) => {
   const [emailInput, setEmail] = useState("");
   const [passwordInput, setPassword] = useState("");
+  const [pwdVisible, setPwdVisible] = useState("password");
+
   const addCredential = () => {
     const credential = {
       email: emailInput,
       password: passwordInput,
     };
-    console.log(credential.email, credential.password);
+    if (credential.email === "") {
+      console.log("error: no email");
+    } else if (credential.password === "") {
+      console.log("error: no password");
+    } else {
+      console.log(credential.email, credential.password);
+    }
     setEmail("");
     setPassword("");
   };
+
+  const changeVisibility = () => {
+    if (pwdVisible === "password") {
+      setPwdVisible("text");
+    } else {
+      setPwdVisible("password");
+    }
+  };
+
   return (
     <div className="ModalBackground">
       <div className="ModalContainer">
-        <button id="closeBtn" onClick={() => closeModal(false)}>
-          X
-        </button>
         <div className="title">
+          <button id="closeBtn" onClick={() => closeModal(false)}>
+            X
+          </button>
           <p>Sign in to your account</p>
         </div>
 
@@ -39,18 +56,28 @@ const Modal = ({ closeModal }) => {
               Password
             </label>
             <input
-              type="text"
+              type={pwdVisible === "text" ? "text" : "password"}
               id="pwd"
               name="pwd"
               value={passwordInput}
               onChange={(event) => setPassword(event.target.value)}
             />
+            <label onClick={changeVisibility} id="showBtn">
+              show
+            </label>
           </form>
+          <button onClick={addCredential} id="signinBtn">
+            sign in
+          </button>
         </div>
         <div className="footer">
-          <button onClick={addCredential}>sign in</button>
-          <button>sign up</button>
-          <button>forget password</button>
+          <p id="signUpText">Don't have an account?</p>
+          <button className="blueBtn" id="signup">
+            Sign up
+          </button>
+          <button className="blueBtn" id="forget">
+            Forget password
+          </button>
         </div>
       </div>
     </div>
