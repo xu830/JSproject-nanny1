@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import index from "./index.css";
+import React from "react";
+import "./index.css";
 
 const MyModal = (props) => {
   return (

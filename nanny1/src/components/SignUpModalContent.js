@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./style/SignInModalContent.css";
 
-const SignUpModalContent = () => {
+const SignUpModalContent = ({ handleSignUp }) => {
   const [emailInput, setEmail] = useState("");
   const [passwordInput, setPassword] = useState("");
   const [pwdVisible, setPwdVisible] = useState("password");
@@ -58,14 +58,14 @@ const SignUpModalContent = () => {
             show
           </label>
         </form>
-        <button onClick={addCredential} id="signinBtn">
-          sign in
+        <button onClick={addCredential} id="createAccountBtn">
+          Create account
         </button>
       </div>
 
       <div className="footer">
         <p id="signInText">Already have an account?</p>
-        <button className="blueBtn" id="signin">
+        <button className="blueBtn" id="signin" onClick={handleSignUp}>
           Sign In
         </button>
       </div>

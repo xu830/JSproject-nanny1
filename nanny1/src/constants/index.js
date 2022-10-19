@@ -3,5 +3,9 @@ export const LOGIN_FORM = {
 };
 
 export const SIGN_UP_FORM = {
-  TITLE: "Sign UP an account",
+  TITLE: "Sign up an account",
+};
+
+export const UPDATE_PWD_FORM = {
+  TITLE: "Update your password",
 };
