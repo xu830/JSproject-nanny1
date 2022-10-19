@@ -5,31 +5,7 @@ input {
   margin-bottom: 5%;
   margin-top: 2%;
 }
-.ModalBackground {
-  display: flex;
-  position: fixed;
-  width: 100%;
-  height: 70%;
-  background-color: white;
-  justify-content: center;
-  align-items: center;
-}
 
-.ModalContainer {
-  display: flex;
-  box-shadow: gray 0px 5px 15px;
-  flex-direction: column;
-  width: 500px;
-  height: 400px;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-.title {
-  color: black;
-  font-weight: 800;
-  font-size: 140%;
-  width: 100%;
-}
 .body {
   color: gray;
   justify-content: flex-start;
@@ -67,17 +43,14 @@ input {
   right: 50px;
 }
 #pwd {
-  padding-right: 100px;
-  width: 330px;
-  margin-left: 27px;
-  margin-right: 0%;
+  width: 455px;
+  position: relative;
+  left: 25px;
 }
 #email {
-  padding-right: 100px;
-  width: 323px;
-  padding-left: 10px;
-  margin-left: 27px;
-  float: left;
+  width: 455px;
+  position: relative;
+  right: 5px;
 }
 #signUpText {
   float: left;
