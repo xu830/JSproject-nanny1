@@ -1,0 +1,13 @@
+#sendUpdateIcon {
+  height: 100px;
+  width: 100px;
+}
+#UpdateNote {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 21px;
+  position: relative;
+  left: 20px;
+}

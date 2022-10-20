@@ -1,10 +1,16 @@
-const HeaderSignIn = ({ openModal, closeSignUp, closeUpdate }) => {
+const HeaderSignIn = ({
+  openModal,
+  closeSignUp,
+  closeUpdate,
+  closeSendUpdate,
+}) => {
   return (
     <button
       onClick={() => {
         openModal(true);
         closeSignUp(false);
         closeUpdate(false);
+        closeSendUpdate(false);
       }}
       id="signin-btn"
     >

@@ -32,12 +32,13 @@ const SignInModalContent = ({ handleSignUp, handleUpdatePwd }) => {
 
   return (
     <div>
-      <div className="body">
+      <div className="signInBody">
         <form>
           <label htmlFor="email" className="labels">
             Email
           </label>
           <input
+            className="doubleInput"
             type="text"
             id="email"
             name="email"
@@ -48,16 +49,18 @@ const SignInModalContent = ({ handleSignUp, handleUpdatePwd }) => {
             Password
           </label>
           <input
+            className="doubleInput"
             type={pwdVisible === "text" ? "text" : "password"}
             id="pwd"
             name="pwd"
             value={passwordInput}
             onChange={(event) => setPassword(event.target.value)}
           ></input>
-          <label onClick={changeVisibility} id="showBtn">
+          <p onClick={changeVisibility} id="showBtn">
             show
-          </label>
+          </p>
         </form>
+
         <button onClick={addCredential} id="signinBtn">
           sign in
         </button>

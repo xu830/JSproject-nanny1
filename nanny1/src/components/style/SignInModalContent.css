@@ -1,66 +1,106 @@
-input {
+.doubleInput {
   border-radius: 4px;
-  border-color: rgb(204, 204, 204);
-  height: 40px;
+  width: 504px;
+  height: 56px;
   margin-bottom: 5%;
   margin-top: 2%;
+  top: 30px;
+  position: relative;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #cccccc;
 }
 
-.body {
-  color: gray;
-  justify-content: flex-start;
+.signInBody {
+  display: flex;
+  flex-direction: column;
+  height: 360px;
+  width: 600px;
+  margin-top: 30px;
+  gap: 50px;
 }
 .footer {
-  width: 100%;
-  height: 70%;
+  display: flex;
+  width: 600px;
 }
 .labels {
-  padding-right: 90%;
-  padding-left: 7%;
-  font-weight: 500;
+  top: 30px;
+  position: relative;
+  left: 50px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: flex-end;
+  color: #6b7280;
 }
 
-#closeBtn {
-  position: relative;
-  background-color: transparent;
-  border-color: transparent;
-  cursor: pointer;
-  float: right;
-}
-
-#signinBtn {
-  background-color: rgb(79, 75, 195);
-  color: white;
-  width: 430px;
-  height: 40px;
-  border-color: transparent;
-  cursor: pointer;
-}
-#showBtn {
-  cursor: pointer;
-  text-decoration: underline;
-  position: relative;
-  right: 50px;
-}
-#pwd {
-  width: 455px;
-  position: relative;
-  left: 25px;
-}
-#email {
-  width: 455px;
-  position: relative;
-  right: 5px;
-}
-#signUpText {
-  float: left;
-  margin-left: 5%;
-}
-#signup {
+.blueBtn {
   text-decoration: underline;
   font-weight: bold;
   font-size: large;
   color: rgb(82, 82, 235);
   background-color: transparent;
   border-color: transparent;
+}
+
+#signinBtn {
+  color: white;
+  font-size: x-large;
+  width: 504px;
+  height: 56px;
+  border-color: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #5048e5;
+  position: relative;
+  left: 50px;
+}
+
+#showBtn {
+  cursor: pointer;
+  text-decoration: underline;
+  width: 60px;
+  margin: 0%;
+  position: relative;
+  bottom: 45px;
+  left: 480px;
+}
+#pwd {
+  position: relative;
+  left: 0px;
+}
+
+#signUpText {
+  width: 155px;
+  height: 22px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 157%;
+  /* identical to box height, or 22px */
+  color: #6b7280;
+  position: relative;
+  left: 50px;
+}
+#signup {
+  position: relative;
+  left: 50px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+#forget {
+  position: relative;
+  left: 200px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
 }

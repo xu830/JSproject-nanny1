@@ -1,0 +1,35 @@
+.signUpbody {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  width: 600px;
+  margin-top: 30px;
+  gap: 50px;
+}
+
+#createAccountBtn {
+  color: white;
+  font-size: x-large;
+  width: 504px;
+  height: 56px;
+  border-color: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #5048e5;
+  position: relative;
+  left: 50px;
+}
+
+#pwd {
+  position: relative;
+  right: 20px;
+}
+
+#signInText {
+  position: relative;
+  left: 50px;
+}
+#signin {
+  position: relative;
+  left: 50px;
+}

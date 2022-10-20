@@ -23,6 +23,7 @@ function App() {
           openModal={setModalState}
           closeSignUp={setShowSignUp}
           closeUpdate={setShowUpdatePwd}
+          closeSendUpdate={SetShowSendUpdatePwd}
         />
       </NannyHeader>
       {ModalState && (
@@ -30,21 +31,28 @@ function App() {
           titleText={
             (ShowSignUp && SIGN_UP_FORM.TITLE) ||
             (ShowUpdatePwd && UPDATE_PWD_FORM.TITLE) ||
-            (!ShowSignUp && !ShowUpdatePwd && LOGIN_FORM.TITLE)
+            (ShowSendUpdatePwd && "") ||
+            (!ShowSignUp &&
+              !ShowUpdatePwd &&
+              !ShowSendUpdatePwd &&
+              LOGIN_FORM.TITLE)
           }
           closeModal={setModalState}
         >
           {ShowSignUp && (
             <SignUpModalContent handleSignUp={() => setShowSignUp(false)} />
           )}
-          {!ShowSignUp && !ShowUpdatePwd && (
+          {!ShowSignUp && !ShowUpdatePwd && !ShowSendUpdatePwd && (
             <SignInModalContent
               handleSignUp={() => setShowSignUp(true)}
               handleUpdatePwd={() => setShowUpdatePwd(true)}
             />
           )}
           {ShowUpdatePwd && (
-            <Updatepwd handleSendUpdatePwd={() => SetShowSendUpdatePwd(true)} />
+            <Updatepwd
+              handleSendUpdatePwd={SetShowSendUpdatePwd}
+              handleUpdatePwd={setShowUpdatePwd}
+            />
           )}
           {ShowSendUpdatePwd && <SendUpdatePwd />}
         </MyModal>

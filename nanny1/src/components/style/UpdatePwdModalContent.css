@@ -1,0 +1,54 @@
+.updatebody {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  width: 600px;
+  margin-top: 30px;
+}
+.footer {
+  display: flex;
+}
+
+#updateBtn {
+  color: white;
+  font-size: x-large;
+  width: 504px;
+  height: 56px;
+  border-color: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #5048e5;
+  position: relative;
+  left: 50px;
+}
+
+#instruction {
+  width: 504px;
+  position: relative;
+  left: 50px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #6b7280;
+}
+
+#updateEmailLabel {
+  position: relative;
+  top: 10px;
+}
+#updateEmailInput {
+  position: relative;
+  width: 504px;
+  height: 56px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  width: 504px;
+  height: 56px;
+  margin-bottom: 5%;
+  margin-top: 2%;
+}
