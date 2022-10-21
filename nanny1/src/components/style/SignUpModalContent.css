@@ -1,10 +1,10 @@
 .signUpbody {
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: 360px;
   width: 600px;
   margin-top: 30px;
-  gap: 50px;
+  gap: 20px;
 }
 
 #createAccountBtn {
@@ -26,10 +26,24 @@
 }
 
 #signInText {
+  width: 172px;
+  height: 22px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 157%;
+  /* identical to box height, or 22px */
+  color: #6b7280;
   position: relative;
   left: 50px;
 }
 #signin {
   position: relative;
   left: 50px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
 }
