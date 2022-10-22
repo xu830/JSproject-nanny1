@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import NannyHeader from "./components/NannyHeader";
 import SignInModalContent from "./components/SignInModalContent";
 import SignUpModalContent from "./components/SignUpModalContent";
@@ -15,6 +16,11 @@ function App() {
   const [ShowSignUp, setShowSignUp] = useState(false);
   const [ShowUpdatePwd, setShowUpdatePwd] = useState(false);
   const [ShowSendUpdatePwd, SetShowSendUpdatePwd] = useState(false);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    initTodos(dispatch)();
+  }, [dispatch]);
 
   return (
     <div className="APP">
