@@ -3,6 +3,9 @@ import { ajaxConfigHelper } from "../helper/index";
 //BE:3002
 //cors
 
+const SIGN_UP = "ADD";
+const GET_USER_LIST = "USE";
+
 export const allUsers = (dispatch) => async () => {
   try {
     const response = await fetch("/userlist");
