@@ -17,11 +17,6 @@ function App() {
   const [ShowUpdatePwd, setShowUpdatePwd] = useState(false);
   const [ShowSendUpdatePwd, SetShowSendUpdatePwd] = useState(false);
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    initTodos(dispatch)();
-  }, [dispatch]);
-
   return (
     <div className="APP">
       <NannyHeader>
