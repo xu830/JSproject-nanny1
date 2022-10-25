@@ -1,10 +1,33 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { ajaxConfigHelper } from "../helper";
 import "./style/SignInModalContent.css";
 
 const SignInModalContent = ({ handleSignUp, handleUpdatePwd }) => {
   const [emailInput, setEmail] = useState("");
   const [passwordInput, setPassword] = useState("");
   const [pwdVisible, setPwdVisible] = useState("password");
+
+  const dispatch = useDispatch();
+
+  const ajaxHandleLogin = async () => {
+    const resp = await fetch(
+      "/login",
+      ajaxConfigHelper({
+        email: emailInput,
+        password: passwordInput,
+      })
+    );
+    const result = await resp.json();
+    console.log(result);
+    dispatch({
+      type: "LOGIN",
+      payload: {
+        email: emailInput,
+        password: passwordInput,
+      },
+    });
+  };
 
   const addCredential = () => {
     const credential = {
@@ -17,6 +40,7 @@ const SignInModalContent = ({ handleSignUp, handleUpdatePwd }) => {
       console.log("error: no password");
     } else {
       console.log(credential.email, credential.password);
+      ajaxHandleLogin();
     }
     setEmail("");
     setPassword("");

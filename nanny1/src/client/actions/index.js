@@ -19,7 +19,7 @@ export const allUsers = (dispatch) => async () => {
   }
 };
 
-export const signUp = (dispatch) => async (email) => {
+export const signUp = (dispatch) => async (email, password) => {
   try {
     const response = await fetch(
       "/signUp",
@@ -37,3 +37,12 @@ export const signUp = (dispatch) => async (email) => {
     console.log(error);
   }
 };
+// export const signIn = (dispatch) => async () => {
+//   try {
+//     const response = await fetch("/login")(
+
+//     );
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
