@@ -19,7 +19,7 @@ const SignInModalContent = ({ handleSignUp, handleUpdatePwd, handleLogin }) => {
       })
     );
     const result = await resp.json();
-    console.log("ajax login", result);
+
     dispatch({
       type: "LOGIN",
       payload: {
@@ -27,7 +27,10 @@ const SignInModalContent = ({ handleSignUp, handleUpdatePwd, handleLogin }) => {
         password: passwordInput,
       },
     });
-    return resp;
+    if (resp.ok) {
+      console.log("in signin modal");
+      handleLogin(true);
+    }
   };
 
   const addCredential = () => {
@@ -41,12 +44,7 @@ const SignInModalContent = ({ handleSignUp, handleUpdatePwd, handleLogin }) => {
       console.log("error: no password");
     } else {
       console.log(credential.email, credential.password);
-      const response = ajaxHandleLogin();
-      console.log("inadd", response);
-      if (response.ok) {
-        console.log("in signin modal");
-        handleLogin(true);
-      }
+      ajaxHandleLogin();
     }
     setEmail("");
     setPassword("");
