@@ -26,12 +26,10 @@ function App() {
     async function getNowUser() {
       try {
         const response = await getUser(dispatch)();
-        console.log("respons status", response);
-        if (response) {
-          console.log("ok");
+        console.log("result status", response.ok);
+        if (response.ok) {
           setlogin(true);
         } else {
-          console.log("404");
           setlogin(false);
         }
       } catch (error) {}
@@ -39,17 +37,26 @@ function App() {
     getNowUser();
   }, []);
 
-  //const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   const result = getUser(dispatch)();
-  //   console.log(result.email);
+  // useEffect(async () => {
+  //   try {
+  //     const response = await getUser(dispatch)();
+  //     console.log("result status", response.ok);
+  //     if (response.ok) {
+  //       setlogin(true);
+  //     } else {
+  //       setlogin(false);
+  //     }
+  //   } catch (error) {
+  //     setlogin(false);
+  //   }
   // }, [dispatch]);
 
   return (
     <div className="APP">
       <NannyHeader>
-        {!isLogin && (
+        {isLogin ? (
+          <HeaderSignOut handleLogOut={() => setlogin(false)} />
+        ) : (
           <HeaderSignIn
             openModal={setModalState}
             closeSignUp={setShowSignUp}
@@ -57,7 +64,6 @@ function App() {
             closeSendUpdate={SetShowSendUpdatePwd}
           />
         )}
-        {isLogin && <HeaderSignOut />}
       </NannyHeader>
       {ModalState && (
         <MyModal
@@ -79,6 +85,7 @@ function App() {
             <SignInModalContent
               handleSignUp={() => setShowSignUp(true)}
               handleUpdatePwd={() => setShowUpdatePwd(true)}
+              handleLogin={setlogin}
             />
           )}
           {ShowUpdatePwd && (

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { ajaxConfigHelper } from "../helper";
 import "./style/SignInModalContent.css";
 
-const SignInModalContent = ({ handleSignUp, handleUpdatePwd }) => {
+const SignInModalContent = ({ handleSignUp, handleUpdatePwd, handleLogin }) => {
   const [emailInput, setEmail] = useState("");
   const [passwordInput, setPassword] = useState("");
   const [pwdVisible, setPwdVisible] = useState("password");
@@ -19,7 +19,7 @@ const SignInModalContent = ({ handleSignUp, handleUpdatePwd }) => {
       })
     );
     const result = await resp.json();
-    console.log(result);
+    console.log("ajax login", result);
     dispatch({
       type: "LOGIN",
       payload: {
@@ -27,6 +27,7 @@ const SignInModalContent = ({ handleSignUp, handleUpdatePwd }) => {
         password: passwordInput,
       },
     });
+    return resp;
   };
 
   const addCredential = () => {
@@ -40,7 +41,12 @@ const SignInModalContent = ({ handleSignUp, handleUpdatePwd }) => {
       console.log("error: no password");
     } else {
       console.log(credential.email, credential.password);
-      ajaxHandleLogin();
+      const response = ajaxHandleLogin();
+      console.log("inadd", response);
+      if (response.ok) {
+        console.log("in signin modal");
+        handleLogin(true);
+      }
     }
     setEmail("");
     setPassword("");

@@ -42,13 +42,26 @@ export const getUser = (dispatch) => async () => {
   try {
     const response = await fetch("/getUser");
     const result = await response.json();
-    // console.log("action", result);
+    // console.log("action", res);
     dispatch({
       type: "GET",
       payload: result,
     });
-    return result;
+    return response;
   } catch (error) {
-    console.log(error);
+    console.log(error, "get user");
+  }
+};
+
+export const signOut = (dispatch) => async () => {
+  try {
+    const response = await fetch("/signOut", ajaxConfigHelper());
+    const result = await response.json();
+    dispatch({
+      type: "SIGNOUT",
+      payload: result,
+    });
+  } catch (error) {
+    console.log(error, "signout");
   }
 };

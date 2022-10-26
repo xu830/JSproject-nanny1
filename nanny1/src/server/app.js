@@ -55,7 +55,7 @@ app.post("/login", (req, res) => {
     }
   });
   if (!user) {
-    res.json({ message: "login not successful" });
+    res.status(401).json({ message: "login not successful" });
   } else {
     userOn = user;
     res.json({ message: "login succeed" });
@@ -65,7 +65,18 @@ app.post("/login", (req, res) => {
 
 //4.get user
 app.get("/getUser", (_, res) => {
-  res.json(userOn);
+  if (userOn !== undefined) {
+    res.json(userOn);
+  } else {
+    res.status(401).json({ message: "no current user log in" });
+  }
+});
+
+//5.log out
+app.post("/signOut", (_, res) => {
+  // console.log("in api app.js");
+  userOn = undefined;
+  res.json({ message: "logout successful" });
 });
 
 app.use("/", indexRouter);
