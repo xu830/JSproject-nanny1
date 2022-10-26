@@ -29,8 +29,10 @@ let userlist = [
   { email: "mock1@gmail.com", password: "12345678" },
   { email: "mock2@gmail.com", password: "2345678" },
 ];
+
+let userOn;
+
 app.get("/userlist", (_, res) => {
-  console.log("api call");
   res.json(userlist);
 });
 
@@ -55,9 +57,15 @@ app.post("/login", (req, res) => {
   if (!user) {
     res.json({ message: "login not successful" });
   } else {
+    userOn = user;
     res.json({ message: "login succeed" });
     return;
   }
+});
+
+//4.get user
+app.get("/getUser", (_, res) => {
+  res.json(userOn);
 });
 
 app.use("/", indexRouter);

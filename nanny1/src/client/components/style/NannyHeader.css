@@ -9,7 +9,8 @@ h1 {
 #chuwa-header {
   font-size: small;
 }
-#signin-btn {
+#signin-btn,
+#signout-btn {
   background-color: black;
   color: white;
   align-items: flex-end;

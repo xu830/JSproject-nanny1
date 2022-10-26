@@ -14,6 +14,9 @@ export const reducer = (state = [], { type, payload }) => {
         }
         return { email, password };
       });
+    case "GET":
+      // console.log("in reducer", payload);
+      return { payload };
     default:
       return state;
   }

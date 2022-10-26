@@ -37,12 +37,18 @@ export const signUp = (dispatch) => async (email, password) => {
     console.log(error);
   }
 };
-// export const signIn = (dispatch) => async () => {
-//   try {
-//     const response = await fetch("/login")(
 
-//     );
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const getUser = (dispatch) => async () => {
+  try {
+    const response = await fetch("/getUser");
+    const result = await response.json();
+    // console.log("action", result);
+    dispatch({
+      type: "GET",
+      payload: result,
+    });
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
