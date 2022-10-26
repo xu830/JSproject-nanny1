@@ -3,7 +3,12 @@ import { useDispatch } from "react-redux";
 import { ajaxConfigHelper } from "../helper";
 import "./style/SignInModalContent.css";
 
-const SignInModalContent = ({ handleSignUp, handleUpdatePwd, handleLogin }) => {
+const SignInModalContent = ({
+  handleSignUp,
+  handleUpdatePwd,
+  handleLogin,
+  closeModal,
+}) => {
   const [emailInput, setEmail] = useState("");
   const [passwordInput, setPassword] = useState("");
   const [pwdVisible, setPwdVisible] = useState("password");
@@ -28,8 +33,8 @@ const SignInModalContent = ({ handleSignUp, handleUpdatePwd, handleLogin }) => {
       },
     });
     if (resp.ok) {
-      console.log("in signin modal");
       handleLogin(true);
+      closeModal(false);
     }
   };
 

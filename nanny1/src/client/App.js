@@ -86,6 +86,7 @@ function App() {
               handleSignUp={() => setShowSignUp(true)}
               handleUpdatePwd={() => setShowUpdatePwd(true)}
               handleLogin={setlogin}
+              closeModal={setModalState}
             />
           )}
           {ShowUpdatePwd && (
