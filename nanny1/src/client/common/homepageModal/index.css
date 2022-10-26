@@ -1,0 +1,22 @@
+.HomeModalBackground {
+  display: flex;
+  background: #ffffff;
+  border-radius: 4px;
+  height: max-content;
+  width: 1323px;
+  height: 682px;
+}
+.HomeModalContainer {
+  display: flex;
+}
+.Hometitle {
+  width: 1193px;
+  height: 44px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 137.5%;
+  position: relative;
+  right: 460px;
+}

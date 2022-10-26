@@ -10,9 +10,11 @@ import MyModal from "./common/modal";
 import HeaderSignIn from "./components/HeaderSignin";
 import HeaderSignOut from "./components/HeaderSignout";
 import SendUpdatePwd from "./components/SendUpdatePwd";
+import HomeModal from "./common/homepageModal";
 
 import { LOGIN_FORM, SIGN_UP_FORM, UPDATE_PWD_FORM } from "./constants";
 import "./App.css";
+import ProductsContent from "./components/ProductsContent";
 
 function App() {
   const [ModalState, setModalState] = useState(false);
@@ -20,6 +22,8 @@ function App() {
   const [ShowUpdatePwd, setShowUpdatePwd] = useState(false);
   const [ShowSendUpdatePwd, SetShowSendUpdatePwd] = useState(false);
   const [isLogin, setlogin] = useState(false);
+
+  const [showProducts, setShowProducts] = useState(true);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -36,20 +40,6 @@ function App() {
     }
     getNowUser();
   }, []);
-
-  // useEffect(async () => {
-  //   try {
-  //     const response = await getUser(dispatch)();
-  //     console.log("result status", response.ok);
-  //     if (response.ok) {
-  //       setlogin(true);
-  //     } else {
-  //       setlogin(false);
-  //     }
-  //   } catch (error) {
-  //     setlogin(false);
-  //   }
-  // }, [dispatch]);
 
   return (
     <div className="APP">
@@ -98,6 +88,9 @@ function App() {
           {ShowSendUpdatePwd && <SendUpdatePwd />}
         </MyModal>
       )}
+      <HomeModal titleText={showProducts && "Products"}>
+        <ProductsContent />
+      </HomeModal>
     </div>
   );
 }
