@@ -18,8 +18,11 @@ export const reducer = (state = [], { type, payload }) => {
       // console.log("in reducer", payload);
       return { payload };
     case "SIGNOUT":
-      console.log("inreducer", state);
+      // console.log("inreducer", state);
       return state;
+    case "GET_PRODUCTS_LIST":
+      console.log("inreducer", payload);
+      return [...payload];
     default:
       return state;
   }

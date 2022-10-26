@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getUser } from "./actions/index";
+import { getUser, allProducts } from "./actions/index";
 
 import NannyHeader from "./components/NannyHeader";
 import SignInModalContent from "./components/SignInModalContent";
@@ -11,10 +11,10 @@ import HeaderSignIn from "./components/HeaderSignin";
 import HeaderSignOut from "./components/HeaderSignout";
 import SendUpdatePwd from "./components/SendUpdatePwd";
 import HomeModal from "./common/homepageModal";
+import ProductsContent from "./components/ProductsContent";
 
 import { LOGIN_FORM, SIGN_UP_FORM, UPDATE_PWD_FORM } from "./constants";
 import "./App.css";
-import ProductsContent from "./components/ProductsContent";
 
 function App() {
   const [ModalState, setModalState] = useState(false);
@@ -30,7 +30,6 @@ function App() {
     async function getNowUser() {
       try {
         const response = await getUser(dispatch)();
-        console.log("result status", response.ok);
         if (response.ok) {
           setlogin(true);
         } else {
@@ -40,6 +39,11 @@ function App() {
     }
     getNowUser();
   }, []);
+
+  // useEffect(() => {
+  //   allProducts(dispatch)();
+  //   // console.log("all p", response);
+  // }, [dispatch]);
 
   return (
     <div className="APP">

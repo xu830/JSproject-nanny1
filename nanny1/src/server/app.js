@@ -30,6 +30,28 @@ let userlist = [
   { email: "mock2@gmail.com", password: "2345678" },
 ];
 
+//mock product database
+let productlist = [
+  {
+    productName: "grey chair",
+    productDescription: "test1",
+    category: "C1",
+    price: "20",
+    inStock: "100",
+    imgSrc:
+      "https://i5.walmartimages.com/asr/99c11ba4-f0b9-4bdd-bbb1-701b352b45fd.3e0f55c09e774710faafa402dc456b53.jpeg",
+  },
+  {
+    productName: "Griddle",
+    productDescription: "test2",
+    category: "C2",
+    price: "60",
+    inStock: "30",
+    imgSrc:
+      "https://i5.walmartimages.com/asr/a972bcba-0df0-4b7e-a492-be955881389b.79ad24fa65ab475ea13f398dfdcf2c5d.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+  },
+];
+
 let userOn;
 
 app.get("/userlist", (_, res) => {
@@ -77,6 +99,11 @@ app.post("/signOut", (_, res) => {
   // console.log("in api app.js");
   userOn = undefined;
   res.json({ message: "logout successful" });
+});
+
+//5.get all products
+app.get("/productslist", (_, res) => {
+  res.json(productlist);
 });
 
 app.use("/", indexRouter);

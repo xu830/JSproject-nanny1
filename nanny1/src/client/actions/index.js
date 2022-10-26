@@ -65,3 +65,18 @@ export const signOut = (dispatch) => async () => {
     console.log(error, "signout");
   }
 };
+
+/**product */
+export const allProducts = (dispatch) => async () => {
+  try {
+    const response = await fetch("/productslist");
+    const result = await response.json();
+    console.log("api", result);
+    dispatch({
+      type: "GET_PRODUCTS_LIST",
+      payload: result,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
