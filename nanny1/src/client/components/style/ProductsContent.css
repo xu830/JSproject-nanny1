@@ -1,8 +1,27 @@
-.ProductList {
+.ProductPage {
   display: flex;
   position: relative;
   top: 80px;
-  width: 1323px;
+  /* width: 1323px; */
   height: 682px;
-  right: 1100px;
+  right: 1250px;
+}
+#addProductBtn {
+  position: relative;
+  width: 133px;
+  height: 40px;
+  left: 1200px;
+
+  /* left: 1254px;
+top: 132px; */
+
+  background: #5048e5;
+  border-radius: 4px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 137.5%;
+  color: white;
 }

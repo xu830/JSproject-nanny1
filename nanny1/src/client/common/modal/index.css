@@ -18,6 +18,8 @@
   align-items: flex-start;
   background: #ffffff;
   border-radius: 10px;
+  position: relative;
+  bottom: 1200px;
 }
 
 .title {

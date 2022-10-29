@@ -1,0 +1,130 @@
+.createProductLabels {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #6b7280;
+}
+#CreatePage {
+  position: relative;
+  width: 660px;
+  height: 839px;
+  top: 90px;
+  right: 800px;
+  background: #ffffff;
+  border-radius: 4px;
+  display: flex;
+}
+#nameLabel {
+  position: relative;
+  width: 108px;
+  height: 24px;
+}
+#nameInput {
+  box-sizing: border-box;
+
+  position: relative;
+  width: 564px;
+  height: 56px;
+
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+#descriptionLable {
+  position: relative;
+  width: 169px;
+  height: 24px;
+}
+#descriptionInput {
+  width: 564px;
+  height: 135px;
+  left: 438px;
+  top: 370px;
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+#categoryLabel {
+  position: relative;
+  width: 73px;
+  height: 24px;
+  right: 90px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+#categoryInput {
+  box-sizing: border-box;
+  position: relative;
+  width: 278px;
+  height: 56px;
+  right: 160px;
+  top: 50px;
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+#priceLabel {
+  position: relative;
+  width: 40px;
+  height: 24px;
+}
+#priceInput {
+  position: relative;
+  width: 250px;
+  height: 56px;
+  left: 200px;
+  bottom: 10px;
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+#quatityLabel {
+  position: relative;
+  width: 40px;
+  height: 24px;
+  top: 40px;
+  right: 300px;
+}
+#quatityInput {
+  box-sizing: border-box;
+
+  position: relative;
+  width: 196px;
+  height: 56px;
+  top: 20px;
+  right: 130px;
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+#linkLable {
+  position: relative;
+  width: 119px;
+  height: 24px;
+  bottom: 15px;
+}
+#linkInput {
+  box-sizing: border-box;
+
+  position: relative;
+  width: 357px;
+  height: 56px;
+  bottom: 34px;
+  left: 100px;
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+#addProdBtninCreate {
+  position: relative;
+  width: 100px;
+  height: 40px;
+  top: 700px;
+  background: #5048e5;
+}
