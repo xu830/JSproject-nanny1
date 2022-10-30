@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getUser } from "./actions/index";
+import { getUser, getProducts } from "./actions/index";
 
 import NannyHeader from "./components/NannyHeader";
 import SignInModalContent from "./components/SignInModalContent";
@@ -23,13 +23,14 @@ function App() {
   const [ShowUpdatePwd, setShowUpdatePwd] = useState(false);
   const [ShowSendUpdatePwd, SetShowSendUpdatePwd] = useState(false);
   const [isLogin, setlogin] = useState(false);
+  const [productsList, setProductsList] = useState([]);
 
   const [showProducts, setShowProducts] = useState(true);
   const [showCreateProd, setCreateProd] = useState(false);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    async function getNowUser() {
+    const getNowUser = async () => {
       try {
         const response = await getUser(dispatch)();
         console.log("result status", response.ok);
@@ -39,8 +40,16 @@ function App() {
           setlogin(false);
         }
       } catch (error) {}
-    }
+    };
+    const GetProductsList = async () => {
+      try {
+        const ProductResponse = await getProducts(dispatch)();
+        console.log("products", ProductResponse);
+      } catch (error) {}
+    };
+
     getNowUser();
+    GetProductsList();
   }, []);
 
   return (

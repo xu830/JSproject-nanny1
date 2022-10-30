@@ -65,3 +65,18 @@ export const signOut = (dispatch) => async () => {
     console.log(error, "signout");
   }
 };
+
+export const getProducts = (dispatch) => async () => {
+  try {
+    const response = await fetch("/getProducts");
+    const result = await response.json();
+    dispatch({
+      type: "GETPRODUCTS",
+      payload: result,
+    });
+    console.log("in action", result);
+    return result;
+  } catch (error) {
+    console.log(error, "getProducts");
+  }
+};
