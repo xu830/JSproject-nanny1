@@ -43,8 +43,8 @@ function App() {
     };
     const GetProductsList = async () => {
       try {
-        const ProductResponse = await getProducts(dispatch)();
-        console.log("products", ProductResponse);
+        const Products = await getProducts(dispatch)();
+        setProductsList(Products);
       } catch (error) {}
     };
 
@@ -73,6 +73,7 @@ function App() {
       >
         {showProducts && (
           <ProductsContent
+            productsList={productsList}
             handleCreateProduct={setCreateProd}
             handleProductShow={setShowProducts}
           />

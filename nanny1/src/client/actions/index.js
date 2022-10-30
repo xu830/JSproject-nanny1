@@ -74,7 +74,6 @@ export const getProducts = (dispatch) => async () => {
       type: "GETPRODUCTS",
       payload: result,
     });
-    console.log("in action", result);
     return result;
   } catch (error) {
     console.log(error, "getProducts");

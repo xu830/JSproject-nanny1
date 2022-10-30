@@ -1,6 +1,12 @@
 import ProductCell from "./ProductCell";
 import "./style/ProductsContent.css";
-const ProductsContent = ({ handleCreateProduct, handleProductShow }) => {
+const ProductsContent = ({
+  productsList,
+  handleCreateProduct,
+  handleProductShow,
+}) => {
+  console.log("inPC", productsList);
+
   return (
     <div className="ProductPage">
       <button
