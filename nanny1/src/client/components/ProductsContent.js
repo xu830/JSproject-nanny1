@@ -6,7 +6,17 @@ const ProductsContent = ({
   handleProductShow,
 }) => {
   console.log("inPC", productsList);
-
+  const pList = productsList.map(({ productName, price, imgSrc }, index) => {
+    return (
+      <ProductCell
+        key={`${productName} - ${index}`}
+        productName={productName}
+        price={price}
+        imgSrc={imgSrc}
+        index={index}
+      />
+    );
+  });
   return (
     <div className="ProductPage">
       <button
@@ -18,9 +28,7 @@ const ProductsContent = ({
       >
         Add Product
       </button>
-      <div className="ProductList">
-        <ProductCell />
-      </div>
+      <div className="ProductList">{pList}</div>
     </div>
   );
 };
