@@ -4,7 +4,8 @@ const ProductCell = ({ productName, price, imgSrc, index }) => {
     <div className="itemContainer">
       <img className="itemimg" src={imgSrc}></img>
       <p className="productName">{productName}</p>
-      <p className="price">{price}</p>
+      <p className="price">${price}</p>
+      <button className="quickAdd">add</button>
       <button className="editBtn">edit</button>
     </div>
   );

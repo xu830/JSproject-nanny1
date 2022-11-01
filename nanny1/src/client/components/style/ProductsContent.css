@@ -6,6 +6,10 @@
   height: 682px;
   right: 1250px;
 }
+.ProductList {
+  display: flex;
+  gap: 19px 25px;
+}
 #addProductBtn {
   position: relative;
   width: 133px;

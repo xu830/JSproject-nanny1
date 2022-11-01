@@ -49,8 +49,6 @@ top: 437px; */
   position: relative;
   width: 191px;
   height: 21px;
-  /* left: 91px;
-top: 461px; */
   bottom: 10px;
 
   font-family: "Inter";
@@ -71,10 +69,22 @@ top: 461px; */
   position: relative;
   width: 102px;
   height: 26px;
-  bottom: 25px;
+  bottom: 45px;
   left: 130px;
 
   background: #ffffff;
   border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+.quickAdd {
+  box-sizing: border-box;
+
+  position: relative;
+  width: 110px;
+  height: 26px;
+  bottom: 25px;
+
+  background: #5048e5;
+  border: 1px solid #ffffff;
   border-radius: 4px;
 }
