@@ -79,3 +79,14 @@ export const getProducts = (dispatch) => async () => {
     console.log(error, "getProducts");
   }
 };
+
+export const addProduct =
+  (dispatch) =>
+  async (
+    productName,
+    productDescription,
+    category,
+    price,
+    inStock,
+    imgSrc
+  ) => {};

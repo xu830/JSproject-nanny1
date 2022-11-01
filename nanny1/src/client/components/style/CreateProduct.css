@@ -78,18 +78,19 @@
   position: relative;
   width: 250px;
   height: 56px;
-  left: 200px;
+  left: 310px;
   bottom: 10px;
   background: #ffffff;
   border: 1px solid #cccccc;
   border-radius: 4px;
 }
+
 #quatityLabel {
   position: relative;
   width: 40px;
   height: 24px;
   top: 40px;
-  right: 300px;
+  right: 250px;
 }
 #quatityInput {
   box-sizing: border-box;
@@ -97,8 +98,8 @@
   position: relative;
   width: 196px;
   height: 56px;
-  top: 20px;
-  right: 130px;
+  top: 90px;
+  right: 375px;
   background: #ffffff;
   border: 1px solid #cccccc;
   border-radius: 4px;
@@ -107,7 +108,8 @@
   position: relative;
   width: 119px;
   height: 24px;
-  bottom: 15px;
+  bottom: 17px;
+  left: 250px;
 }
 #linkInput {
   box-sizing: border-box;
@@ -115,7 +117,7 @@
   position: relative;
   width: 357px;
   height: 56px;
-  bottom: 34px;
+  top: 30px;
   left: 100px;
   background: #ffffff;
   border: 1px solid #cccccc;
