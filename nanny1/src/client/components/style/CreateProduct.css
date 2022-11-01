@@ -123,10 +123,18 @@
   border: 1px solid #cccccc;
   border-radius: 4px;
 }
+#backBtninCreate {
+  position: relative;
+  width: 100px;
+  height: 40px;
+  top: 700px;
+  background: #5048e5;
+}
 #addProdBtninCreate {
   position: relative;
   width: 100px;
   height: 40px;
   top: 700px;
+  right: 600px;
   background: #5048e5;
 }

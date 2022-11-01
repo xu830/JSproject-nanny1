@@ -23,6 +23,9 @@ export const reducer = (state = [], { type, payload }) => {
     case "GETPRODUCTS":
       console.log("inreducer getproduct", payload);
       return [...payload];
+    case "ADDPRODUCT":
+      console.log("in reducer add prod", payload);
+      return [...state, { ...payload }];
     default:
       return state;
   }

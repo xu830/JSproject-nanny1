@@ -104,6 +104,26 @@ app.post("/signOut", (_, res) => {
 app.get("/getProducts", (_, res) => {
   res.json(productlist);
 });
+
+//7. add a product
+app.post("/addProduct", (req, res) => {
+  if (
+    req.body &&
+    req.body.productName &&
+    req.body.productDescription &&
+    req.body.category &&
+    req.body.price &&
+    req.body.inStock &&
+    req.body.imgSrc
+  ) {
+    console.log(req.body);
+    productlist = [...productlist, req.body];
+    res.json({ message: "addProduct succeed" });
+    return;
+  }
+  res.json(req.body);
+});
+
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 

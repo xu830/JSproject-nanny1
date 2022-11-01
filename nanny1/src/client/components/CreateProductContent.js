@@ -73,13 +73,22 @@ const CreateProductContent = ({ handleCreateProduct, handleProductShow }) => {
         />
       </form>
       <button
+        id="backBtninCreate"
+        onClick={() => {
+          handleCreateProduct(false);
+          handleProductShow(true);
+        }}
+      >
+        Back
+      </button>
+      <button
         id="addProdBtninCreate"
         onClick={() => {
           handleCreateProduct(false);
           handleProductShow(true);
         }}
       >
-        Add Product
+        add product
       </button>
     </div>
   );

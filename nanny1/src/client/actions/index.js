@@ -82,11 +82,32 @@ export const getProducts = (dispatch) => async () => {
 
 export const addProduct =
   (dispatch) =>
-  async (
-    productName,
-    productDescription,
-    category,
-    price,
-    inStock,
-    imgSrc
-  ) => {};
+  async (productName, productDescription, category, price, inStock, imgSrc) => {
+    try {
+      const response = await fetch(
+        "/addProduct",
+        ajaxConfigHelper({
+          productName,
+          productDescription,
+          category,
+          price,
+          inStock,
+          imgSrc,
+        })
+      );
+      const result = response.json();
+      dispatch({
+        type: "ADDPRODUCT",
+        payload: {
+          productName,
+          productDescription,
+          category,
+          price,
+          inStock,
+          imgSrc,
+        },
+      });
+    } catch (error) {
+      console.log(error, "addproduct");
+    }
+  };
