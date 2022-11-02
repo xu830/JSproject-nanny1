@@ -9,6 +9,8 @@
 .ProductList {
   display: flex;
   gap: 19px 25px;
+  width: 1323px;
+  height: 1000px;
 }
 #addProductBtn {
   position: relative;

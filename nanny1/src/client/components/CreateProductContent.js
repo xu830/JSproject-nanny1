@@ -23,7 +23,7 @@ const CreateProductContent = ({ handleCreateProduct, handleProductShow }) => {
         product.imgSrc
       );
     } catch (error) {
-      console.log("cpc", error);
+      console.log(error);
     }
   };
   const addClick = () => {

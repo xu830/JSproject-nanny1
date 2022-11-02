@@ -23,7 +23,6 @@ function App() {
   const [ShowUpdatePwd, setShowUpdatePwd] = useState(false);
   const [ShowSendUpdatePwd, SetShowSendUpdatePwd] = useState(false);
   const [isLogin, setlogin] = useState(false);
-  const [productsList, setProductsList] = useState([]);
 
   const [showProducts, setShowProducts] = useState(true);
   const [showCreateProd, setCreateProd] = useState(false);
@@ -41,15 +40,8 @@ function App() {
         }
       } catch (error) {}
     };
-    const GetProductsList = async () => {
-      try {
-        const Products = await getProducts(dispatch)();
-        setProductsList(Products);
-      } catch (error) {}
-    };
 
     getNowUser();
-    GetProductsList();
   }, []);
 
   return (
@@ -73,7 +65,6 @@ function App() {
       >
         {showProducts && (
           <ProductsContent
-            productsList={productsList}
             handleCreateProduct={setCreateProd}
             handleProductShow={setShowProducts}
           />
