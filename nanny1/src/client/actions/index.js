@@ -84,6 +84,7 @@ export const addProduct =
   (dispatch) =>
   async (productName, productDescription, category, price, inStock, imgSrc) => {
     try {
+      console.log("in action", inStock);
       const response = await fetch(
         "/addProduct",
         ajaxConfigHelper({

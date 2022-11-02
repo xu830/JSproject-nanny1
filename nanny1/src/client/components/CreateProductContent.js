@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./style/CreateProduct.css";
+import { addProduct } from "../actions/index";
+import { useDispatch } from "react-redux";
 
 const CreateProductContent = ({ handleCreateProduct, handleProductShow }) => {
   const [nameInput, setName] = useState("");
@@ -7,7 +9,51 @@ const CreateProductContent = ({ handleCreateProduct, handleProductShow }) => {
   const [priceInput, setPriceInput] = useState("");
   const [quantityInput, setquantityInput] = useState("");
   const [imgLinkInput, setimgLinkInput] = useState("");
-  const [categoryInput, setCategory] = useState("");
+  const [categoryInput, setCategory] = useState("category1");
+  const dispatch = useDispatch();
+
+  const handleAdd = async (product) => {
+    try {
+      const response = await addProduct(dispatch)(
+        product.productName,
+        product.productDescription,
+        product.category,
+        product.price,
+        product.inStock,
+        product.imgSrc
+      );
+    } catch (error) {
+      console.log("cpc", error);
+    }
+  };
+  const addClick = () => {
+    const product = {
+      productName: nameInput,
+      productDescription: descriptionInput,
+      category: categoryInput,
+      price: priceInput,
+      inStock: quantityInput,
+      imgSrc: imgLinkInput,
+    };
+    console.log("instock num", product.inStock);
+    if (product.productName === "") {
+      console.log("no name");
+    } else if (product.productDescription === "") {
+      console.log("no productDescription");
+    } else if (product.category === "") {
+      console.log("no category");
+    } else if (product.price === "") {
+      console.log("no price");
+    } else if (product.inStock === "") {
+      console.log("no inStock");
+    } else if (product.imgSrc === "") {
+      console.log("no imgSrc");
+    } else {
+      handleCreateProduct(false);
+      handleProductShow(true);
+      handleAdd(product);
+    }
+  };
 
   return (
     <div id="CreatePage">
@@ -81,13 +127,7 @@ const CreateProductContent = ({ handleCreateProduct, handleProductShow }) => {
       >
         Back
       </button>
-      <button
-        id="addProdBtninCreate"
-        onClick={() => {
-          handleCreateProduct(false);
-          handleProductShow(true);
-        }}
-      >
+      <button id="addProdBtninCreate" onClick={addClick}>
         add product
       </button>
     </div>
