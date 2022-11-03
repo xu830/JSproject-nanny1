@@ -1,3 +1,25 @@
+#CreatePage {
+  position: relative;
+  width: 660px;
+  height: 839px;
+  top: 90px;
+  right: 900px;
+  background: #ffffff;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+#createProductForm {
+  position: relative;
+  top: 20px;
+  width: 660px;
+  height: 800px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 20px;
+}
 .createProductLabels {
   font-family: "Inter";
   font-style: normal;
@@ -6,16 +28,7 @@
   line-height: 24px;
   color: #6b7280;
 }
-#CreatePage {
-  position: relative;
-  width: 660px;
-  height: 839px;
-  top: 90px;
-  right: 800px;
-  background: #ffffff;
-  border-radius: 4px;
-  display: flex;
-}
+
 #nameLabel {
   position: relative;
   width: 108px;
@@ -50,8 +63,7 @@
   position: relative;
   width: 73px;
   height: 24px;
-  right: 90px;
-
+  right: 250px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 600;
@@ -63,8 +75,7 @@
   position: relative;
   width: 278px;
   height: 56px;
-  right: 160px;
-  top: 50px;
+  right: 150px;
   background: #ffffff;
   border: 1px solid #cccccc;
   border-radius: 4px;
@@ -73,13 +84,15 @@
   position: relative;
   width: 40px;
   height: 24px;
+  left: 150px;
+  bottom: 120px;
 }
 #priceInput {
   position: relative;
   width: 250px;
   height: 56px;
-  left: 310px;
-  bottom: 10px;
+  left: 160px;
+  bottom: 120px;
   background: #ffffff;
   border: 1px solid #cccccc;
   border-radius: 4px;
@@ -87,10 +100,10 @@
 
 #quatityLabel {
   position: relative;
-  width: 40px;
+  width: 150px;
   height: 24px;
-  top: 40px;
-  right: 250px;
+  bottom: 120px;
+  right: 150px;
 }
 #quatityInput {
   box-sizing: border-box;
@@ -98,8 +111,8 @@
   position: relative;
   width: 196px;
   height: 56px;
-  top: 90px;
-  right: 375px;
+  bottom: 120px;
+  right: 150px;
   background: #ffffff;
   border: 1px solid #cccccc;
   border-radius: 4px;
@@ -108,17 +121,17 @@
   position: relative;
   width: 119px;
   height: 24px;
-  bottom: 17px;
-  left: 250px;
+  bottom: 240px;
+  left: 150px;
 }
 #linkInput {
   box-sizing: border-box;
 
   position: relative;
-  width: 357px;
+  width: 330px;
   height: 56px;
-  top: 30px;
-  left: 100px;
+  bottom: 240px;
+  left: 150px;
   background: #ffffff;
   border: 1px solid #cccccc;
   border-radius: 4px;
@@ -127,14 +140,14 @@
   position: relative;
   width: 100px;
   height: 40px;
-  top: 700px;
+  right: 90px;
   background: #5048e5;
 }
 #addProdBtninCreate {
   position: relative;
   width: 100px;
   height: 40px;
-  top: 700px;
-  right: 600px;
+  bottom: 26px;
+  left: 70px;
   background: #5048e5;
 }

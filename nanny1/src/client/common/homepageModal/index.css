@@ -1,6 +1,6 @@
 .HomeModalBackground {
   display: flex;
-  background: #ffffff;
+  /* background: #ffffff; */
   border-radius: 4px;
   height: 1000px;
   position: relative;

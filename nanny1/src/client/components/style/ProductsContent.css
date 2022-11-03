@@ -4,7 +4,13 @@
   top: 80px;
   /* width: 1323px; */
   height: 682px;
-  right: 1250px;
+  right: 1260px;
+
+  width: 1323px;
+  height: 682px;
+
+  background: #ffffff;
+  border-radius: 4px;
 }
 .ProductList {
   display: flex;

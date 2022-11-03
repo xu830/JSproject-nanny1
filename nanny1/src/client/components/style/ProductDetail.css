@@ -1,13 +1,14 @@
 .productDetailContainer {
   display: flex;
   position: relative;
-  right: 1150px;
+  right: 1160px;
   top: 100px;
   width: 1200px;
   height: 682px;
 
   background: #ffffff;
   border-radius: 4px;
+  flex-direction: column;
 }
 .itemimgInDetail {
   width: 600px;
@@ -19,7 +20,8 @@
   position: relative;
   width: 84px;
   height: 22px;
-  left: 60px;
+  left: 650px;
+  bottom: 500px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
@@ -32,8 +34,8 @@
   position: relative;
   width: 1089px;
   height: 44px;
-  top: 20px;
-  left: 35px;
+  bottom: 530px;
+  left: 190px;
   /* Typography/H4 */
 
   font-family: "Inter";
@@ -49,8 +51,8 @@
   position: relative;
   width: 84px;
   height: 44px;
-  top: 80px;
-  right: 75px;
+  bottom: 580px;
+  left: 660px;
   /* Typography/H4 */
 
   font-family: "Inter";
@@ -66,8 +68,8 @@
   position: relative;
   width: 76px;
   height: 30px;
-  top: 120px;
-
+  bottom: 650px;
+  left: 780px;
   background: rgba(234, 61, 47, 0.13);
   border-radius: 4px;
 }
@@ -88,10 +90,9 @@
 .descriptionInDetail {
   position: relative;
   width: 728px;
-
   height: 288px;
-  right: 250px;
-  top: 200px;
+  bottom: 630px;
+  left: 330px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
@@ -102,10 +103,10 @@
 }
 .addToCart {
   position: relative;
-  width: 433px;
-  height: 40px;
-  top: 700px;
-  right: 300px;
+  width: 133px;
+  height: 60px;
+  bottom: 400px;
+  left: 650px;
   background: #5048e5;
   border-radius: 4px;
   color: white;
@@ -113,12 +114,17 @@
 .editInDetail,
 .BackInDetail {
   box-sizing: border-box;
-
   position: relative;
-  width: 333px;
-  height: 40px;
-  top: 700px;
+  width: 133px;
+  height: 60px;
+  bottom: 420px;
+  left: 850px;
   background: #ffffff;
   border: 1px solid #cccccc;
   border-radius: 4px;
+}
+
+.BackInDetail {
+  bottom: 438px;
+  left: 1050px;
 }
