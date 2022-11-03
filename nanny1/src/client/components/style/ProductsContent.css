@@ -2,13 +2,10 @@
   display: flex;
   position: relative;
   top: 80px;
-  /* width: 1323px; */
-  height: 682px;
-  right: 1260px;
 
-  width: 1323px;
-  height: 682px;
-
+  right: 1250px;
+  width: 1440px;
+  height: 905px;
   background: #ffffff;
   border-radius: 4px;
 }
