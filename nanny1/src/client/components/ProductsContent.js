@@ -3,7 +3,12 @@ import { useDispatch } from "react-redux";
 import { getProducts } from "../actions/index";
 import ProductCell from "./ProductCell";
 import "./style/ProductsContent.css";
-const ProductsContent = ({ handleCreateProduct, handleProductShow }) => {
+const ProductsContent = ({
+  handleCreateProduct,
+  handleProductShow,
+  setProductShowDetail,
+  setProductDetail,
+}) => {
   const [productsList, setProductsList] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -16,17 +21,28 @@ const ProductsContent = ({ handleCreateProduct, handleProductShow }) => {
     GetProductsList();
   }, []);
 
-  const pList = productsList.map(({ productName, price, imgSrc }, index) => {
-    return (
-      <ProductCell
-        key={`${productName} - ${index}`}
-        productName={productName}
-        price={price}
-        imgSrc={imgSrc}
-        index={index}
-      />
-    );
-  });
+  const pList = productsList.map(
+    (
+      { productName, price, imgSrc, productDescription, category, inStock },
+      index
+    ) => {
+      return (
+        <ProductCell
+          key={`${productName} - ${index}`}
+          productName={productName}
+          price={price}
+          imgSrc={imgSrc}
+          productDescription={productDescription}
+          category={category}
+          inStock={inStock}
+          index={index}
+          handleProductShow={handleProductShow}
+          setProductShowDetail={setProductShowDetail}
+          setProductDetail={setProductDetail}
+        />
+      );
+    }
+  );
   return (
     <div className="ProductPage">
       <button

@@ -14,8 +14,10 @@ import HomeModal from "./common/homepageModal";
 
 import { LOGIN_FORM, SIGN_UP_FORM, UPDATE_PWD_FORM } from "./constants";
 import "./App.css";
+
 import ProductsContent from "./components/ProductsContent";
 import CreateProductContent from "./components/CreateProductContent";
+import ProductDetail from "./components/ProductDetail";
 
 function App() {
   const [ModalState, setModalState] = useState(false);
@@ -26,6 +28,8 @@ function App() {
 
   const [showProducts, setShowProducts] = useState(true);
   const [showCreateProd, setCreateProd] = useState(false);
+  const [productShowDetail, setProductShowDetail] = useState(false);
+  const [productDetailObject, setProductDetail] = useState({});
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -60,19 +64,30 @@ function App() {
       </NannyHeader>
       <HomeModal
         titleText={
-          (showProducts && "Products") || (showCreateProd && "Create Product")
+          (showProducts && "Products") ||
+          (showCreateProd && "Create Product") ||
+          (productShowDetail && "Product Detail")
         }
       >
         {showProducts && (
           <ProductsContent
             handleCreateProduct={setCreateProd}
             handleProductShow={setShowProducts}
+            setProductShowDetail={setProductShowDetail}
+            setProductDetail={setProductDetail}
           />
         )}
         {showCreateProd && (
           <CreateProductContent
             handleCreateProduct={setCreateProd}
             handleProductShow={setShowProducts}
+          />
+        )}
+        {productShowDetail && (
+          <ProductDetail
+            productDetailObject={productDetailObject}
+            handleProductShow={setShowProducts}
+            setProductShowDetail={setProductShowDetail}
           />
         )}
       </HomeModal>

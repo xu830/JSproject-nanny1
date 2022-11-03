@@ -1,0 +1,124 @@
+.productDetailContainer {
+  display: flex;
+  position: relative;
+  right: 1150px;
+  top: 100px;
+  width: 1200px;
+  height: 682px;
+
+  background: #ffffff;
+  border-radius: 4px;
+}
+.itemimgInDetail {
+  width: 600px;
+  height: 600px;
+
+  background: #c4c4c4;
+}
+.categoryInDetail {
+  position: relative;
+  width: 84px;
+  height: 22px;
+  left: 60px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #6b7280;
+}
+.itemNameInDetail {
+  position: relative;
+  width: 1089px;
+  height: 44px;
+  top: 20px;
+  left: 35px;
+  /* Typography/H4 */
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 137.5%;
+  /* identical to box height, or 44px */
+
+  color: #535353;
+}
+.priceInDetail {
+  position: relative;
+  width: 84px;
+  height: 44px;
+  top: 80px;
+  right: 75px;
+  /* Typography/H4 */
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 137.5%;
+  /* identical to box height, or 44px */
+
+  color: #111827;
+}
+.oosBox {
+  position: relative;
+  width: 76px;
+  height: 30px;
+  top: 120px;
+
+  background: rgba(234, 61, 47, 0.13);
+  border-radius: 4px;
+}
+.oosLabel {
+  position: relative;
+  width: 60px;
+  height: 14px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 137.5%;
+  /* identical to box height, or 14px */
+
+  color: #ea3d2f;
+}
+.descriptionInDetail {
+  position: relative;
+  width: 728px;
+
+  height: 288px;
+  right: 250px;
+  top: 200px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #6b7280;
+}
+.addToCart {
+  position: relative;
+  width: 433px;
+  height: 40px;
+  top: 700px;
+  right: 300px;
+  background: #5048e5;
+  border-radius: 4px;
+  color: white;
+}
+.editInDetail,
+.BackInDetail {
+  box-sizing: border-box;
+
+  position: relative;
+  width: 333px;
+  height: 40px;
+  top: 700px;
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
