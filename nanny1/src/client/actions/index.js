@@ -112,3 +112,17 @@ export const addProduct =
       console.log(error, "addproduct");
     }
   };
+
+export const getCart = (dispatch) => async () => {
+  try {
+    const response = await fetch("/getCart");
+    const result = await response.json();
+    dispatch({
+      type: "GET",
+      payload: result,
+    });
+    return result;
+  } catch (error) {
+    console.log(error, "get cart");
+  }
+};

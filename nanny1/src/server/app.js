@@ -26,8 +26,28 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //mock user database
 let userlist = [
-  { email: "mock1@gmail.com", password: "12345678" },
+  {
+    email: "mock1@gmail.com",
+    password: "12345678",
+    cart: [
+      {
+        productName: "grey chair",
+        price: "20",
+        num: "1",
+        imgSrc:
+          "https://i5.walmartimages.com/asr/99c11ba4-f0b9-4bdd-bbb1-701b352b45fd.3e0f55c09e774710faafa402dc456b53.jpeg",
+      },
+      {
+        productName: "Griddle",
+        price: "60",
+        num: "3",
+        imgSrc:
+          "https://i5.walmartimages.com/asr/a972bcba-0df0-4b7e-a492-be955881389b.79ad24fa65ab475ea13f398dfdcf2c5d.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+      },
+    ],
+  },
   { email: "mock2@gmail.com", password: "2345678" },
+  { email: "mock3@gmail.com", password: "12345678" },
 ];
 
 //mock product database
@@ -122,6 +142,15 @@ app.post("/addProduct", (req, res) => {
     return;
   }
   res.json(req.body);
+});
+
+//8.get user's cart
+app.get("/getCart", (_, res) => {
+  if (userOn.cart) {
+    res.json(userOn.cart);
+  } else {
+    res.json([""]);
+  }
 });
 
 app.use("/", indexRouter);
