@@ -1,5 +1,12 @@
 import "./style/CartFooter.css";
-const CartFooter = () => {
+const CartFooter = ({ totalPrice }) => {
+  const discont = 0;
+  const CalcTax = () => {
+    return totalPrice * 0.1;
+  };
+  const CalcTotal = () => {
+    return totalPrice + CalcTax() - discont;
+  };
   return (
     <div className="CartFooter">
       <div className="CartInfo">
@@ -10,10 +17,10 @@ const CartFooter = () => {
           <p>Estimate total</p>
         </div>
         <div className="CartNumInfo">
-          <p>$499.0 </p>
-          <p>$49.90</p>
-          <p>-$20.00 </p>
-          <p> $429.10</p>
+          <p>${totalPrice} </p>
+          <p>${CalcTax()}</p>
+          <p>-$0.00 </p>
+          <p> ${CalcTotal()}</p>
         </div>
       </div>
       <button className="CartCheckOut">Countinue to checkout</button>

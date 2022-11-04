@@ -107,10 +107,15 @@ function App() {
       </HomeModal>
       {showCart && (
         <CartModal
-          top={<CartHeader handleCart={() => setShowCart(false)} />}
-          bottom={<CartFooter />}
+          top={
+            <CartHeader
+              handleCart={() => setShowCart(false)}
+              cartList={cartList}
+            />
+          }
+          bottom={<CartFooter totalPrice={totalPrice} />}
         >
-          <CartContent />
+          <CartContent cartList={cartList} />
         </CartModal>
       )}
 

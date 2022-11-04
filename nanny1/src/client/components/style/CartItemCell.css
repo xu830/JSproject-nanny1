@@ -1,0 +1,61 @@
+.cartCell {
+  display: flex;
+  height: 120px;
+  flex-direction: row;
+  margin-top: 42px;
+}
+.lefC .centerC .rightC {
+  display: flex;
+  flex-direction: column;
+}
+.centerC {
+  width: 180px;
+  margin-right: 82px;
+}
+
+.cartImg {
+  width: 112px;
+  height: 120px;
+  margin-left: 41px;
+  margin-right: 24px;
+}
+
+.removeCart {
+  cursor: pointer;
+}
+
+.pNameCart {
+  margin-top: 0px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 137.5%;
+  /* identical to box height, or 28px */
+
+  color: #111827;
+}
+.pPriceCart {
+  margin-top: 0px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 137.5%;
+  /* identical to box height, or 28px */
+
+  color: #5048e5;
+}
+
+.removeCart {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 137.5%;
+  /* identical to box height, or 22px */
+
+  text-decoration-line: underline;
+
+  color: #6b7280;
+}

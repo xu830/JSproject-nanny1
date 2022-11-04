@@ -34,7 +34,6 @@ const HeaderSignOut = ({
     let total = cart.reduce((prev, cur) => {
       return prev + cur.price * cur.num;
     }, 0);
-    console.log(total);
     setTotalPrice(total);
   };
 
