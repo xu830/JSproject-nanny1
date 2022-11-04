@@ -12,6 +12,15 @@ const CartContent = ({ cartList }) => {
       />
     );
   });
-  return <div className="scroll">{cList}</div>;
+  return (
+    <div>
+      <div className="scroll">{cList}</div>
+      <div className="couponSection">
+        <p id="couponLabel">Apply Discount Code</p>
+        <input id="couponInput"></input>
+        <button id="applyBtn">Apply</button>
+      </div>
+    </div>
+  );
 };
 export default CartContent;
