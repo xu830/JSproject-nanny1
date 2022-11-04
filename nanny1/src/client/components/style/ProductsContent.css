@@ -1,9 +1,6 @@
 .ProductPage {
   display: flex;
-  position: relative;
-  top: 80px;
-
-  right: 1250px;
+  margin-top: 50px;
   width: 1440px;
   height: 905px;
   background: #ffffff;
@@ -13,7 +10,8 @@
   display: flex;
   gap: 19px 25px;
   width: 1200px;
-  height: 1000px;
+  height: 900px;
+  flex-wrap: wrap;
 }
 #addProductBtn {
   position: relative;

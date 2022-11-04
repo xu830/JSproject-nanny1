@@ -27,7 +27,10 @@ const CreateProductContent = ({ handleCreateProduct, handleProductShow }) => {
     }
   };
   const addClick = () => {
+    const prodictId = `${nameInput} + ${Date.now()}`;
+    console.log(prodictId);
     const product = {
+      productid: prodictId,
       productName: nameInput,
       productDescription: descriptionInput,
       category: categoryInput,

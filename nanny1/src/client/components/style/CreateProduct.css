@@ -1,9 +1,9 @@
 #CreatePage {
-  position: relative;
   width: 660px;
   height: 839px;
-  top: 90px;
-  right: 900px;
+  margin-top: 50px;
+  margin-left: 200px;
+
   background: #ffffff;
   border-radius: 4px;
   display: flex;

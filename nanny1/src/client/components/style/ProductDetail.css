@@ -1,14 +1,16 @@
 .productDetailContainer {
   display: flex;
-  position: relative;
-  right: 1160px;
-  top: 100px;
+  margin-top: 50px;
   width: 1200px;
   height: 682px;
 
   background: #ffffff;
   border-radius: 4px;
-  flex-direction: column;
+  flex-direction: row;
+}
+.Dleft {
+  width: 600px;
+  height: 600px;
 }
 .itemimgInDetail {
   width: 600px;
@@ -16,12 +18,18 @@
 
   background: #c4c4c4;
 }
+.Dright {
+  margin-left: 50px;
+  width: 550px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
 .categoryInDetail {
-  position: relative;
   width: 84px;
   height: 22px;
-  left: 650px;
-  bottom: 500px;
+
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
@@ -29,13 +37,13 @@
   line-height: 22px;
 
   color: #6b7280;
+  margin-top: 60px;
+  align-content: flex-start;
+  display: flex;
 }
 .itemNameInDetail {
-  position: relative;
-  width: 1089px;
+  width: 600px;
   height: 44px;
-  bottom: 530px;
-  left: 190px;
   /* Typography/H4 */
 
   font-family: "Inter";
@@ -46,13 +54,13 @@
   /* identical to box height, or 44px */
 
   color: #535353;
+  align-content: flex-start;
+  display: flex;
 }
 .priceInDetail {
-  position: relative;
   width: 84px;
   height: 44px;
-  bottom: 580px;
-  left: 660px;
+
   /* Typography/H4 */
 
   font-family: "Inter";
@@ -63,18 +71,19 @@
   /* identical to box height, or 44px */
 
   color: #111827;
+  align-content: flex-start;
+  display: flex;
 }
 .oosBox {
-  position: relative;
   width: 76px;
   height: 30px;
-  bottom: 650px;
-  left: 780px;
+
   background: rgba(234, 61, 47, 0.13);
   border-radius: 4px;
+  align-content: flex-start;
+  display: flex;
 }
 .oosLabel {
-  position: relative;
   width: 60px;
   height: 14px;
 
@@ -88,11 +97,8 @@
   color: #ea3d2f;
 }
 .descriptionInDetail {
-  position: relative;
-  width: 728px;
+  width: 500px;
   height: 288px;
-  bottom: 630px;
-  left: 330px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
@@ -100,13 +106,13 @@
   line-height: 22px;
 
   color: #6b7280;
+  align-content: flex-start;
+  display: flex;
 }
 .addToCart {
-  position: relative;
   width: 133px;
   height: 60px;
-  bottom: 400px;
-  left: 650px;
+
   background: #5048e5;
   border-radius: 4px;
   color: white;
@@ -114,17 +120,24 @@
 .editInDetail,
 .BackInDetail {
   box-sizing: border-box;
-  position: relative;
+
   width: 133px;
   height: 60px;
-  bottom: 420px;
-  left: 850px;
+
   background: #ffffff;
   border: 1px solid #cccccc;
   border-radius: 4px;
 }
+.plusMinus {
+  display: flex;
+  align-content: flex-start;
+}
 
-.BackInDetail {
-  bottom: 438px;
-  left: 1050px;
+#minus,
+#plus {
+  width: 40px;
+  height: 40px;
+  color: white;
+  background: #5048e5;
+  border-radius: 4px;
 }

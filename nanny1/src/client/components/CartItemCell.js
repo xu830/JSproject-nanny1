@@ -1,5 +1,6 @@
 import "./style/CartItemCell.css";
 const CartItemCell = ({ productName, price, num, imgSrc }) => {
+  const handleRomove = () => {};
   return (
     <div className="cartCell">
       <div className="leftC">
@@ -11,7 +12,9 @@ const CartItemCell = ({ productName, price, num, imgSrc }) => {
       </div>
       <div className="rightC">
         <p className="pPriceCart">${price}</p>
-        <p className="removeCart">Remove</p>
+        <p className="removeCart" onClick={handleRomove}>
+          Remove
+        </p>
       </div>
     </div>
   );

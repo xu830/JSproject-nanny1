@@ -82,12 +82,21 @@ export const getProducts = (dispatch) => async () => {
 
 export const addProduct =
   (dispatch) =>
-  async (productName, productDescription, category, price, inStock, imgSrc) => {
+  async (
+    productid,
+    productName,
+    productDescription,
+    category,
+    price,
+    inStock,
+    imgSrc
+  ) => {
     try {
       console.log("in action", inStock);
       const response = await fetch(
         "/addProduct",
         ajaxConfigHelper({
+          productid,
           productName,
           productDescription,
           category,
@@ -100,6 +109,7 @@ export const addProduct =
       dispatch({
         type: "ADDPRODUCT",
         payload: {
+          productid,
           productName,
           productDescription,
           category,

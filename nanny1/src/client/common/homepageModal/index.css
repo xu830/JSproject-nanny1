@@ -9,6 +9,7 @@
 }
 .HomeModalContainer {
   display: flex;
+  flex-direction: column;
 }
 .Hometitle {
   width: 1193px;
