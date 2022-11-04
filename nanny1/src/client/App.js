@@ -36,6 +36,8 @@ function App() {
   const [productDetailObject, setProductDetail] = useState({});
 
   const [showCart, setShowCart] = useState(false);
+  const [cartList, setCartList] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -61,6 +63,9 @@ function App() {
           <HeaderSignOut
             handleLogOut={() => setlogin(false)}
             handleCart={setShowCart}
+            setCartList={setCartList}
+            setTotalPrice={setTotalPrice}
+            totalPrice={totalPrice}
           />
         ) : (
           <HeaderSignIn

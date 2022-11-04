@@ -4,9 +4,13 @@ import { signOut, getCart } from "../actions/index";
 
 import cartImg from "../img/cart.png";
 import "./style/HeaderSignout.css";
-const HeaderSignOut = ({ handleLogOut = () => {}, handleCart }) => {
-  const [cartList, setCartList] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
+const HeaderSignOut = ({
+  handleLogOut = () => {},
+  handleCart,
+  setCartList,
+  setTotalPrice,
+  totalPrice,
+}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,10 +18,10 @@ const HeaderSignOut = ({ handleLogOut = () => {}, handleCart }) => {
       try {
         const cart = await getCart(dispatch)();
         setCartList(cart);
+        calcTotal(cart);
       } catch (error) {}
     };
     GetCartList();
-    calcTotal();
   }, []);
 
   const handleSignout = () => {
@@ -26,10 +30,11 @@ const HeaderSignOut = ({ handleLogOut = () => {}, handleCart }) => {
     handleLogOut();
   };
 
-  const calcTotal = () => {
-    let total = cartList.reduce((prev, cur) => {
+  const calcTotal = (cart) => {
+    let total = cart.reduce((prev, cur) => {
       return prev + cur.price * cur.num;
     }, 0);
+    console.log(total);
     setTotalPrice(total);
   };
 
