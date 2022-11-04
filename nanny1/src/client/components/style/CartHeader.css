@@ -1,0 +1,28 @@
+.cartHeader {
+  display: flex;
+  flex-direction: row;
+  height: 81px;
+  width: 542px;
+  background: #5048e5;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 137.5%;
+  /* identical to box height, or 44px */
+
+  justify-content: flex-start;
+
+  color: #ffffff;
+}
+.cartTitle {
+  margin-left: 38px;
+}
+.cartQuantity {
+  margin-left: 8px;
+}
+.cartCloseBtn {
+  font-family: Arial;
+  margin-left: 350px;
+  cursor: pointer;
+}

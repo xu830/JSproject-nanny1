@@ -1,9 +1,10 @@
+import "./style/CartHeader.css";
 const CartHeader = () => {
   return (
     <div className="cartHeader">
       <p className="cartTitle">Cart</p>
       <p className="cartQuantity">(3)</p>
-      <button className="cartCloseBtn">X</button>
+      <p className="cartCloseBtn">X</p>
     </div>
   );
 };

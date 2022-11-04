@@ -20,6 +20,8 @@ import CreateProductContent from "./components/CreateProductContent";
 import ProductDetail from "./components/ProductDetail";
 import CartModal from "./common/cartModal";
 import CartHeader from "./components/CartHeader";
+import CartFooter from "./components/CartFooter";
+import CartContent from "./components/CartContent";
 
 function App() {
   const [ModalState, setModalState] = useState(false);
@@ -93,7 +95,9 @@ function App() {
           />
         )}
       </HomeModal>
-      <CartModal top={<CartHeader />}></CartModal>
+      <CartModal top={<CartHeader />} bottom={<CartFooter />}>
+        <CartContent />
+      </CartModal>
       {ModalState && (
         <MyModal
           titleText={
