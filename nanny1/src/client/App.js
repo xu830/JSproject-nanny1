@@ -35,6 +35,8 @@ function App() {
   const [productShowDetail, setProductShowDetail] = useState(false);
   const [productDetailObject, setProductDetail] = useState({});
 
+  const [showCart, setShowCart] = useState(false);
+
   const dispatch = useDispatch();
   useEffect(() => {
     const getNowUser = async () => {
@@ -56,7 +58,10 @@ function App() {
     <div className="APP">
       <NannyHeader>
         {isLogin ? (
-          <HeaderSignOut handleLogOut={() => setlogin(false)} />
+          <HeaderSignOut
+            handleLogOut={() => setlogin(false)}
+            handleCart={setShowCart}
+          />
         ) : (
           <HeaderSignIn
             openModal={setModalState}
@@ -95,9 +100,15 @@ function App() {
           />
         )}
       </HomeModal>
-      <CartModal top={<CartHeader />} bottom={<CartFooter />}>
-        <CartContent />
-      </CartModal>
+      {showCart && (
+        <CartModal
+          top={<CartHeader handleCart={() => setShowCart(false)} />}
+          bottom={<CartFooter />}
+        >
+          <CartContent />
+        </CartModal>
+      )}
+
       {ModalState && (
         <MyModal
           titleText={

@@ -1,0 +1,10 @@
+.cartBtn {
+  position: relative;
+  top: 10px;
+  background-color: transparent;
+  cursor: pointer;
+}
+.cartBtnimg {
+  width: 40px;
+  height: 40px;
+}
