@@ -1,6 +1,21 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import "./style/CartContent.css";
 import CartItemCell from "./CartItemCell";
-const CartContent = ({ cartList }) => {
+import { getCart } from "../actions/index";
+
+const CartContent = ({ cartList, setCartList }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const GetCartList = async () => {
+      try {
+        const cart = await getCart(dispatch)();
+        setCartList(cart);
+      } catch (error) {}
+    };
+    GetCartList();
+  }, []);
+
   const cList = cartList.map(({ productName, price, num, imgSrc }, index) => {
     return (
       <CartItemCell

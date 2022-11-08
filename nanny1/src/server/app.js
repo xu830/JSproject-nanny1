@@ -4,8 +4,12 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+//connect to database
+const connectToMongoose = require("./database/connect");
+connectToMongoose();
+
+//var indexRouter = require("./routes/index");
+//var usersRouter = require("./routes/users");
 const e = require("express");
 
 var app = express();
@@ -33,16 +37,16 @@ let userlist = [
       {
         productid: "grey chair+1667593662172",
         productName: "grey chair",
-        price: "20",
-        num: "1",
+        price: 20,
+        num: 1,
         imgSrc:
           "https://i5.walmartimages.com/asr/99c11ba4-f0b9-4bdd-bbb1-701b352b45fd.3e0f55c09e774710faafa402dc456b53.jpeg",
       },
       {
         productid: "Griddle+1667593644838",
         productName: "Griddle",
-        price: "60",
-        num: "3",
+        price: 60,
+        num: 3,
         imgSrc:
           "https://i5.walmartimages.com/asr/a972bcba-0df0-4b7e-a492-be955881389b.79ad24fa65ab475ea13f398dfdcf2c5d.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
       },
@@ -59,7 +63,7 @@ let productlist = [
     productName: "grey chair",
     productDescription: "test1",
     category: "C1",
-    price: "20",
+    price: 20,
     inStock: "100",
     imgSrc:
       "https://i5.walmartimages.com/asr/99c11ba4-f0b9-4bdd-bbb1-701b352b45fd.3e0f55c09e774710faafa402dc456b53.jpeg",
@@ -69,7 +73,7 @@ let productlist = [
     productName: "Griddle",
     productDescription: "test2",
     category: "C2",
-    price: "60",
+    price: 60,
     inStock: "30",
     imgSrc:
       "https://i5.walmartimages.com/asr/a972bcba-0df0-4b7e-a492-be955881389b.79ad24fa65ab475ea13f398dfdcf2c5d.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
@@ -151,14 +155,35 @@ app.post("/addProduct", (req, res) => {
 //8.get user's cart
 app.get("/getCart", (_, res) => {
   if (userOn.cart) {
+    console.log(userOn.cart);
+    userOn.cart = userOn.cart.reduce((re, obj) => {
+      const item = re.find((o) => o.productid === obj.productid);
+      console.log(item);
+      item ? (item.num = item.num + obj.num) : re.push(obj);
+      return re;
+    }, []);
+    // console.log("after reduce", output);
     res.json(userOn.cart);
   } else {
     res.json([""]);
   }
 });
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+//9.add item to cart
+app.post("/addCart", (req, res) => {
+  if (req.body && req.body.productid && req.body.num) {
+    if (userOn) {
+      userOn.cart = [...userOn.cart, req.body];
+    }
+    res.json({ message: "add to cart succeed" });
+    return;
+  } else {
+    res.json({ message: "add not succeed" });
+  }
+});
+
+// app.use("/", indexRouter);
+// app.use("/users", usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

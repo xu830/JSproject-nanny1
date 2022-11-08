@@ -128,7 +128,7 @@ export const getCart = (dispatch) => async () => {
     const response = await fetch("/getCart");
     const result = await response.json();
     dispatch({
-      type: "GET",
+      type: "GETCART",
       payload: result,
     });
     return result;
@@ -136,3 +136,27 @@ export const getCart = (dispatch) => async () => {
     console.log(error, "get cart");
   }
 };
+
+export const addCart =
+  (dispatch) => async (productid, productName, price, num, imgSrc) => {
+    try {
+      const response = await fetch(
+        "/addCart",
+        ajaxConfigHelper({ productid, productName, price, num, imgSrc })
+      );
+      const result = await response.json();
+      dispatch({
+        type: "ADDTOCART",
+        payload: {
+          productid,
+          productName,
+          price,
+          num,
+          imgSrc,
+        },
+      });
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  };

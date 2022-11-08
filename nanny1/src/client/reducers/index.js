@@ -6,7 +6,7 @@ export const reducer = (state = [], { type, payload }) => {
       return [...state, { ...payload }];
     case "MOD":
       return state.map(({ email, password }, index) => {
-        if (payload != index) {
+        if (payload !== index) {
           return {
             email,
             password,
@@ -29,6 +29,9 @@ export const reducer = (state = [], { type, payload }) => {
     case "GETCART":
       console.log("in reducer get cart", payload);
       return [...payload];
+    case "ADDTOCART":
+      console.log("in reducer add to cart", payload);
+      return [...state, { ...payload }];
     default:
       return state;
   }

@@ -102,6 +102,8 @@ function App() {
             productDetailObject={productDetailObject}
             handleProductShow={setShowProducts}
             setProductShowDetail={setProductShowDetail}
+            setTotalPrice={setTotalPrice}
+            totalPrice={totalPrice}
           />
         )}
       </HomeModal>
@@ -115,7 +117,7 @@ function App() {
           }
           bottom={<CartFooter totalPrice={totalPrice} />}
         >
-          <CartContent cartList={cartList} />
+          <CartContent cartList={cartList} setCartList={setCartList} />
         </CartModal>
       )}
 

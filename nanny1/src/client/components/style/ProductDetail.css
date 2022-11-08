@@ -1,6 +1,7 @@
 .productDetailContainer {
   display: flex;
   margin-top: 50px;
+  margin-left: 40px;
   width: 1200px;
   height: 682px;
 

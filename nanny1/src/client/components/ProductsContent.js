@@ -23,12 +23,21 @@ const ProductsContent = ({
 
   const pList = productsList.map(
     (
-      { productName, price, imgSrc, productDescription, category, inStock },
+      {
+        productid,
+        productName,
+        price,
+        imgSrc,
+        productDescription,
+        category,
+        inStock,
+      },
       index
     ) => {
       return (
         <ProductCell
           key={`${productName} - ${index}`}
+          productid={productid}
           productName={productName}
           price={price}
           imgSrc={imgSrc}
