@@ -3,9 +3,11 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const { v4: uuidv4 } = require("uuid");
 
 //connect to database
 const connectToMongoose = require("./database/connect");
+const User = require("./database/model");
 connectToMongoose();
 
 //var indexRouter = require("./routes/index");
@@ -81,8 +83,10 @@ let productlist = [
 ];
 let userOn;
 
-app.get("/userlist", (_, res) => {
-  res.json(userlist);
+app.get("/userlist", async (_, res) => {
+  const usersRawData = await User.find({});
+
+  res.json(usersRawData);
 });
 
 //2. add a user
