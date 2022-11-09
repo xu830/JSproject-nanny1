@@ -12,11 +12,35 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    cart: [],
+    cart: [
+      {
+        productid: { type: String, required: true },
+        num: { type: Number, required: true },
+      },
+    ],
+    id: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-module.exports = userSchema;
+const productScheme = new mongoose.Schema(
+  {
+    id: { type: String, required: true },
+    productName: { type: String, required: true },
+    productDescription: { type: String, required: true },
+    category: { type: String, required: true },
+    price: { type: Number, required: true },
+    inStock: { type: Number, required: true },
+    imgSrc: { type: String, required: true },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+module.exports = { userSchema, productScheme };

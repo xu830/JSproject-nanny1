@@ -19,11 +19,11 @@ export const allUsers = (dispatch) => async () => {
   }
 };
 
-export const signUp = (dispatch) => async (email, password) => {
+export const signUp = (dispatch) => async (email, password, id) => {
   try {
     const response = await fetch(
       "/signUp",
-      ajaxConfigHelper({ email, password })
+      ajaxConfigHelper({ email, password, id })
     );
     const result = await response.json();
     dispatch({
@@ -31,6 +31,7 @@ export const signUp = (dispatch) => async (email, password) => {
       payload: {
         email,
         password,
+        id,
       },
     });
   } catch (error) {

@@ -7,7 +7,7 @@ const { v4: uuidv4 } = require("uuid");
 
 //connect to database
 const connectToMongoose = require("./database/connect");
-const User = require("./database/model");
+const { User, Product } = require("./database/model");
 connectToMongoose();
 
 //var indexRouter = require("./routes/index");
@@ -15,6 +15,10 @@ connectToMongoose();
 const e = require("express");
 
 var app = express();
+//jwt
+const jwt = require("jsonwebtoken");
+const { json } = require("express");
+const { createTokens, validateToken } = require("./JWT");
 
 //1.login=>return boolean => LOGIN
 //2.signup=>add a credential in BE, return a boolean flag / status =>signUp
@@ -31,32 +35,32 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 //mock user database
-let userlist = [
-  {
-    email: "mock1@gmail.com",
-    password: "12345678",
-    cart: [
-      {
-        productid: "grey chair+1667593662172",
-        productName: "grey chair",
-        price: 20,
-        num: 1,
-        imgSrc:
-          "https://i5.walmartimages.com/asr/99c11ba4-f0b9-4bdd-bbb1-701b352b45fd.3e0f55c09e774710faafa402dc456b53.jpeg",
-      },
-      {
-        productid: "Griddle+1667593644838",
-        productName: "Griddle",
-        price: 60,
-        num: 3,
-        imgSrc:
-          "https://i5.walmartimages.com/asr/a972bcba-0df0-4b7e-a492-be955881389b.79ad24fa65ab475ea13f398dfdcf2c5d.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
-      },
-    ],
-  },
-  { email: "mock2@gmail.com", password: "2345678" },
-  { email: "mock3@gmail.com", password: "12345678" },
-];
+// let userlist = [
+//   {
+//     email: "mock1@gmail.com",
+//     password: "12345678",
+//     cart: [
+//       {
+//         productid: "grey chair+1667593662172",
+//         productName: "grey chair",
+//         price: 20,
+//         num: 1,
+//         imgSrc:
+//           "https://i5.walmartimages.com/asr/99c11ba4-f0b9-4bdd-bbb1-701b352b45fd.3e0f55c09e774710faafa402dc456b53.jpeg",
+//       },
+//       {
+//         productid: "Griddle+1667593644838",
+//         productName: "Griddle",
+//         price: 60,
+//         num: 3,
+//         imgSrc:
+//           "https://i5.walmartimages.com/asr/a972bcba-0df0-4b7e-a492-be955881389b.79ad24fa65ab475ea13f398dfdcf2c5d.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+//       },
+//     ],
+//   },
+//   { email: "mock2@gmail.com", password: "2345678" },
+//   { email: "mock3@gmail.com", password: "12345678" },
+// ];
 
 //mock product database
 let productlist = [
@@ -85,50 +89,86 @@ let userOn;
 
 app.get("/userlist", async (_, res) => {
   const usersRawData = await User.find({});
-
-  res.json(usersRawData);
+  const userlist = usersRawData.map(({ email, password, id }) => {
+    return {
+      email,
+      password,
+      id,
+    };
+  });
+  res.json(userlist);
 });
 
 //2. add a user
 //user info will be put in req body=>{email, password}
-app.post("/signUp", (req, res) => {
+app.post("/signUp", async (req, res) => {
   if (req.body && req.body.email && req.body.password) {
-    userlist = [...userlist, req.body];
-    res.json({ message: "SignUp succeed" });
-    return;
+    // userlist = [...userlist, req.body];
+    const user = new User({
+      email: req.body.email,
+      password: req.body.password,
+      id: uuidv4(),
+    });
+    const newUser = await user.save();
+    if (user === newUser) {
+      res.json({
+        message: "sign up succeed",
+        newUser: {
+          email: newUser.email,
+          password: newUser.password,
+          id: newUser.id,
+        },
+      });
+      return;
+    }
+    res.json({ error: "sign up failed" });
   }
-  res.json({ message: "failed to signup" });
+  res.json({ error: "sign up failed" });
 });
 
 //3.sign in
-app.post("/login", (req, res) => {
-  const user = userlist.find((ele) => {
-    if (ele.email === req.body.email && ele.password === req.body.password) {
-      return ele;
-    }
+app.post("/login", async (req, res) => {
+  // const user = userlist.find((ele) => {
+  //   if (ele.email === req.body.email && ele.password === req.body.password) {
+  //     return ele;
+  //   }
+  // });
+  const qureyResult = await User.find({
+    email: req.body.email,
+    password: req.body.password,
   });
-  if (!user) {
-    res.status(401).json({ message: "login not successful" });
+  if (!qureyResult) {
+    res.status(400).json({ message: "log in failed" });
   } else {
-    userOn = user;
-    res.json({ message: "login succeed" });
+    userOn = qureyResult.email;
+    // const id = qureyResult.id;
+    // const token = jwt.sign({ id }, "jwtSecret", {
+    //   expiresIn: "1hr",
+    // });
+    const accessToken = createTokens(qureyResult);
+    res.cookie("access-token", accessToken, {
+      maxAge: 60 * 60 * 24 * 30 * 1000, //30days
+      httpOnly: true,
+    });
+    res.json({ auth: true, token: accessToken, result: qureyResult });
     return;
   }
 });
 
 //4.get user
-app.get("/getUser", (_, res) => {
-  if (userOn !== undefined) {
-    res.json(userOn);
-  } else {
-    res.status(401).json({ message: "no current user log in" });
-  }
+app.get("/getUser", validateToken, (_, res) => {
+  //could return user data
+  res.json("get User");
 });
 
 //5.log out
-app.post("/signOut", (_, res) => {
+app.post("/signOut", async (_, res) => {
   // console.log("in api app.js");
   userOn = undefined;
+  res.cookie("access-token", "none", {
+    maxAge: 60 * 60 * 24 * 30 * 1000, //30days
+    httpOnly: true,
+  });
   res.json({ message: "logout successful" });
 });
 
@@ -138,7 +178,7 @@ app.get("/getProducts", (_, res) => {
 });
 
 //7. add a product
-app.post("/addProduct", (req, res) => {
+app.post("/addProduct", async (req, res) => {
   if (
     req.body &&
     req.body.productName &&
@@ -149,11 +189,36 @@ app.post("/addProduct", (req, res) => {
     req.body.imgSrc
   ) {
     console.log(req.body);
-    productlist = [...productlist, req.body];
-    res.json({ message: "addProduct succeed" });
+    const product = new Product({
+      productName: req.body.productName,
+      productDescription: req.body.productDescription,
+      category: req.body.category,
+      price: req.body.price,
+      inStock: req.body.inStock,
+      imgSrc: req.body.imgSrc,
+      id: uuidv4(),
+    });
+    const newProduct = await product.save();
+    if (product === newProduct) {
+      res.json({
+        message: "new product added",
+        newProduct: {
+          productName: newProduct.productName,
+          productDescription: newProduct.productDescription,
+          category: newProduct.category,
+          price: newProduct.price,
+          inStock: newProduct.inStock,
+          imgSrc: newProduct.imgSrc,
+          id: newProduct.id,
+        },
+      });
+      return;
+    }
+    // productlist = [...productlist, req.body];
+    res.json({ message: "addProduct n0t succeed" });
     return;
   }
-  res.json(req.body);
+  res.json({ message: "addProduct n0t succeed" });
 });
 
 //8.get user's cart
