@@ -83,40 +83,30 @@ export const getProducts = (dispatch) => async () => {
 
 export const addProduct =
   (dispatch) =>
-  async (
-    productid,
-    productName,
-    productDescription,
-    category,
-    price,
-    inStock,
-    imgSrc
-  ) => {
+  async (productName, productDescription, category, price, inStock, imgSrc) => {
     try {
       console.log("in action", inStock);
       const response = await fetch(
         "/addProduct",
         ajaxConfigHelper({
-          productid,
-          productName,
-          productDescription,
-          category,
-          price,
-          inStock,
-          imgSrc,
+          productName: productName,
+          productDescription: productDescription,
+          category: category,
+          price: price,
+          inStock: inStock,
+          imgSrc: imgSrc,
         })
       );
       const result = response.json();
       dispatch({
         type: "ADDPRODUCT",
         payload: {
-          productid,
-          productName,
-          productDescription,
-          category,
-          price,
-          inStock,
-          imgSrc,
+          productName: productName,
+          productDescription: productDescription,
+          category: category,
+          price: price,
+          inStock: inStock,
+          imgSrc: imgSrc,
         },
       });
     } catch (error) {

@@ -201,7 +201,7 @@ app.post("/addProduct", async (req, res) => {
     const newProduct = await product.save();
     if (product === newProduct) {
       res.json({
-        message: "new product added",
+        message: "sign up succeed",
         newProduct: {
           productName: newProduct.productName,
           productDescription: newProduct.productDescription,
@@ -215,10 +215,10 @@ app.post("/addProduct", async (req, res) => {
       return;
     }
     // productlist = [...productlist, req.body];
-    res.json({ message: "addProduct n0t succeed" });
+    res.json({ message: "addProduct not succeed" });
     return;
   }
-  res.json({ message: "addProduct n0t succeed" });
+  res.json({ message: "addProduct not succeed" });
 });
 
 //8.get user's cart
