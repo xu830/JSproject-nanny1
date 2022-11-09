@@ -274,24 +274,11 @@ app.get("/getCart", async (_, res) => {
 //9.add item to cart
 app.post("/addCart", async (req, res) => {
   if (req.body && req.body.id && req.body.num) {
-    console.log(userOn);
     if (userOn) {
-      // userOn.cart = [...userOn.cart, req.body];
       const qureyResult = await User.findOne({
         id: userOn,
       });
       if (qureyResult.cart) {
-        console.log("before", qureyResult.cart);
-        // qureyResult.cart = qureyResult.cart.map(({ id, num }) => {
-        //   if (id === req.body.id) {
-        //     num = req.body.num;
-        //     if (num > 0) {
-        //       return { id, num };
-        //     }
-        //   } else {
-        //     return { id, num };
-        //   }
-        // });
         const modItem = qureyResult.cart.find((ele) => ele.id === req.body.id);
         if (modItem) {
           modItem.num = req.body.num;
@@ -303,16 +290,31 @@ app.post("/addCart", async (req, res) => {
         res.json({ message: "add to cart succeed" });
       } else {
         qureyResult.cart = [...qureyResult.cart, req.body];
+        await qureyResult.save();
         res.json({ message: "add to cart succeed" });
       }
     }
 
     return;
   } else {
-    res.json({ message: "add not succeed" });
+    res.status(400).json({ message: "add not succeed" });
   }
 });
-
+//delete from cart
+app.delete("/deleteCart", async (req, res) => {
+  if (req.body && req.body.id) {
+    const qureyResult = await User.findOne({
+      id: userOn,
+    });
+    qureyResult.cart = qureyResult.cart.filter((ele) => {
+      return ele.id !== req.body.id;
+    });
+    await qureyResult.save();
+    res.json({ message: "delete succeed" });
+  } else {
+    res.status(400).json({ message: "delete not succeed" });
+  }
+});
 // app.use("/", indexRouter);
 // app.use("/users", usersRouter);
 
