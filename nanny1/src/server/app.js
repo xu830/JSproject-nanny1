@@ -133,14 +133,17 @@ app.post("/login", async (req, res) => {
   //     return ele;
   //   }
   // });
-  const qureyResult = await User.find({
-    email: req.body.email,
-    password: req.body.password,
-  });
+  const qureyResult = await User.findOne(
+    {
+      email: req.body.email,
+      password: req.body.password,
+    },
+    { id: 1, _id: 0 }
+  );
   if (!qureyResult) {
     res.status(400).json({ message: "log in failed" });
   } else {
-    userOn = qureyResult.email;
+    userOn = qureyResult.id;
     // const id = qureyResult.id;
     // const token = jwt.sign({ id }, "jwtSecret", {
     //   expiresIn: "1hr",
@@ -173,7 +176,29 @@ app.post("/signOut", async (_, res) => {
 });
 
 //6. get products
-app.get("/getProducts", (_, res) => {
+app.get("/getProducts", async (_, res) => {
+  const productsRawData = await Product.find({});
+  const productlist = productsRawData.map(
+    ({
+      productName,
+      productDescription,
+      category,
+      price,
+      inStock,
+      imgSrc,
+      id,
+    }) => {
+      return {
+        productName,
+        productDescription,
+        category,
+        price,
+        inStock,
+        imgSrc,
+        id,
+      };
+    }
+  );
   res.json(productlist);
 });
 
@@ -222,29 +247,66 @@ app.post("/addProduct", async (req, res) => {
 });
 
 //8.get user's cart
-app.get("/getCart", (_, res) => {
-  if (userOn.cart) {
-    console.log(userOn.cart);
-    userOn.cart = userOn.cart.reduce((re, obj) => {
-      const item = re.find((o) => o.productid === obj.productid);
-      console.log(item);
-      item ? (item.num = item.num + obj.num) : re.push(obj);
-      return re;
-    }, []);
-    // console.log("after reduce", output);
-    res.json(userOn.cart);
-  } else {
-    res.json([""]);
+app.get("/getCart", async (_, res) => {
+  const qureyResult = await User.find({
+    id: userOn,
+  });
+  const cartInfo = [""];
+  if (qureyResult[0].cart) {
+    cartInfo = qureyResult[0].cart;
   }
+  res.json(cartInfo);
+
+  // if (userOn.cart) {
+  //   console.log(userOn.cart);
+  //   userOn.cart = userOn.cart.reduce((re, obj) => {
+  //     const item = re.find((o) => o.productid === obj.productid);
+  //     console.log(item);
+  //     item ? (item.num = item.num + obj.num) : re.push(obj);
+  //     return re;
+  //   }, []);
+  //   res.json(userOn.cart);
+  // } else {
+  //   res.json([""]);
+  // }
 });
 
 //9.add item to cart
-app.post("/addCart", (req, res) => {
-  if (req.body && req.body.productid && req.body.num) {
+app.post("/addCart", async (req, res) => {
+  if (req.body && req.body.id && req.body.num) {
+    console.log(userOn);
     if (userOn) {
-      userOn.cart = [...userOn.cart, req.body];
+      // userOn.cart = [...userOn.cart, req.body];
+      const qureyResult = await User.findOne({
+        id: userOn,
+      });
+      if (qureyResult.cart) {
+        console.log("before", qureyResult.cart);
+        // qureyResult.cart = qureyResult.cart.map(({ id, num }) => {
+        //   if (id === req.body.id) {
+        //     num = req.body.num;
+        //     if (num > 0) {
+        //       return { id, num };
+        //     }
+        //   } else {
+        //     return { id, num };
+        //   }
+        // });
+        const modItem = qureyResult.cart.find((ele) => ele.id === req.body.id);
+        if (modItem) {
+          modItem.num = req.body.num;
+        } else {
+          qureyResult.cart = [...qureyResult.cart, req.body];
+        }
+
+        await qureyResult.save();
+        res.json({ message: "add to cart succeed" });
+      } else {
+        qureyResult.cart = [...qureyResult.cart, req.body];
+        res.json({ message: "add to cart succeed" });
+      }
     }
-    res.json({ message: "add to cart succeed" });
+
     return;
   } else {
     res.json({ message: "add not succeed" });

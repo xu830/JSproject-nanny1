@@ -18,14 +18,14 @@ const ProductDetail = ({
   const handleAddtoCart = async (productDetailObject) => {
     try {
       console.log(
-        productDetailObject.productid,
+        productDetailObject.id,
         productDetailObject.productName,
         productDetailObject.price,
         numState,
         productDetailObject.imgSrc
       );
       const resp = await addCart(dispatch)(
-        productDetailObject.productid,
+        productDetailObject.id,
         productDetailObject.productName,
         productDetailObject.price,
         numState,
