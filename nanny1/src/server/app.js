@@ -166,7 +166,6 @@ app.get("/getUser", validateToken, (_, res) => {
 
 //5.log out
 app.post("/signOut", async (_, res) => {
-  // console.log("in api app.js");
   userOn = undefined;
   res.cookie("access-token", "none", {
     maxAge: 60 * 60 * 24 * 30 * 1000, //30days
@@ -174,8 +173,8 @@ app.post("/signOut", async (_, res) => {
   });
   res.json({ message: "logout successful" });
 });
-
-//6. get products
+//6 modify password
+//7. get products
 app.get("/getProducts", async (_, res) => {
   const productsRawData = await Product.find({});
   const productlist = productsRawData.map(
@@ -202,7 +201,7 @@ app.get("/getProducts", async (_, res) => {
   res.json(productlist);
 });
 
-//7. add a product
+//8. add a product
 app.post("/addProduct", async (req, res) => {
   if (
     req.body &&
@@ -213,7 +212,6 @@ app.post("/addProduct", async (req, res) => {
     req.body.inStock &&
     req.body.imgSrc
   ) {
-    console.log(req.body);
     const product = new Product({
       productName: req.body.productName,
       productDescription: req.body.productDescription,
@@ -246,7 +244,7 @@ app.post("/addProduct", async (req, res) => {
   res.json({ message: "addProduct not succeed" });
 });
 
-//8.get user's cart
+//9.get user's cart
 app.get("/getCart", async (_, res) => {
   const qureyResult = await User.find({
     id: userOn,
@@ -256,22 +254,9 @@ app.get("/getCart", async (_, res) => {
     cartInfo = qureyResult[0].cart;
   }
   res.json(cartInfo);
-
-  // if (userOn.cart) {
-  //   console.log(userOn.cart);
-  //   userOn.cart = userOn.cart.reduce((re, obj) => {
-  //     const item = re.find((o) => o.productid === obj.productid);
-  //     console.log(item);
-  //     item ? (item.num = item.num + obj.num) : re.push(obj);
-  //     return re;
-  //   }, []);
-  //   res.json(userOn.cart);
-  // } else {
-  //   res.json([""]);
-  // }
 });
 
-//9.add item to cart
+//10.add item to cart
 app.post("/addCart", async (req, res) => {
   if (req.body && req.body.id && req.body.num) {
     if (userOn) {
@@ -300,7 +285,7 @@ app.post("/addCart", async (req, res) => {
     res.status(400).json({ message: "add not succeed" });
   }
 });
-//delete from cart
+//11.delete from cart
 app.delete("/deleteCart", async (req, res) => {
   if (req.body && req.body.id) {
     const qureyResult = await User.findOne({
@@ -314,6 +299,26 @@ app.delete("/deleteCart", async (req, res) => {
   } else {
     res.status(400).json({ message: "delete not succeed" });
   }
+});
+//12. edit product
+app.put("/editProduct", async (req, res) => {
+  if (req.body && req.body.id) {
+    const id = req.body.id;
+    const qureyResult = await Product.findOne({ id });
+    const { modifiedCount } = await qureyResult.updateOne({
+      productName: req.body.productName,
+      productDescription: req.body.productDescription,
+      category: req.body.category,
+      price: req.body.price,
+      inStock: req.body.inStock,
+      imgSrc: req.body.imgSrc,
+    });
+    if (modifiedCount) {
+      res.json({ message: "edit succeed" });
+      return;
+    }
+  }
+  res.json({ message: "edit failed" });
 });
 // app.use("/", indexRouter);
 // app.use("/users", usersRouter);
