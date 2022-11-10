@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./style/ProductCell.css";
 const ProductCell = ({
-  productid,
+  id,
   productName,
   price,
   imgSrc,
@@ -21,7 +21,7 @@ const ProductCell = ({
           handleProductShow(false);
           setProductShowDetail(true);
           setProductDetail({
-            productid: productid,
+            id: id,
             productName: productName,
             price: price,
             imgSrc: imgSrc,

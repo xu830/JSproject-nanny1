@@ -30,7 +30,7 @@ const CreateProductContent = ({ handleCreateProduct, handleProductShow }) => {
     const prodictId = `${nameInput} + ${Date.now()}`;
     console.log(prodictId);
     const product = {
-      productid: prodictId,
+      id: prodictId,
       productName: nameInput,
       productDescription: descriptionInput,
       category: categoryInput,

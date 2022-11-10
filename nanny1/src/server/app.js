@@ -41,7 +41,7 @@ app.use(express.static(path.join(__dirname, "public")));
 //     password: "12345678",
 //     cart: [
 //       {
-//         productid: "grey chair+1667593662172",
+//         id: "grey chair+1667593662172",
 //         productName: "grey chair",
 //         price: 20,
 //         num: 1,
@@ -49,7 +49,7 @@ app.use(express.static(path.join(__dirname, "public")));
 //           "https://i5.walmartimages.com/asr/99c11ba4-f0b9-4bdd-bbb1-701b352b45fd.3e0f55c09e774710faafa402dc456b53.jpeg",
 //       },
 //       {
-//         productid: "Griddle+1667593644838",
+//         id: "Griddle+1667593644838",
 //         productName: "Griddle",
 //         price: 60,
 //         num: 3,
@@ -65,7 +65,7 @@ app.use(express.static(path.join(__dirname, "public")));
 //mock product database
 let productlist = [
   {
-    productid: "grey chair+1667593662172",
+    id: "grey chair+1667593662172",
     productName: "grey chair",
     productDescription: "test1",
     category: "C1",
@@ -75,7 +75,7 @@ let productlist = [
       "https://i5.walmartimages.com/asr/99c11ba4-f0b9-4bdd-bbb1-701b352b45fd.3e0f55c09e774710faafa402dc456b53.jpeg",
   },
   {
-    productid: "Griddle+1667593644838",
+    id: "Griddle+1667593644838",
     productName: "Griddle",
     productDescription: "test2",
     category: "C2",

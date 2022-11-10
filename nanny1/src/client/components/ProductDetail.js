@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addCart } from "../actions/index";
 import "./style/ProductDetail.css";
@@ -11,10 +11,21 @@ const ProductDetail = ({
 }) => {
   const [plusState, setPlus] = useState(false);
   const [minusState, setMinus] = useState(false);
-  const [numState, setNum] = useState(1);
+  const [numState, setNum] = useState(0);
 
   const dispatch = useDispatch();
-
+  useEffect(() => {
+    const handleAddtoCart = async (productDetailObject) => {
+      try {
+        console.log(productDetailObject.id, numState);
+        const resp = await addCart(dispatch)(productDetailObject.id, numState);
+        setTotalPrice(totalPrice + productDetailObject.price);
+      } catch (error) {
+        console.log(error, "when add to cart");
+      }
+    };
+    handleAddtoCart(productDetailObject);
+  }, [numState]);
   const handleAddtoCart = async (productDetailObject) => {
     try {
       console.log(productDetailObject.id, numState);
@@ -28,6 +39,7 @@ const ProductDetail = ({
   const handleAddOnClick = () => {
     setPlus(true);
     setMinus(true);
+    setNum(1);
     // setTotalPrice(totalPrice + productDetailObject.price);
     // handleAddtoCart(productDetailObject);
   };
@@ -75,7 +87,7 @@ const ProductDetail = ({
               value={numState}
               onChange={(event) => {
                 setNum(event.target.value);
-                handleAddtoCart(productDetailObject);
+                //handleAddtoCart(productDetailObject);
               }}
             />
             <button id="plus">+</button>
