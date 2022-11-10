@@ -161,6 +161,7 @@ app.post("/login", async (req, res) => {
 //4.get user
 app.get("/getUser", validateToken, (_, res) => {
   //could return user data
+  console.log("get user", userOn);
   res.json("get User");
 });
 

@@ -24,13 +24,14 @@ const SignInModalContent = ({
       })
     );
     const result = await resp.json();
-    localStorage.setItem(
-      "login",
-      JSON.stringify({
-        login: true,
-        // token: result.token,
-      })
-    );
+    // localStorage.setItem(
+    //   "login",
+    //   JSON.stringify({
+    //     // login: true,
+    //     email: result.email,
+    //     // token: result.token,
+    //   })
+    // );
     dispatch({
       type: "LOGIN",
       payload: {
