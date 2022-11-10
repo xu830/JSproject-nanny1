@@ -129,17 +129,17 @@ export const getCart = (dispatch) => async () => {
 };
 
 export const addCart =
-  (dispatch) => async (productid, productName, price, num, imgSrc) => {
+  (dispatch) => async (id, productName, price, num, imgSrc) => {
     try {
       const response = await fetch(
         "/addCart",
-        ajaxConfigHelper({ productid, productName, price, num, imgSrc })
+        ajaxConfigHelper({ id, productName, price, num, imgSrc })
       );
       const result = await response.json();
       dispatch({
         type: "ADDTOCART",
         payload: {
-          productid,
+          id,
           productName,
           price,
           num,
@@ -151,3 +151,19 @@ export const addCart =
       console.log(error);
     }
   };
+
+export const getProductInfo = (dispatch) => async (id) => {
+  try {
+    const response = await fetch("/getProductInfo", ajaxConfigHelper({ id }));
+    const result = await response.json();
+    dispatch({
+      type: "GETPRODUCTINFO",
+      payload: {
+        result,
+      },
+    });
+    return result;
+  } catch (error) {
+    console.log(error, "getproduct");
+  }
+};

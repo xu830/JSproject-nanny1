@@ -246,12 +246,13 @@ app.post("/addProduct", async (req, res) => {
 
 //9.get user's cart
 app.get("/getCart", async (_, res) => {
-  const qureyResult = await User.find({
+  const qureyResult = await User.findOne({
     id: userOn,
   });
-  const cartInfo = [""];
-  if (qureyResult[0].cart) {
-    cartInfo = qureyResult[0].cart;
+  // console.log(qureyResult);
+  let cartInfo = [];
+  if (qureyResult) {
+    cartInfo = qureyResult.cart;
   }
   res.json(cartInfo);
 });
@@ -319,6 +320,27 @@ app.put("/editProduct", async (req, res) => {
     }
   }
   res.json({ message: "edit failed" });
+});
+//13. getProductInfo
+app.post("/getProductInfo", async (req, res) => {
+  console.log("get info", req.body);
+  if (req.body.id) {
+    const id = req.body.id;
+    console.log("call ghet", id);
+    const qureyResult = await Product.findOne({ id });
+    const product = (({ productName, id, price, imgSrc }) => ({
+      productName,
+      id,
+      price,
+      imgSrc,
+    }))(qureyResult);
+
+    console.log(product);
+    res.json(product);
+    return;
+  } else {
+    res.json({ message: "no product id, get product failed" });
+  }
 });
 // app.use("/", indexRouter);
 // app.use("/users", usersRouter);

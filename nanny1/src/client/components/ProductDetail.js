@@ -17,20 +17,9 @@ const ProductDetail = ({
 
   const handleAddtoCart = async (productDetailObject) => {
     try {
-      console.log(
-        productDetailObject.id,
-        productDetailObject.productName,
-        productDetailObject.price,
-        numState,
-        productDetailObject.imgSrc
-      );
-      const resp = await addCart(dispatch)(
-        productDetailObject.id,
-        productDetailObject.productName,
-        productDetailObject.price,
-        numState,
-        productDetailObject.imgSrc
-      );
+      console.log(productDetailObject.id, numState);
+      const resp = await addCart(dispatch)(productDetailObject.id, numState);
+      setTotalPrice(totalPrice + productDetailObject.price);
     } catch (error) {
       console.log(error, "when add to cart");
     }
@@ -39,8 +28,8 @@ const ProductDetail = ({
   const handleAddOnClick = () => {
     setPlus(true);
     setMinus(true);
-    setTotalPrice(totalPrice + productDetailObject.price);
-    handleAddtoCart(productDetailObject);
+    // setTotalPrice(totalPrice + productDetailObject.price);
+    // handleAddtoCart(productDetailObject);
   };
   const oosFlag = () => {
     if (productDetailObject.inStock > 0) {

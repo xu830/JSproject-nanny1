@@ -18,20 +18,23 @@ export const reducer = (state = [], { type, payload }) => {
       // console.log("in reducer", payload);
       return { payload };
     case "SIGNOUT":
-      console.log("inreducer", state);
+      // console.log("inreducer", state);
       return state;
     case "GETPRODUCTS":
-      console.log("inreducer getproduct", payload);
+      //console.log("inreducer getproduct", payload);
       return [...payload];
     case "ADDPRODUCT":
-      console.log("in reducer add prod", payload);
+      //console.log("in reducer add prod", payload);
       return [...state, { ...payload }];
     case "GETCART":
-      console.log("in reducer get cart", payload);
+      //console.log("in reducer get cart", payload);
       return [...payload];
     case "ADDTOCART":
-      console.log("in reducer add to cart", payload);
+      //console.log("in reducer add to cart", payload);
       return [...state, { ...payload }];
+    case "GETPRODUCTINFO":
+      //console.log("in reducer get product info", payload);
+      return { payload };
     default:
       return state;
   }

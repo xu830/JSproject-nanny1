@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { signOut, getCart } from "../actions/index";
+import { signOut, getCart, getProductInfo } from "../actions/index";
 
 import cartImg from "../img/cart.png";
 import "./style/HeaderSignout.css";
@@ -17,8 +17,22 @@ const HeaderSignOut = ({
     const GetCartList = async () => {
       try {
         const cart = await getCart(dispatch)();
-        setCartList(cart);
-        calcTotal(cart);
+        // console.log("show ccart", cart);
+        const cartlist = await Promise.all(
+          cart.map(async (ele) => {
+            const info = await getProductInfo(dispatch)(ele.id);
+            // console.log("info", info);
+            const product = {
+              ...ele,
+              productName: info.productName,
+              price: info.price,
+              imgSrc: info.imgSrc,
+            };
+            return product;
+          })
+        );
+        setCartList(cartlist);
+        calcTotal(cartlist);
       } catch (error) {}
     };
     GetCartList();
