@@ -128,29 +128,24 @@ export const getCart = (dispatch) => async () => {
   }
 };
 
-export const addCart =
-  (dispatch) => async (id, productName, price, num, imgSrc) => {
-    try {
-      const response = await fetch(
-        "/addCart",
-        ajaxConfigHelper({ id, productName, price, num, imgSrc })
-      );
-      const result = await response.json();
-      dispatch({
-        type: "ADDTOCART",
-        payload: {
-          id,
-          productName,
-          price,
-          num,
-          imgSrc,
-        },
-      });
-      return response;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+export const addCart = (dispatch) => async (id, num) => {
+  try {
+    console.log("in action", id, num);
+    const response = await fetch("/addCart", ajaxConfigHelper({ id, num }));
+    console.log("in action respoinse", response);
+    const result = await response.json();
+    dispatch({
+      type: "ADDTOCART",
+      payload: {
+        id,
+        num,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getProductInfo = (dispatch) => async (id) => {
   try {

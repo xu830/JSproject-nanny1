@@ -273,14 +273,17 @@ app.post("/addCart", async (req, res) => {
         }
 
         await qureyResult.save();
+        console.log(" in cart");
         res.json({ message: "add to cart succeed" });
       } else {
+        console.log("nothing in cart");
         qureyResult.cart = [...qureyResult.cart, req.body];
         await qureyResult.save();
         res.json({ message: "add to cart succeed" });
       }
     }
-
+    console.log("no user");
+    res.json({ message: "do not find user" });
     return;
   } else {
     res.status(400).json({ message: "add not succeed" });

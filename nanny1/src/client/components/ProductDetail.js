@@ -24,7 +24,9 @@ const ProductDetail = ({
         console.log(error, "when add to cart");
       }
     };
-    handleAddtoCart(productDetailObject);
+    if (numState !== 0) {
+      handleAddtoCart(productDetailObject);
+    }
   }, [numState]);
   const handleAddtoCart = async (productDetailObject) => {
     try {
