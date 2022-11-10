@@ -1,6 +1,12 @@
 import "./style/CartItemCell.css";
-const CartItemCell = ({ productName, price, num, imgSrc }) => {
-  const handleRomove = () => {};
+import { deleteCart } from "../actions/index";
+import { useDispatch } from "react-redux";
+const CartItemCell = ({ id, productName, price, num, imgSrc }) => {
+  const dispatch = useDispatch();
+  const handleRomove = async (id) => {
+    //const result = await deleteCart(dispatch)(id);
+    console.log("onclick");
+  };
   return (
     <div className="cartCell">
       <div className="leftC">
@@ -12,7 +18,7 @@ const CartItemCell = ({ productName, price, num, imgSrc }) => {
       </div>
       <div className="rightC">
         <p className="pPriceCart">${price}</p>
-        <p className="removeCart" onClick={handleRomove}>
+        <p className="removeCart" onClick={handleRomove(id)}>
           Remove
         </p>
       </div>

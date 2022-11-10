@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "./style/CartContent.css";
 import CartItemCell from "./CartItemCell";
-import { getCart } from "../actions/index";
+import { getCart, getProductInfo } from "../actions/index";
 
 const CartContent = ({ cartList, setCartList }) => {
   const dispatch = useDispatch();
@@ -10,23 +10,39 @@ const CartContent = ({ cartList, setCartList }) => {
     const GetCartList = async () => {
       try {
         const cart = await getCart(dispatch)();
-        setCartList(cart);
+        const cartlist = await Promise.all(
+          cart.map(async (ele) => {
+            const info = await getProductInfo(dispatch)(ele.id);
+            // console.log("info", info);
+            const product = {
+              ...ele,
+              productName: info.productName,
+              price: info.price,
+              imgSrc: info.imgSrc,
+            };
+            return product;
+          })
+        );
+        setCartList(cartlist);
       } catch (error) {}
     };
     GetCartList();
   }, []);
 
-  const cList = cartList.map(({ productName, price, num, imgSrc }, index) => {
-    return (
-      <CartItemCell
-        key={`${productName} - ${index}`}
-        productName={productName}
-        price={price}
-        num={num}
-        imgSrc={imgSrc}
-      />
-    );
-  });
+  const cList = cartList.map(
+    ({ id, productName, price, num, imgSrc }, index) => {
+      return (
+        <CartItemCell
+          key={`${productName} - ${index}`}
+          productName={productName}
+          price={price}
+          num={num}
+          imgSrc={imgSrc}
+          id={id}
+        />
+      );
+    }
+  );
   return (
     <div>
       <div className="scroll">{cList}</div>

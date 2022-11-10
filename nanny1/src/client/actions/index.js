@@ -167,3 +167,27 @@ export const getProductInfo = (dispatch) => async (id) => {
     console.log(error, "getproduct");
   }
 };
+
+export const deleteCart = (dispatch) => async (id) => {
+  try {
+    //console.log(id);
+    const response = await fetch(
+      "/deleteCart",
+      ajaxConfigHelper(
+        {
+          id,
+        },
+        "DELETE"
+      )
+    );
+
+    const result = await response.json();
+    console.log(result);
+    dispatch({
+      type: "DEL_PRODUCT",
+      payload: id,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

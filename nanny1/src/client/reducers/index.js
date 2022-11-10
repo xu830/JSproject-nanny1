@@ -35,6 +35,10 @@ export const reducer = (state = [], { type, payload }) => {
     case "GETPRODUCTINFO":
       //console.log("in reducer get product info", payload);
       return { payload };
+    case "DEL_PRODUCT":
+      return state.filter(({ id }) => {
+        return id !== payload;
+      });
     default:
       return state;
   }

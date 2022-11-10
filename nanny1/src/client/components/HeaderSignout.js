@@ -38,8 +38,8 @@ const HeaderSignOut = ({
     GetCartList();
   }, []);
 
-  const handleSignout = () => {
-    signOut(dispatch)();
+  const handleSignout = async () => {
+    const result = await signOut(dispatch)();
     handleCart(false);
     handleLogOut();
   };
