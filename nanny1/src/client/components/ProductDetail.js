@@ -47,7 +47,6 @@ const ProductDetail = ({
         const cart = await getCart(dispatch)();
         const item = cart.filter((ele) => ele.id === productDetailObject.id);
         if (item[0]) {
-          console.log(item[0].num);
           setNum(item[0].num);
           setPlus(true);
           setMinus(true);

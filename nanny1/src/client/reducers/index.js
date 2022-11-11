@@ -30,7 +30,7 @@ export const reducer = (state = [], { type, payload }) => {
       //console.log("in reducer get cart", payload);
       return [...payload];
     case "ADDTOCART":
-      console.log("in reducer add to cart", payload);
+      //console.log("in reducer add to cart", payload);
       return [...state, { ...payload }];
     case "GETPRODUCTINFO":
       //console.log("in reducer get product info", payload);
