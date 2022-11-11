@@ -40,33 +40,52 @@ const ProductCell = ({
     handleAddBtnShow();
   }, [isLogin]);
 
-  useEffect(() => {
-    const handleAddtoCart = async () => {
+  // useEffect(() => {
+  //   const handleAddtoCart = async () => {
+  //     try {
+  //       const resp = await addCart(dispatch)(id, numState);
+  //     } catch (error) {
+  //       console.log(error, "when add to cart");
+  //     }
+  //   };
+  //   const handleDeleteFromCart = async () => {
+  //     try {
+  //       const resp = await deleteCart(dispatch)(id);
+  //     } catch (error) {
+  //       console.log(error, "delete from cart error");
+  //     }
+  //   };
+  //   //console.log(numState);
+  //   if (numState > 0) {
+  //     handleAddtoCart();
+
+  //     console.log("add before show");
+  //   } else if (numState === 0) {
+  //     handleDeleteFromCart();
+
+  //     setPlus(false);
+  //     setMinus(false);
+  //   }
+  // }, [numState]);
+
+  const handleOnChange = async () => {
+    //console.log("num state", numState);
+    if (numState > 0) {
       try {
         const resp = await addCart(dispatch)(id, numState);
       } catch (error) {
         console.log(error, "when add to cart");
       }
-    };
-    const handleDeleteFromCart = async () => {
+    } else if (numState <= 0) {
       try {
         const resp = await deleteCart(dispatch)(id);
       } catch (error) {
         console.log(error, "delete from cart error");
       }
-    };
-    //console.log(numState);
-    if (numState > 0) {
-      handleAddtoCart();
-
-      console.log("add before show");
-    } else if (numState === 0) {
-      handleDeleteFromCart();
-
       setPlus(false);
       setMinus(false);
     }
-  }, [numState]);
+  };
 
   return (
     <div className="itemContainer">
@@ -95,9 +114,10 @@ const ProductCell = ({
           <button
             className="quickAdd"
             onClick={() => {
-              setNum(1);
+              //setNum(1);
               setPlus(true);
               setMinus(true);
+              handleOnChange();
             }}
           >
             Add To Cart
@@ -108,7 +128,7 @@ const ProductCell = ({
             <button
               id="minus"
               onClick={() => {
-                setNum(numState - 1);
+                //setNum(numState - 1);
               }}
             >
               -
@@ -119,13 +139,15 @@ const ProductCell = ({
               value={numState}
               onChange={(event) => {
                 setNum(event.target.valueAsNumber);
-                //handleAddtoCart(productDetailObject);
+              }}
+              onBlur={() => {
+                handleOnChange();
               }}
             />
             <button
               id="plus"
               onClick={() => {
-                setNum(numState + 1);
+                //setNum(numState + 1);
               }}
             >
               +
