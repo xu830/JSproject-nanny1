@@ -24,11 +24,12 @@ const SignInModalContent = ({
       })
     );
     const result = await resp.json();
+    // console.log(result);
     // localStorage.setItem(
     //   "login",
     //   JSON.stringify({
     //     // login: true,
-    //     email: result.email,
+    //     id: result.result.id,
     //     // token: result.token,
     //   })
     // );

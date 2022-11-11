@@ -14,6 +14,7 @@ const validateToken = (req, res, next) => {
     const validToken = verify(accessToken, "secretKey");
     if (validToken) {
       req.authenticated = true; //can save variable
+      req.id = validToken.id;
       return next();
     }
   } catch (err) {

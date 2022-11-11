@@ -144,10 +144,6 @@ app.post("/login", async (req, res) => {
     res.status(400).json({ message: "log in failed" });
   } else {
     userOn = qureyResult.id;
-    // const id = qureyResult.id;
-    // const token = jwt.sign({ id }, "jwtSecret", {
-    //   expiresIn: "1hr",
-    // });
     const accessToken = createTokens(qureyResult);
     res.cookie("access-token", accessToken, {
       maxAge: 60 * 60 * 24 * 30 * 1000, //30days
@@ -159,9 +155,9 @@ app.post("/login", async (req, res) => {
 });
 
 //4.get user
-app.get("/getUser", validateToken, (_, res) => {
+app.get("/getUser", validateToken, (req, res) => {
   //could return user data
-  console.log("get user", userOn);
+  userOn = req.id;
   res.json("get User");
 });
 
