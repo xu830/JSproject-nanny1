@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addCart } from "../actions/index";
+import { addCart, getCart, deleteCart } from "../actions/index";
 import "./style/ProductDetail.css";
 const ProductDetail = ({
   productDetailObject,
@@ -17,33 +17,52 @@ const ProductDetail = ({
   useEffect(() => {
     const handleAddtoCart = async (productDetailObject) => {
       try {
-        console.log(productDetailObject.id, numState);
+        //console.log(productDetailObject.id, numState);
         const resp = await addCart(dispatch)(productDetailObject.id, numState);
-        setTotalPrice(totalPrice + productDetailObject.price);
+        //setTotalPrice(totalPrice + productDetailObject.price);
       } catch (error) {
         console.log(error, "when add to cart");
       }
     };
-    if (numState !== 0) {
+    const handleDeleteFromCart = async (productDetailObject) => {
+      try {
+        const resp = await deleteCart(dispatch)(productDetailObject.id);
+      } catch (error) {
+        console.log(error, "delete from cart error");
+      }
+    };
+    //console.log(numState);
+    if (numState > 0) {
       handleAddtoCart(productDetailObject);
+    } else if (numState === 0) {
+      handleDeleteFromCart(productDetailObject);
+      setPlus(false);
+      setMinus(false);
     }
   }, [numState]);
-  const handleAddtoCart = async (productDetailObject) => {
-    try {
-      console.log(productDetailObject.id, numState);
-      const resp = await addCart(dispatch)(productDetailObject.id, numState);
-      setTotalPrice(totalPrice + productDetailObject.price);
-    } catch (error) {
-      console.log(error, "when add to cart");
-    }
-  };
+
+  useEffect(() => {
+    const handleAddBtnShow = async () => {
+      try {
+        const cart = await getCart(dispatch)();
+        const item = cart.filter((ele) => ele.id === productDetailObject.id);
+        if (item[0]) {
+          console.log(item[0].num);
+          setNum(item[0].num);
+          setPlus(true);
+          setMinus(true);
+        }
+      } catch (error) {
+        console.log(error, "get cart");
+      }
+    };
+    handleAddBtnShow();
+  }, []);
 
   const handleAddOnClick = () => {
     setPlus(true);
     setMinus(true);
     setNum(1);
-    // setTotalPrice(totalPrice + productDetailObject.price);
-    // handleAddtoCart(productDetailObject);
   };
   const oosFlag = () => {
     if (productDetailObject.inStock > 0) {
@@ -82,17 +101,31 @@ const ProductDetail = ({
         )}
         {plusState && minusState && (
           <div className="plusMinus">
-            <button id="minus">-</button>
+            <button
+              id="minus"
+              onClick={() => {
+                setNum(numState - 1);
+              }}
+            >
+              -
+            </button>
             <input
-              type="text"
+              type="number"
               id="quantityInDetail"
               value={numState}
               onChange={(event) => {
-                setNum(event.target.value);
+                setNum(event.target.valueAsNumber);
                 //handleAddtoCart(productDetailObject);
               }}
             />
-            <button id="plus">+</button>
+            <button
+              id="plus"
+              onClick={() => {
+                setNum(numState + 1);
+              }}
+            >
+              +
+            </button>
           </div>
         )}
         <button className="editInDetail">Edit</button>

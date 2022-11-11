@@ -283,8 +283,6 @@ app.post("/addCart", async (req, res) => {
         res.json({ message: "add to cart succeed" });
       }
     }
-    console.log("no user");
-    res.json({ message: "do not find user" });
     return;
   } else {
     res.status(400).json({ message: "add not succeed" });
@@ -327,7 +325,7 @@ app.put("/editProduct", async (req, res) => {
 });
 //13. getProductInfo
 app.post("/getProductInfo", async (req, res) => {
-  console.log("get info", req.body);
+  // console.log("get info", req.body);
   if (req.body.id) {
     const id = req.body.id;
     console.log("call ghet", id);
@@ -339,7 +337,7 @@ app.post("/getProductInfo", async (req, res) => {
       imgSrc,
     }))(qureyResult);
 
-    console.log(product);
+    // console.log(product);
     res.json(product);
     return;
   } else {
