@@ -5,7 +5,7 @@ import { signOut, getCart, getProductInfo } from "../actions/index";
 import cartImg from "../img/cart.png";
 import "./style/HeaderSignout.css";
 const HeaderSignOut = ({
-  handleLogOut = () => {},
+  handleLogOut,
   handleCart,
   setCartList,
   setTotalPrice,
@@ -40,8 +40,9 @@ const HeaderSignOut = ({
 
   const handleSignout = async () => {
     const result = await signOut(dispatch)();
+
     handleCart(false);
-    handleLogOut();
+    handleLogOut(false);
   };
 
   const calcTotal = (cart) => {

@@ -29,6 +29,9 @@ const ProductCell = ({
           setNum(item[0].num);
           setPlus(true);
           setMinus(true);
+        } else {
+          setPlus(false);
+          setMinus(false);
         }
       } catch (error) {
         console.log(error, "get cart");
@@ -40,9 +43,7 @@ const ProductCell = ({
   useEffect(() => {
     const handleAddtoCart = async () => {
       try {
-        //console.log(productDetailObject.id, numState);
         const resp = await addCart(dispatch)(id, numState);
-        //setTotalPrice(totalPrice + productDetailObject.price);
       } catch (error) {
         console.log(error, "when add to cart");
       }

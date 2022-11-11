@@ -28,7 +28,7 @@ function App() {
   const [ShowSignUp, setShowSignUp] = useState(false);
   const [ShowUpdatePwd, setShowUpdatePwd] = useState(false);
   const [ShowSendUpdatePwd, SetShowSendUpdatePwd] = useState(false);
-  const [isLogin, setlogin] = useState(false);
+  const [isLogin, setlogin] = useState();
 
   const [showProducts, setShowProducts] = useState(true);
   const [showCreateProd, setCreateProd] = useState(false);
@@ -88,7 +88,7 @@ function App() {
       <NannyHeader>
         {isLogin ? (
           <HeaderSignOut
-            handleLogOut={() => setlogin(false)}
+            handleLogOut={setlogin}
             handleCart={setShowCart}
             setCartList={setCartList}
             setTotalPrice={setTotalPrice}
