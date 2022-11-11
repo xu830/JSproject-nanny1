@@ -85,7 +85,7 @@ export const addProduct =
   (dispatch) =>
   async (productName, productDescription, category, price, inStock, imgSrc) => {
     try {
-      console.log("in action", inStock);
+      // console.log("in action", inStock);
       const response = await fetch(
         "/addProduct",
         ajaxConfigHelper({
@@ -130,9 +130,9 @@ export const getCart = (dispatch) => async () => {
 
 export const addCart = (dispatch) => async (id, num) => {
   try {
-    console.log("in action", id, num);
+    // console.log("in action", id, num);
     const response = await fetch("/addCart", ajaxConfigHelper({ id, num }));
-    console.log("in action respoinse", response);
+    // console.log("in action respoinse", response);
     const result = await response.json();
     dispatch({
       type: "ADDTOCART",

@@ -11,7 +11,7 @@ const ProductDetail = ({
 }) => {
   const [plusState, setPlus] = useState(false);
   const [minusState, setMinus] = useState(false);
-  const [numState, setNum] = useState(0);
+  const [numState, setNum] = useState();
 
   const dispatch = useDispatch();
   useEffect(() => {
