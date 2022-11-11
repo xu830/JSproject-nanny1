@@ -77,7 +77,7 @@ function App() {
             return product;
           })
         );
-        console.log("set cartlist", cartList);
+        console.log("set cartlist", cartlist);
         setCartList(cartlist);
       }
     } catch (error) {}
@@ -172,6 +172,7 @@ function App() {
               handleUpdatePwd={() => setShowUpdatePwd(true)}
               handleLogin={setlogin}
               closeModal={setModalState}
+              handleSetCart={handleSetCart}
             />
           )}
           {ShowUpdatePwd && (

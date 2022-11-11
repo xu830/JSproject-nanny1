@@ -8,6 +8,7 @@ const SignInModalContent = ({
   handleUpdatePwd,
   handleLogin,
   closeModal,
+  handleSetCart,
 }) => {
   const [emailInput, setEmail] = useState("");
   const [passwordInput, setPassword] = useState("");
@@ -41,6 +42,7 @@ const SignInModalContent = ({
       },
     });
     if (resp.ok) {
+      handleSetCart();
       handleLogin(true);
       closeModal(false);
     }
