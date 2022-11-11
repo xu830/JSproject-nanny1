@@ -4,7 +4,7 @@ const CartHeader = ({ handleCart = () => {}, cartList }) => {
     const num = cartList.reduce((prev, cur) => {
       return Number(prev) + Number(cur.num);
     }, 0);
-    console.log(num);
+    // console.log(num);
     return num;
   };
   return (

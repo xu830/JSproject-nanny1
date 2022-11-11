@@ -15,6 +15,7 @@ const ProductCell = ({
   setProductShowDetail,
   setProductDetail,
   isLogin,
+  handleSetCart,
 }) => {
   const [plusState, setPlus] = useState();
   const [minusState, setMinus] = useState();
@@ -40,45 +41,19 @@ const ProductCell = ({
     handleAddBtnShow();
   }, [isLogin]);
 
-  // useEffect(() => {
-  //   const handleAddtoCart = async () => {
-  //     try {
-  //       const resp = await addCart(dispatch)(id, numState);
-  //     } catch (error) {
-  //       console.log(error, "when add to cart");
-  //     }
-  //   };
-  //   const handleDeleteFromCart = async () => {
-  //     try {
-  //       const resp = await deleteCart(dispatch)(id);
-  //     } catch (error) {
-  //       console.log(error, "delete from cart error");
-  //     }
-  //   };
-  //   //console.log(numState);
-  //   if (numState > 0) {
-  //     handleAddtoCart();
-
-  //     console.log("add before show");
-  //   } else if (numState === 0) {
-  //     handleDeleteFromCart();
-
-  //     setPlus(false);
-  //     setMinus(false);
-  //   }
-  // }, [numState]);
-
   const handleOnChange = async () => {
     //console.log("num state", numState);
     if (numState > 0) {
       try {
         const resp = await addCart(dispatch)(id, numState);
+        handleSetCart();
       } catch (error) {
         console.log(error, "when add to cart");
       }
     } else if (numState <= 0) {
       try {
         const resp = await deleteCart(dispatch)(id);
+        handleSetCart();
       } catch (error) {
         console.log(error, "delete from cart error");
       }

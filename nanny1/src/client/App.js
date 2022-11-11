@@ -57,8 +57,8 @@ function App() {
     getNowUser();
   }, [isLogin]);
 
-  const GetCartList = async () => {
-    console.log("login status change");
+  const handleSetCart = async () => {
+    //console.log("login status change");
     try {
       const cart = await getCart(dispatch)();
       console.log("show cart", cart);
@@ -77,7 +77,7 @@ function App() {
             return product;
           })
         );
-        console.log("in effect", cartList);
+        console.log("set cartlist", cartList);
         setCartList(cartlist);
       }
     } catch (error) {}
@@ -117,6 +117,7 @@ function App() {
             setProductShowDetail={setProductShowDetail}
             setProductDetail={setProductDetail}
             isLogin={isLogin}
+            handleSetCart={handleSetCart}
           />
         )}
         {showCreateProd && (
