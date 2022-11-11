@@ -3,12 +3,7 @@ import { useDispatch } from "react-redux";
 import { getProducts } from "../actions/index";
 import ProductCell from "./ProductCell";
 import "./style/ProductsContent.css";
-const ProductsContent = ({
-  handleCreateProduct,
-  handleProductShow,
-  setProductShowDetail,
-  setProductDetail,
-}) => {
+const ProductsContent = (props) => {
   const [productsList, setProductsList] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -37,9 +32,11 @@ const ProductsContent = ({
           category={category}
           inStock={inStock}
           index={index}
-          handleProductShow={handleProductShow}
-          setProductShowDetail={setProductShowDetail}
-          setProductDetail={setProductDetail}
+          handleProductShow={props.handleProductShow}
+          setProductShowDetail={props.setProductShowDetail}
+          setProductDetail={props.setProductDetail}
+          isLogin={props.isLogin}
+          GetCartList={props.GetCartList}
         />
       );
     }
@@ -49,8 +46,8 @@ const ProductsContent = ({
       <button
         id="addProductBtn"
         onClick={() => {
-          handleCreateProduct(true);
-          handleProductShow(false);
+          props.handleCreateProduct(true);
+          props.handleProductShow(false);
         }}
       >
         Add Product

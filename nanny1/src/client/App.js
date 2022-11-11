@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getUser, getProducts } from "./actions/index";
+import { getUser, getProducts, getCart, getProductInfo } from "./actions/index";
 
 import NannyHeader from "./components/NannyHeader";
 import SignInModalContent from "./components/SignInModalContent";
@@ -53,8 +53,35 @@ function App() {
       } catch (error) {}
     };
 
+    // GetCartList();
     getNowUser();
-  }, []);
+  }, [isLogin]);
+
+  const GetCartList = async () => {
+    console.log("login status change");
+    try {
+      const cart = await getCart(dispatch)();
+      console.log("show cart", cart);
+      if (cart.length !== 0) {
+        const cartlist = await Promise.all(
+          cart.map(async (ele) => {
+            const info = await getProductInfo(dispatch)(ele.id);
+            console.log("info", info);
+            const product = {
+              ...ele,
+              productName: info.productName,
+              price: info.price,
+              imgSrc: info.imgSrc,
+            };
+            console.log(product);
+            return product;
+          })
+        );
+        console.log("in effect", cartList);
+        setCartList(cartlist);
+      }
+    } catch (error) {}
+  };
 
   return (
     <div className="APP">
@@ -89,6 +116,8 @@ function App() {
             handleProductShow={setShowProducts}
             setProductShowDetail={setProductShowDetail}
             setProductDetail={setProductDetail}
+            isLogin={isLogin}
+            GetCartList={GetCartList}
           />
         )}
         {showCreateProd && (

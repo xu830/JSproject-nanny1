@@ -14,6 +14,8 @@ const ProductCell = ({
   handleProductShow,
   setProductShowDetail,
   setProductDetail,
+  isLogin,
+  GetCartList,
 }) => {
   const [plusState, setPlus] = useState();
   const [minusState, setMinus] = useState();
@@ -21,6 +23,7 @@ const ProductCell = ({
   const dispatch = useDispatch();
   useEffect(() => {
     const handleAddBtnShow = async () => {
+      console.log("rerender cell");
       try {
         const cart = await getCart(dispatch)();
         const item = cart.filter((ele) => ele.id === id);
@@ -34,7 +37,7 @@ const ProductCell = ({
       }
     };
     handleAddBtnShow();
-  }, []);
+  }, [isLogin]);
 
   useEffect(() => {
     const handleAddtoCart = async () => {
@@ -56,8 +59,11 @@ const ProductCell = ({
     //console.log(numState);
     if (numState > 0) {
       handleAddtoCart();
+      //GetCartList();
+      console.log("add before show");
     } else if (numState === 0) {
       handleDeleteFromCart();
+      //GetCartList();
       setPlus(false);
       setMinus(false);
     }
@@ -87,7 +93,16 @@ const ProductCell = ({
       </div>
       <div className="productBtn">
         {!plusState && !minusState && (
-          <button className="quickAdd">Add To Cart</button>
+          <button
+            className="quickAdd"
+            onClick={() => {
+              setNum(1);
+              setPlus(true);
+              setMinus(true);
+            }}
+          >
+            Add To Cart
+          </button>
         )}
         {plusState && minusState && (
           <div className="plusMinus">

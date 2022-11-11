@@ -243,6 +243,12 @@ app.post("/addProduct", async (req, res) => {
 
 //9.get user's cart
 app.get("/getCart", async (_, res) => {
+  console.log("getcart", userOn);
+  if (userOn === undefined) {
+    let cartInfo = [];
+    res.json(cartInfo);
+    return;
+  }
   const qureyResult = await User.findOne({
     id: userOn,
   });

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 const CartItemCell = ({ id, productName, price, num, imgSrc }) => {
   const dispatch = useDispatch();
   const handleRomove = async (id) => {
-    //const result = await deleteCart(dispatch)(id);
+    const result = await deleteCart(dispatch)(id);
     console.log("onclick");
   };
   return (
@@ -18,7 +18,7 @@ const CartItemCell = ({ id, productName, price, num, imgSrc }) => {
       </div>
       <div className="rightC">
         <p className="pPriceCart">${price}</p>
-        <p className="removeCart" onClick={handleRomove(id)}>
+        <p className="removeCart" onClick={() => handleRomove(id)}>
           Remove
         </p>
       </div>
