@@ -117,7 +117,6 @@ function App() {
             setProductShowDetail={setProductShowDetail}
             setProductDetail={setProductDetail}
             isLogin={isLogin}
-            GetCartList={GetCartList}
           />
         )}
         {showCreateProd && (

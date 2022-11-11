@@ -15,7 +15,6 @@ const ProductCell = ({
   setProductShowDetail,
   setProductDetail,
   isLogin,
-  GetCartList,
 }) => {
   const [plusState, setPlus] = useState();
   const [minusState, setMinus] = useState();
@@ -23,7 +22,6 @@ const ProductCell = ({
   const dispatch = useDispatch();
   useEffect(() => {
     const handleAddBtnShow = async () => {
-      console.log("rerender cell");
       try {
         const cart = await getCart(dispatch)();
         const item = cart.filter((ele) => ele.id === id);
@@ -59,11 +57,11 @@ const ProductCell = ({
     //console.log(numState);
     if (numState > 0) {
       handleAddtoCart();
-      //GetCartList();
+
       console.log("add before show");
     } else if (numState === 0) {
       handleDeleteFromCart();
-      //GetCartList();
+
       setPlus(false);
       setMinus(false);
     }

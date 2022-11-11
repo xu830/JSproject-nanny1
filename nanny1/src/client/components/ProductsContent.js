@@ -36,7 +36,6 @@ const ProductsContent = (props) => {
           setProductShowDetail={props.setProductShowDetail}
           setProductDetail={props.setProductDetail}
           isLogin={props.isLogin}
-          GetCartList={props.GetCartList}
         />
       );
     }
