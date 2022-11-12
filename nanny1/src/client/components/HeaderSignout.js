@@ -10,6 +10,7 @@ const HeaderSignOut = ({
   setCartList,
   setTotalPrice,
   totalPrice,
+  isLogin,
 }) => {
   const dispatch = useDispatch();
 
@@ -31,16 +32,16 @@ const HeaderSignOut = ({
             return product;
           })
         );
-        setCartList(cartlist);
+        setCartList();
         calcTotal(cartlist);
       } catch (error) {}
     };
     GetCartList();
-  }, []);
+  }, [isLogin]);
 
   const handleSignout = async () => {
     const result = await signOut(dispatch)();
-
+    setCartList();
     handleCart(false);
     handleLogOut(false);
   };

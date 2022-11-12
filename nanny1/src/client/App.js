@@ -58,7 +58,7 @@ function App() {
   }, [isLogin]);
 
   const handleSetCart = async () => {
-    //console.log("login status change");
+    console.log("login status change");
     try {
       const cart = await getCart(dispatch)();
       console.log("show cart", cart);
@@ -90,9 +90,10 @@ function App() {
           <HeaderSignOut
             handleLogOut={setlogin}
             handleCart={setShowCart}
-            setCartList={setCartList}
+            setCartList={handleSetCart}
             setTotalPrice={setTotalPrice}
             totalPrice={totalPrice}
+            isLogin={isLogin}
           />
         ) : (
           <HeaderSignIn
