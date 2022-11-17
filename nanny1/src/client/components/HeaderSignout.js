@@ -8,49 +8,15 @@ const HeaderSignOut = ({
   handleLogOut,
   handleCart,
   setCartList,
-  setTotalPrice,
   totalPrice,
-  isLogin,
 }) => {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const GetCartList = async () => {
-      try {
-        const cart = await getCart(dispatch)();
-        // console.log("show ccart", cart);
-        const cartlist = await Promise.all(
-          cart.map(async (ele) => {
-            const info = await getProductInfo(dispatch)(ele.id);
-            // console.log("info", info);
-            const product = {
-              ...ele,
-              productName: info.productName,
-              price: info.price,
-              imgSrc: info.imgSrc,
-            };
-            return product;
-          })
-        );
-        setCartList();
-        calcTotal(cartlist);
-      } catch (error) {}
-    };
-    GetCartList();
-  }, [isLogin]);
 
   const handleSignout = async () => {
     const result = await signOut(dispatch)();
     setCartList();
     handleCart(false);
     handleLogOut(false);
-  };
-
-  const calcTotal = (cart) => {
-    let total = cart.reduce((prev, cur) => {
-      return prev + cur.price * cur.num;
-    }, 0);
-    setTotalPrice(total);
   };
 
   return (

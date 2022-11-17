@@ -5,6 +5,7 @@ const HeaderSignIn = ({
   closeUpdate,
   closeSendUpdate,
   handleCart,
+  totalPrice,
 }) => {
   return (
     <div className="SigninContext">
@@ -16,6 +17,7 @@ const HeaderSignIn = ({
       >
         <img src={cartImg} alt="cart" className="cartBtnimg"></img>
       </button>
+      <p className="priceHeader">${totalPrice}</p>
       <button
         onClick={() => {
           openModal(true);

@@ -57,11 +57,20 @@ function App() {
     getNowUser();
   }, [isLogin]);
 
+  //when rerender
+  useEffect(() => {
+    handleSetCart();
+  }, []);
+
+  //when cartlist change set total will change
+  useEffect(() => {
+    handleSetTotal();
+  }, [cartList]);
+
   const handleSetCart = async () => {
-    console.log("login status change");
+    console.log("handleSetCartInvoke");
     try {
       const cart = await getCart(dispatch)();
-      console.log("show cart", cart);
       if (cart.length !== 0) {
         const cartlist = await Promise.all(
           cart.map(async (ele) => {
@@ -77,12 +86,19 @@ function App() {
             return product;
           })
         );
-        console.log("set cartlist", cartlist);
         setCartList(cartlist);
       } else {
         setCartList(cart);
       }
     } catch (error) {}
+  };
+
+  const handleSetTotal = () => {
+    const total = cartList.reduce((prev, cur) => {
+      return prev + cur.price * cur.num;
+    }, 0);
+    console.log("total", total);
+    setTotalPrice(total);
   };
 
   return (
@@ -93,9 +109,7 @@ function App() {
             handleLogOut={setlogin}
             handleCart={setShowCart}
             setCartList={handleSetCart}
-            setTotalPrice={setTotalPrice}
             totalPrice={totalPrice}
-            isLogin={isLogin}
           />
         ) : (
           <HeaderSignIn
@@ -104,6 +118,7 @@ function App() {
             closeUpdate={setShowUpdatePwd}
             closeSendUpdate={SetShowSendUpdatePwd}
             handleCart={setShowCart}
+            totalPrice={totalPrice}
           />
         )}
       </NannyHeader>
