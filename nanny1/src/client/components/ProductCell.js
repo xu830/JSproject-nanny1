@@ -16,6 +16,7 @@ const ProductCell = ({
   setProductDetail,
   isLogin,
   handleSetCart,
+  cartList,
 }) => {
   const [plusState, setPlus] = useState();
   const [minusState, setMinus] = useState();
@@ -24,8 +25,9 @@ const ProductCell = ({
   useEffect(() => {
     const handleAddBtnShow = async () => {
       try {
-        const cart = await getCart(dispatch)();
-        const item = cart.filter((ele) => ele.id === id);
+        //const cart = await getCart(dispatch)();
+        console.log("in cell", cartList);
+        const item = cartList.filter((ele) => ele.id === id);
         if (item[0]) {
           setNum(item[0].num);
           setPlus(true);
@@ -39,7 +41,7 @@ const ProductCell = ({
       }
     };
     handleAddBtnShow();
-  }, [isLogin]);
+  }, [cartList]);
 
   const handleOnChange = async () => {
     //console.log("num state", numState);

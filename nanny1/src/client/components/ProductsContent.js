@@ -41,6 +41,7 @@ const ProductsContent = (props) => {
           setProductDetail={props.setProductDetail}
           isLogin={props.isLogin}
           handleSetCart={props.handleSetCart}
+          cartList={props.cartList}
         />
       );
     }
