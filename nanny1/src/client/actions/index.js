@@ -118,12 +118,19 @@ export const getCart = (dispatch) => async () => {
   try {
     const response = await fetch("/getCart");
     const result = await response.json();
-    //console.log("in action", result);
-    dispatch({
-      type: "GETCART",
-      payload: result,
-    });
-    return result;
+    if (response.ok) {
+      dispatch({
+        type: "GETCART",
+        payload: result,
+      });
+      return result;
+    } else {
+      dispatch({
+        type: "GETCART",
+        payload: [],
+      });
+      return [];
+    }
   } catch (error) {
     console.log(error, "get cart");
   }

@@ -79,6 +79,8 @@ function App() {
         );
         console.log("set cartlist", cartlist);
         setCartList(cartlist);
+      } else {
+        setCartList(cart);
       }
     } catch (error) {}
   };
@@ -119,6 +121,7 @@ function App() {
             setProductDetail={setProductDetail}
             isLogin={isLogin}
             handleSetCart={handleSetCart}
+            cartList={cartList}
           />
         )}
         {showCreateProd && (

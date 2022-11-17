@@ -16,6 +16,10 @@ const ProductsContent = (props) => {
     GetProductsList();
   }, []);
 
+  useEffect(() => {
+    console.log("content", props.cartList);
+  }, [props.cartList]);
+
   const pList = productsList.map(
     (
       { id, productName, price, imgSrc, productDescription, category, inStock },

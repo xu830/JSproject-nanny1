@@ -242,9 +242,10 @@ app.post("/addProduct", async (req, res) => {
 });
 
 //9.get user's cart
-app.get("/getCart", async (_, res) => {
+app.get("/getCart", validateToken, async (_, res) => {
   console.log("getcart", userOn);
   if (userOn === undefined) {
+    console.log("userOn not defined");
     let cartInfo = [];
     res.json(cartInfo);
     return;
