@@ -103,6 +103,7 @@ function App() {
             closeSignUp={setShowSignUp}
             closeUpdate={setShowUpdatePwd}
             closeSendUpdate={SetShowSendUpdatePwd}
+            handleCart={setShowCart}
           />
         )}
       </NannyHeader>
