@@ -281,7 +281,7 @@ app.get("/getCart", async (req, res) => {
 //10.add item to cart
 app.post("/addCart", async (req, res) => {
   if (req.body && req.body.id && req.body.num) {
-    if (userOn) {
+    if (userOn !== undefined) {
       const qureyResult = await User.findOne({
         id: userOn,
       });
@@ -294,22 +294,17 @@ app.post("/addCart", async (req, res) => {
         }
 
         await qureyResult.save();
-        console.log(" in cart");
         res.json({ message: "add to cart succeed" });
       } else {
-        console.log("nothing in cart");
         qureyResult.cart = [...qureyResult.cart, req.body];
         await qureyResult.save();
         res.json({ message: "add to cart succeed" });
       }
     } else {
-      console.log("guest cart add");
       var tempCart = req.cookies["guest-cart"];
-      console.log("add cart temp cart", tempCart);
       if (tempCart === undefined || tempCart === "none") {
         var temp = new Array();
         temp.push(req.body);
-        console.log("print temp", temp);
         res.cookie("guest-cart", temp, {
           maxAge: 60 * 60 * 3 * 1000, //30days
           httpOnly: true,
@@ -317,14 +312,17 @@ app.post("/addCart", async (req, res) => {
         res.json({ message: "add to guest cart succeed" });
       } else {
         //if guest cart not empty
-        //if the item is already in cart
-        // const itemid = tempCart.findIndex((obj) => obj.id === req.body.id);
-        // console.log("itemid", itemid);
-        // if (itemid >= 0) {
-        //   tempCart.splice(itemid, 1);
-        // }
-        // console.log("temp cart element", tempCart);
-        // res.json({ message: "add to guest cart succeed" });
+        //if the item is already in cart delete origin add then add new attemp
+        const itemid = tempCart.findIndex((obj) => obj.id === req.body.id);
+        if (itemid >= 0) {
+          tempCart.splice(itemid, 1);
+        }
+        tempCart = [...tempCart, req.body];
+        res.cookie("guest-cart", tempCart, {
+          maxAge: 60 * 60 * 3 * 1000, //30days
+          httpOnly: true,
+        });
+        res.json({ message: "add to guest cart succeed" });
       }
     }
     return;
