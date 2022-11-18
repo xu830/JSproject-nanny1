@@ -257,23 +257,25 @@ app.get("/getCart", async (req, res) => {
     console.log("userOn not defined");
     const cartInfo = req.cookies["guest-cart"];
     console.log("in cart info", cartInfo);
-    if (cartInfo === undefined || "none") {
+    if (cartInfo === undefined || cartInfo === "none") {
       res.json([]);
     } else {
+      console.log("here");
       res.json(cartInfo);
     }
 
     return;
+  } else {
+    const qureyResult = await User.findOne({
+      id: userOn,
+    });
+    // console.log(qureyResult);
+    let cartInfo = [];
+    if (qureyResult) {
+      cartInfo = qureyResult.cart;
+    }
+    res.json(cartInfo);
   }
-  const qureyResult = await User.findOne({
-    id: userOn,
-  });
-  // console.log(qureyResult);
-  let cartInfo = [];
-  if (qureyResult) {
-    cartInfo = qureyResult.cart;
-  }
-  res.json(cartInfo);
 });
 
 //10.add item to cart
@@ -304,7 +306,7 @@ app.post("/addCart", async (req, res) => {
       console.log("guest cart add");
       var tempCart = req.cookies["guest-cart"];
       console.log("add cart temp cart", tempCart);
-      if (tempCart === undefined || "none") {
+      if (tempCart === undefined || tempCart === "none") {
         var temp = new Array();
         temp.push(req.body);
         console.log("print temp", temp);
