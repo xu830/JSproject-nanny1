@@ -19,6 +19,7 @@ var app = express();
 const jwt = require("jsonwebtoken");
 const { json } = require("express");
 const { createTokens, validateToken } = require("./JWT");
+const { error } = require("console");
 
 //1.login=>return boolean => LOGIN
 //2.signup=>add a credential in BE, return a boolean flag / status =>signUp
@@ -149,6 +150,10 @@ app.post("/login", async (req, res) => {
       maxAge: 60 * 60 * 24 * 30 * 1000, //30days
       httpOnly: true,
     });
+    res.cookie("guest-cart", "none", {
+      maxAge: 60 * 60 * 3 * 1000, //3hrs
+      httpOnly: true,
+    });
     res.json({ auth: true, token: accessToken, result: qureyResult });
     return;
   }
@@ -158,7 +163,11 @@ app.post("/login", async (req, res) => {
 app.get("/getUser", validateToken, (req, res) => {
   //could return user data
   userOn = req.id;
-  res.json("get User");
+  if (userOn === undefined) {
+    res.status(400).json({ error: "validation failed" });
+  } else {
+    res.json(userOn);
+  }
 });
 
 //5.log out
@@ -242,12 +251,18 @@ app.post("/addProduct", async (req, res) => {
 });
 
 //9.get user's cart
-app.get("/getCart", validateToken, async (_, res) => {
+app.get("/getCart", async (req, res) => {
   console.log("getcart", userOn);
   if (userOn === undefined) {
     console.log("userOn not defined");
-    let cartInfo = [];
-    res.json(cartInfo);
+    const cartInfo = req.cookies["guest-cart"];
+    console.log("in cart info", cartInfo);
+    if (cartInfo === undefined || "none") {
+      res.json([]);
+    } else {
+      res.json(cartInfo);
+    }
+
     return;
   }
   const qureyResult = await User.findOne({
@@ -284,6 +299,30 @@ app.post("/addCart", async (req, res) => {
         qureyResult.cart = [...qureyResult.cart, req.body];
         await qureyResult.save();
         res.json({ message: "add to cart succeed" });
+      }
+    } else {
+      console.log("guest cart add");
+      var tempCart = req.cookies["guest-cart"];
+      console.log("add cart temp cart", tempCart);
+      if (tempCart === undefined || "none") {
+        var temp = new Array();
+        temp.push(req.body);
+        console.log("print temp", temp);
+        res.cookie("guest-cart", temp, {
+          maxAge: 60 * 60 * 3 * 1000, //30days
+          httpOnly: true,
+        });
+        res.json({ message: "add to guest cart succeed" });
+      } else {
+        //if guest cart not empty
+        //if the item is already in cart
+        // const itemid = tempCart.findIndex((obj) => obj.id === req.body.id);
+        // console.log("itemid", itemid);
+        // if (itemid >= 0) {
+        //   tempCart.splice(itemid, 1);
+        // }
+        // console.log("temp cart element", tempCart);
+        // res.json({ message: "add to guest cart succeed" });
       }
     }
     return;
