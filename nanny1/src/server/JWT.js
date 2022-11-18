@@ -8,7 +8,8 @@ const createTokens = (user) => {
 const validateToken = (req, res, next) => {
   const accessToken = req.cookies["access-token"];
   if (!accessToken) {
-    return res.status(400).json({ error: "user not authenticated!" });
+    req.id = undefined;
+    return next();
   }
   try {
     const validToken = verify(accessToken, "secretKey");
