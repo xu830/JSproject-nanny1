@@ -257,7 +257,12 @@ app.get("/getCart", async (req, res) => {
     console.log("userOn not defined");
     const cartInfo = req.cookies["guest-cart"];
     console.log("in cart info", cartInfo);
-    if (cartInfo === undefined || cartInfo === "none") {
+    if (
+      cartInfo === undefined ||
+      cartInfo === "none" ||
+      cartInfo.length === 0
+    ) {
+      console.log("get", cartInfo);
       res.json([]);
     } else {
       console.log("here");
@@ -302,7 +307,11 @@ app.post("/addCart", async (req, res) => {
       }
     } else {
       var tempCart = req.cookies["guest-cart"];
-      if (tempCart === undefined || tempCart === "none") {
+      if (
+        tempCart === undefined ||
+        tempCart === "none" ||
+        tempCart.length === 0
+      ) {
         var temp = new Array();
         temp.push(req.body);
         res.cookie("guest-cart", temp, {
