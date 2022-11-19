@@ -333,14 +333,27 @@ app.post("/addCart", async (req, res) => {
 //11.delete from cart
 app.delete("/deleteCart", async (req, res) => {
   if (req.body && req.body.id) {
-    const qureyResult = await User.findOne({
-      id: userOn,
-    });
-    qureyResult.cart = qureyResult.cart.filter((ele) => {
-      return ele.id !== req.body.id;
-    });
-    await qureyResult.save();
-    res.json({ message: "delete succeed" });
+    if (userOn !== undefined) {
+      const qureyResult = await User.findOne({
+        id: userOn,
+      });
+      qureyResult.cart = qureyResult.cart.filter((ele) => {
+        return ele.id !== req.body.id;
+      });
+      await qureyResult.save();
+      res.json({ message: "delete succeed" });
+    } else {
+      //delete from guest cart
+      var tempCart = req.cookies["guest-cart"];
+      const deleteIndex = tempCart.findIndex((obj) => obj.id === req.body.id);
+      if (deleteIndex >= 0) {
+        tempCart.splice(deleteIndex, 1);
+      }
+      res.cookie("guest-cart", tempCart, {
+        maxAge: 60 * 60 * 3 * 1000, //3hrs
+        httpOnly: true,
+      });
+    }
   } else {
     res.status(400).json({ message: "delete not succeed" });
   }
