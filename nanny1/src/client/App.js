@@ -94,11 +94,12 @@ function App() {
   };
 
   const handleSetTotal = () => {
-    const total = cartList.reduce((prev, cur) => {
+    var total = cartList.reduce((prev, cur) => {
       return prev + cur.price * cur.num;
     }, 0);
     console.log("total", total);
-    setTotalPrice(total);
+    const total_num = Math.round(total * 100) / 100;
+    setTotalPrice(total_num);
   };
 
   return (
