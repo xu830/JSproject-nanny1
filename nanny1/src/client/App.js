@@ -97,7 +97,6 @@ function App() {
     var total = cartList.reduce((prev, cur) => {
       return prev + cur.price * cur.num;
     }, 0);
-    console.log("total", total);
     const total_num = Math.round(total * 100) / 100;
     setTotalPrice(total_num);
   };

@@ -353,6 +353,7 @@ app.delete("/deleteCart", async (req, res) => {
         maxAge: 60 * 60 * 3 * 1000, //3hrs
         httpOnly: true,
       });
+      res.json({ message: "delete from guest succeed" });
     }
   } else {
     res.status(400).json({ message: "delete not succeed" });

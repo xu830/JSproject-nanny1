@@ -42,7 +42,7 @@ const ProductCell = ({
   }, [cartList]);
 
   const handleOnChange = async () => {
-    //console.log("num state", numState);
+    console.log("num state", numState);
     if (numState > 0) {
       try {
         const resp = await addCart(dispatch)(id, numState);
