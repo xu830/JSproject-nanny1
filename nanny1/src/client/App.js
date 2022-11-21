@@ -86,6 +86,7 @@ function App() {
             return product;
           })
         );
+        console.log("incell cartlist", cartlist);
         setCartList(cartlist);
       } else {
         setCartList(cart);

@@ -57,8 +57,15 @@ const ProductCell = ({
       } catch (error) {
         console.log(error, "delete from cart error");
       }
-      setPlus(false);
-      setMinus(false);
+    }
+  };
+
+  const handleQuickAdd = async () => {
+    try {
+      const resp = await addCart(dispatch)(id, 1);
+      handleSetCart();
+    } catch (error) {
+      console.log(error, "when quckadd");
     }
   };
 
@@ -89,10 +96,7 @@ const ProductCell = ({
           <button
             className="quickAdd"
             onClick={() => {
-              //setNum(1);
-              setPlus(true);
-              setMinus(true);
-              handleOnChange();
+              handleQuickAdd();
             }}
           >
             Add To Cart
