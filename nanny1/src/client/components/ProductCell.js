@@ -60,9 +60,9 @@ const ProductCell = ({
     }
   };
 
-  const handleQuickAdd = async () => {
+  const handleQuickAdd = async (addnum) => {
     try {
-      const resp = await addCart(dispatch)(id, 1);
+      const resp = await addCart(dispatch)(id, addnum);
       handleSetCart();
     } catch (error) {
       console.log(error, "when quckadd");
@@ -96,7 +96,7 @@ const ProductCell = ({
           <button
             className="quickAdd"
             onClick={() => {
-              handleQuickAdd();
+              handleQuickAdd(1);
             }}
           >
             Add To Cart
@@ -118,6 +118,7 @@ const ProductCell = ({
               value={numState}
               onChange={(event) => {
                 setNum(event.target.valueAsNumber);
+                console.log("on change envoke", numState);
               }}
               onBlur={() => {
                 handleOnChange();
@@ -126,7 +127,10 @@ const ProductCell = ({
             <button
               id="plus"
               onClick={() => {
-                //setNum(numState + 1);
+                const afterAdd = numState + 1;
+                console.log("afteradd value", afterAdd);
+                handleQuickAdd(afterAdd);
+                console.log("onlick plus", numState);
               }}
             >
               +
