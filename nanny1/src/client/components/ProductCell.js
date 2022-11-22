@@ -61,11 +61,21 @@ const ProductCell = ({
   };
 
   const handleQuickAdd = async (addnum) => {
-    try {
-      const resp = await addCart(dispatch)(id, addnum);
-      handleSetCart();
-    } catch (error) {
-      console.log(error, "when quckadd");
+    if (addnum > 0) {
+      try {
+        const resp = await addCart(dispatch)(id, addnum);
+        handleSetCart();
+      } catch (error) {
+        console.log(error, "when quckadd");
+      }
+    } else if (addnum <= 0) {
+      try {
+        console.log("indelete");
+        const resp = await deleteCart(dispatch)(id);
+        handleSetCart();
+      } catch (error) {
+        console.log(error, "delete from cart error");
+      }
     }
   };
 
@@ -108,6 +118,7 @@ const ProductCell = ({
               id="minus"
               onClick={() => {
                 const afterMinus = numState - 1;
+                console.log("onclice minus", afterMinus);
                 handleQuickAdd(afterMinus);
               }}
             >
