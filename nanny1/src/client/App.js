@@ -154,6 +154,8 @@ function App() {
             setProductShowDetail={setProductShowDetail}
             setTotalPrice={setTotalPrice}
             totalPrice={totalPrice}
+            cartList={cartList}
+            handleSetCart={handleSetCart}
           />
         )}
       </HomeModal>

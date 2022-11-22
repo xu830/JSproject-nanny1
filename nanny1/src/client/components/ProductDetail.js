@@ -8,61 +8,55 @@ const ProductDetail = ({
   setProductShowDetail,
   setTotalPrice,
   totalPrice,
+  cartList,
+  handleSetCart,
 }) => {
   const [plusState, setPlus] = useState(false);
   const [minusState, setMinus] = useState(false);
   const [numState, setNum] = useState();
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    const handleAddtoCart = async (productDetailObject) => {
-      try {
-        //console.log(productDetailObject.id, numState);
-        const resp = await addCart(dispatch)(productDetailObject.id, numState);
-        //setTotalPrice(totalPrice + productDetailObject.price);
-      } catch (error) {
-        console.log(error, "when add to cart");
-      }
-    };
-    const handleDeleteFromCart = async (productDetailObject) => {
-      try {
-        const resp = await deleteCart(dispatch)(productDetailObject.id);
-      } catch (error) {
-        console.log(error, "delete from cart error");
-      }
-    };
-    //console.log(numState);
-    if (numState > 0) {
-      handleAddtoCart(productDetailObject);
-    } else if (numState === 0) {
-      handleDeleteFromCart(productDetailObject);
-      setPlus(false);
-      setMinus(false);
-    }
-  }, [numState]);
 
   useEffect(() => {
     const handleAddBtnShow = async () => {
       try {
-        const cart = await getCart(dispatch)();
-        const item = cart.filter((ele) => ele.id === productDetailObject.id);
+        const item = cartList.filter(
+          (ele) => ele.id === productDetailObject.id
+        );
         if (item[0]) {
           setNum(item[0].num);
           setPlus(true);
           setMinus(true);
+        } else {
+          setPlus(false);
+          setMinus(false);
         }
       } catch (error) {
         console.log(error, "get cart");
       }
     };
     handleAddBtnShow();
-  }, []);
+  }, [cartList]);
 
-  const handleAddOnClick = () => {
-    setPlus(true);
-    setMinus(true);
-    setNum(1);
+  const handleQuickAdd = async (addnum) => {
+    if (addnum > 0) {
+      try {
+        const resp = await addCart(dispatch)(productDetailObject.id, addnum);
+        handleSetCart();
+      } catch (error) {
+        console.log(error, "when quckadd");
+      }
+    } else if (addnum <= 0) {
+      try {
+        console.log("indelete");
+        const resp = await deleteCart(dispatch)(productDetailObject.id);
+        handleSetCart();
+      } catch (error) {
+        console.log(error, "delete from cart error");
+      }
+    }
   };
+
   const oosFlag = () => {
     if (productDetailObject.inStock > 0) {
       return false;
@@ -94,7 +88,12 @@ const ProductDetail = ({
           {productDetailObject.productDescription}
         </p>
         {!plusState && !minusState && (
-          <button className="addToCart" onClick={handleAddOnClick}>
+          <button
+            className="addToCart"
+            onClick={() => {
+              handleQuickAdd(1);
+            }}
+          >
             Add To Cart
           </button>
         )}
@@ -103,7 +102,9 @@ const ProductDetail = ({
             <button
               id="minus"
               onClick={() => {
-                setNum(numState - 1);
+                const afterMinus = numState - 1;
+                console.log("onclice minus", afterMinus);
+                handleQuickAdd(afterMinus);
               }}
             >
               -
@@ -116,11 +117,15 @@ const ProductDetail = ({
                 setNum(event.target.valueAsNumber);
                 //handleAddtoCart(productDetailObject);
               }}
+              onBlur={() => {
+                handleQuickAdd(numState);
+              }}
             />
             <button
               id="plus"
               onClick={() => {
-                setNum(numState + 1);
+                const afterAdd = numState + 1;
+                handleQuickAdd(afterAdd);
               }}
             >
               +
