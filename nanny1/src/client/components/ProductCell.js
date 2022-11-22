@@ -41,25 +41,6 @@ const ProductCell = ({
     handleAddBtnShow();
   }, [cartList]);
 
-  const handleOnChange = async () => {
-    console.log("num state", numState);
-    if (numState > 0) {
-      try {
-        const resp = await addCart(dispatch)(id, numState);
-        handleSetCart();
-      } catch (error) {
-        console.log(error, "when add to cart");
-      }
-    } else if (numState <= 0) {
-      try {
-        const resp = await deleteCart(dispatch)(id);
-        handleSetCart();
-      } catch (error) {
-        console.log(error, "delete from cart error");
-      }
-    }
-  };
-
   const handleQuickAdd = async (addnum) => {
     if (addnum > 0) {
       try {
@@ -133,7 +114,7 @@ const ProductCell = ({
                 console.log("on change envoke", numState);
               }}
               onBlur={() => {
-                handleOnChange();
+                handleQuickAdd(numState);
               }}
             />
             <button
