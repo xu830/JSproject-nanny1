@@ -107,7 +107,8 @@ const ProductCell = ({
             <button
               id="minus"
               onClick={() => {
-                //setNum(numState - 1);
+                const afterMinus = numState - 1;
+                handleQuickAdd(afterMinus);
               }}
             >
               -
@@ -128,9 +129,7 @@ const ProductCell = ({
               id="plus"
               onClick={() => {
                 const afterAdd = numState + 1;
-                console.log("afteradd value", afterAdd);
                 handleQuickAdd(afterAdd);
-                console.log("onlick plus", numState);
               }}
             >
               +
