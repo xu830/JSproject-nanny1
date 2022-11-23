@@ -40,6 +40,7 @@ const ProductsContent = (props) => {
           isLogin={props.isLogin}
           handleSetCart={props.handleSetCart}
           cartList={props.cartList}
+          isAdmin={props.isAdmin}
         />
       );
     }

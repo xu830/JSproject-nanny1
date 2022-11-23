@@ -17,6 +17,7 @@ const ProductCell = ({
   isLogin,
   handleSetCart,
   cartList,
+  isAdmin,
 }) => {
   const [plusState, setPlus] = useState();
   const [minusState, setMinus] = useState();
@@ -128,7 +129,7 @@ const ProductCell = ({
             </button>
           </div>
         )}
-        <button className="editBtn">edit</button>
+        {isAdmin && <button className="editBtn">edit</button>}
       </div>
     </div>
   );
