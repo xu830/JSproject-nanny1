@@ -29,6 +29,7 @@ function App() {
   const [ShowUpdatePwd, setShowUpdatePwd] = useState(false);
   const [ShowSendUpdatePwd, SetShowSendUpdatePwd] = useState(false);
   const [isLogin, setlogin] = useState();
+  const [isAdmin, setAdmin] = useState(false);
 
   const [showProducts, setShowProducts] = useState(true);
   const [showCreateProd, setCreateProd] = useState(false);
@@ -44,11 +45,16 @@ function App() {
     const getNowUser = async () => {
       try {
         const response = await getUser(dispatch)();
-        console.log("result status", response.ok);
-        if (response.ok) {
+        console.log("result status", response);
+        if (response.user) {
           setlogin(true);
         } else {
           setlogin(false);
+        }
+        if (response.admin) {
+          setAdmin(true);
+        } else {
+          setAdmin(false);
         }
       } catch (error) {}
     };
@@ -139,6 +145,7 @@ function App() {
             isLogin={isLogin}
             handleSetCart={handleSetCart}
             cartList={cartList}
+            isAdmin={isAdmin}
           />
         )}
         {showCreateProd && (

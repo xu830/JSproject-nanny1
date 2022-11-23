@@ -1,14 +1,23 @@
 const { sign, verify } = require("jsonwebtoken");
 const createTokens = (user) => {
-  const accessToken = sign({ email: user.email, id: user.id }, "secretKey", {
-    expiresIn: "1hr",
-  });
+  let adminValue = user.admin;
+  if (!user.admin) {
+    adminValue = false;
+  }
+  const accessToken = sign(
+    { email: user.email, id: user.id, admin: adminValue },
+    "secretKey",
+    {
+      expiresIn: "1hr",
+    }
+  );
   return accessToken;
 };
 const validateToken = (req, res, next) => {
   const accessToken = req.cookies["access-token"];
   if (!accessToken) {
     req.id = undefined;
+    req.admin = false;
     return next();
   }
   try {
@@ -16,6 +25,7 @@ const validateToken = (req, res, next) => {
     if (validToken) {
       req.authenticated = true; //can save variable
       req.id = validToken.id;
+      req.admin = validToken.admin;
       return next();
     }
   } catch (err) {

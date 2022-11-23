@@ -46,15 +46,17 @@ const ProductsContent = (props) => {
   );
   return (
     <div className="ProductPage">
-      <button
-        id="addProductBtn"
-        onClick={() => {
-          props.handleCreateProduct(true);
-          props.handleProductShow(false);
-        }}
-      >
-        Add Product
-      </button>
+      {props.isAdmin && (
+        <button
+          id="addProductBtn"
+          onClick={() => {
+            props.handleCreateProduct(true);
+            props.handleProductShow(false);
+          }}
+        >
+          Add Product
+        </button>
+      )}
       <div className="ProductList">{pList}</div>
     </div>
   );

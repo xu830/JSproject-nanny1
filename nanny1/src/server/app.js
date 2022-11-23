@@ -139,8 +139,9 @@ app.post("/login", async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     },
-    { id: 1, _id: 0 }
+    { id: 1, _id: 0, admin: 1 }
   );
+  console.log("log in result", qureyResult);
   if (!qureyResult) {
     res.status(400).json({ message: "log in failed" });
   } else {
@@ -166,7 +167,7 @@ app.get("/getUser", validateToken, (req, res) => {
   if (userOn === undefined) {
     res.status(400).json({ error: "validation failed" });
   } else {
-    res.json(userOn);
+    res.json({ user: userOn, admin: req.admin });
   }
 });
 

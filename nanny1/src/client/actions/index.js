@@ -43,12 +43,15 @@ export const getUser = (dispatch) => async () => {
   try {
     const response = await fetch("/getUser");
     const result = await response.json();
-    // console.log("action", res);
-    dispatch({
-      type: "GET",
-      payload: result,
-    });
-    return response;
+    if (response.ok) {
+      dispatch({
+        type: "GET",
+        payload: result,
+      });
+      return result;
+    } else {
+      return result;
+    }
   } catch (error) {
     console.log(error, "get user");
   }
@@ -194,3 +197,31 @@ export const deleteCart = (dispatch) => async (id) => {
     console.log(error);
   }
 };
+
+export const editProduct =
+  (dispatch) =>
+  async (productName, productDescription, category, price, inStock, imgSrc) => {
+    try {
+      const response = await fetch(
+        "/editProduct",
+        ajaxConfigHelper(
+          {
+            productName: productName,
+            productDescription: productDescription,
+            category: category,
+            price: price,
+            inStock: inStock,
+            imgSrc: imgSrc,
+          },
+          "PUT"
+        )
+      );
+      const result = response.json();
+      dispatch({
+        type: "EDITPRODUCT",
+        payload: {
+          result,
+        },
+      });
+    } catch (error) {}
+  };
