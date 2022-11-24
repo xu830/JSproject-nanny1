@@ -41,6 +41,7 @@ const ProductsContent = (props) => {
           handleSetCart={props.handleSetCart}
           cartList={props.cartList}
           isAdmin={props.isAdmin}
+          handleCreateProduct={props.handleCreateProduct}
         />
       );
     }

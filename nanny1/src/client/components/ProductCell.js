@@ -18,6 +18,7 @@ const ProductCell = ({
   handleSetCart,
   cartList,
   isAdmin,
+  handleCreateProduct,
 }) => {
   const [plusState, setPlus] = useState();
   const [minusState, setMinus] = useState();
@@ -129,7 +130,17 @@ const ProductCell = ({
             </button>
           </div>
         )}
-        {isAdmin && <button className="editBtn">edit</button>}
+        {isAdmin && (
+          <button
+            className="editBtn"
+            onClick={() => {
+              handleCreateProduct(true);
+              handleProductShow(false);
+            }}
+          >
+            edit
+          </button>
+        )}
       </div>
     </div>
   );
