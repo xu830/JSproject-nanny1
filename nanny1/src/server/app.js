@@ -396,11 +396,22 @@ app.post("/getProductInfo", async (req, res) => {
     const id = req.body.id;
     console.log("call ghet", id);
     const qureyResult = await Product.findOne({ id });
-    const product = (({ productName, id, price, imgSrc }) => ({
+    const product = (({
       productName,
       id,
       price,
       imgSrc,
+      productDescription,
+      inStock,
+      category,
+    }) => ({
+      productName,
+      id,
+      price,
+      imgSrc,
+      productDescription,
+      inStock,
+      category,
     }))(qureyResult);
 
     // console.log(product);

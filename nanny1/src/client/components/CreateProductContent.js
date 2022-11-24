@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style/CreateProduct.css";
-import { addProduct } from "../actions/index";
+import { addProduct, getProductInfo } from "../actions/index";
 import { useDispatch } from "react-redux";
 
-const CreateProductContent = ({ handleCreateProduct, handleProductShow }) => {
+const CreateProductContent = ({
+  handleCreateProduct,
+  handleProductShow,
+  editProduct,
+  setEditProduct,
+}) => {
   const [nameInput, setName] = useState("");
   const [descriptionInput, setDesInput] = useState("");
   const [priceInput, setPriceInput] = useState("");
@@ -11,6 +16,28 @@ const CreateProductContent = ({ handleCreateProduct, handleProductShow }) => {
   const [imgLinkInput, setimgLinkInput] = useState("");
   const [categoryInput, setCategory] = useState("category1");
   const dispatch = useDispatch();
+  //when rederer, check if editproduct is undefined, if so, input will be empty
+  // if not, retrive product info, update existing product
+  useEffect(() => {
+    console.log("in create product pate", editProduct);
+    if (editProduct) {
+      //retrice product info
+      const getProductInput = async () => {
+        try {
+          const productInfo = await getProductInfo(dispatch)(editProduct);
+          setName(productInfo.productName);
+          setDesInput(productInfo.productDescription);
+          setPriceInput(productInfo.price);
+          setquantityInput(productInfo.inStock);
+          setimgLinkInput(productInfo.imgSrc);
+          setCategory(productInfo.category);
+        } catch (error) {}
+      };
+      getProductInput();
+    } else {
+      console.log("in else");
+    }
+  }, []);
 
   const handleAdd = async (product) => {
     try {
@@ -126,6 +153,7 @@ const CreateProductContent = ({ handleCreateProduct, handleProductShow }) => {
         onClick={() => {
           handleCreateProduct(false);
           handleProductShow(true);
+          setEditProduct("");
         }}
       >
         Back

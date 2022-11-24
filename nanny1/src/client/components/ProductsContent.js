@@ -42,6 +42,7 @@ const ProductsContent = (props) => {
           cartList={props.cartList}
           isAdmin={props.isAdmin}
           handleCreateProduct={props.handleCreateProduct}
+          setEditProduct={props.setEditProduct}
         />
       );
     }
