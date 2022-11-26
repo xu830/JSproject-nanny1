@@ -200,12 +200,21 @@ export const deleteCart = (dispatch) => async (id) => {
 
 export const editProduct =
   (dispatch) =>
-  async (productName, productDescription, category, price, inStock, imgSrc) => {
+  async (
+    id,
+    productName,
+    productDescription,
+    category,
+    price,
+    inStock,
+    imgSrc
+  ) => {
     try {
       const response = await fetch(
         "/editProduct",
         ajaxConfigHelper(
           {
+            id: id,
             productName: productName,
             productDescription: productDescription,
             category: category,

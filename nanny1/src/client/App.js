@@ -35,7 +35,7 @@ function App() {
   const [showCreateProd, setCreateProd] = useState(false);
   const [productShowDetail, setProductShowDetail] = useState(false);
   const [productDetailObject, setProductDetail] = useState({});
-  const [editProduct, setEditProduct] = useState();
+  const [editProductState, setEditProduct] = useState();
 
   const [showCart, setShowCart] = useState(false);
   const [cartList, setCartList] = useState([]);
@@ -154,7 +154,7 @@ function App() {
           <CreateProductContent
             handleCreateProduct={setCreateProd}
             handleProductShow={setShowProducts}
-            editProduct={editProduct}
+            editProductState={editProductState}
             setEditProduct={setEditProduct}
           />
         )}

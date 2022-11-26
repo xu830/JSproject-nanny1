@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./style/CreateProduct.css";
-import { addProduct, getProductInfo } from "../actions/index";
+import { addProduct, getProductInfo, editProduct } from "../actions/index";
 import { useDispatch } from "react-redux";
 
 const CreateProductContent = ({
   handleCreateProduct,
   handleProductShow,
-  editProduct,
+  editProductState,
   setEditProduct,
 }) => {
   const [nameInput, setName] = useState("");
@@ -15,16 +15,16 @@ const CreateProductContent = ({
   const [quantityInput, setquantityInput] = useState("");
   const [imgLinkInput, setimgLinkInput] = useState("");
   const [categoryInput, setCategory] = useState("category1");
+  const [editState, setEdit] = useState(false);
   const dispatch = useDispatch();
   //when rederer, check if editproduct is undefined, if so, input will be empty
   // if not, retrive product info, update existing product
   useEffect(() => {
-    console.log("in create product pate", editProduct);
-    if (editProduct) {
+    if (editProductState) {
       //retrice product info
       const getProductInput = async () => {
         try {
-          const productInfo = await getProductInfo(dispatch)(editProduct);
+          const productInfo = await getProductInfo(dispatch)(editProductState);
           setName(productInfo.productName);
           setDesInput(productInfo.productDescription);
           setPriceInput(productInfo.price);
@@ -34,8 +34,7 @@ const CreateProductContent = ({
         } catch (error) {}
       };
       getProductInput();
-    } else {
-      console.log("in else");
+      setEdit(true);
     }
   }, []);
 
@@ -53,11 +52,26 @@ const CreateProductContent = ({
       console.log(error);
     }
   };
+
+  const handleEdit = async (product) => {
+    try {
+      const response = await editProduct(dispatch)(
+        editProductState,
+        product.productName,
+        product.productDescription,
+        product.category,
+        product.price,
+        product.inStock,
+        product.imgSrc
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const addClick = () => {
-    const prodictId = `${nameInput} + ${Date.now()}`;
-    console.log(prodictId);
+    // const prodictId = `${nameInput} + ${Date.now()}`;
+    // console.log(prodictId);
     const product = {
-      id: prodictId,
       productName: nameInput,
       productDescription: descriptionInput,
       category: categoryInput,
@@ -65,7 +79,6 @@ const CreateProductContent = ({
       inStock: quantityInput,
       imgSrc: imgLinkInput,
     };
-    console.log("instock num", product.inStock);
     if (product.productName === "") {
       console.log("no name");
     } else if (product.productDescription === "") {
@@ -81,7 +94,11 @@ const CreateProductContent = ({
     } else {
       handleCreateProduct(false);
       handleProductShow(true);
-      handleAdd(product);
+      if (!editState) {
+        handleAdd(product);
+      } else {
+        handleEdit(product);
+      }
     }
   };
 
@@ -158,9 +175,16 @@ const CreateProductContent = ({
       >
         Back
       </button>
-      <button id="addProdBtninCreate" onClick={addClick}>
-        add product
-      </button>
+      {!editState && (
+        <button id="addProdBtninCreate" onClick={addClick}>
+          add product
+        </button>
+      )}
+      {editState && (
+        <button id="addProdBtninCreate" onClick={addClick}>
+          save
+        </button>
+      )}
     </div>
   );
 };
