@@ -167,6 +167,9 @@ function App() {
             totalPrice={totalPrice}
             cartList={cartList}
             handleSetCart={handleSetCart}
+            isAdmin={isAdmin}
+            handleCreateProduct={setCreateProd}
+            setEditProduct={setEditProduct}
           />
         )}
       </HomeModal>

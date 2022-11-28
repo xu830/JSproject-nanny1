@@ -10,6 +10,9 @@ const ProductDetail = ({
   totalPrice,
   cartList,
   handleSetCart,
+  isAdmin,
+  handleCreateProduct,
+  setEditProduct,
 }) => {
   const [plusState, setPlus] = useState(false);
   const [minusState, setMinus] = useState(false);
@@ -64,6 +67,7 @@ const ProductDetail = ({
       return true;
     }
   };
+
   const num = 1;
   return (
     <div className="productDetailContainer">
@@ -132,7 +136,18 @@ const ProductDetail = ({
             </button>
           </div>
         )}
-        <button className="editInDetail">Edit</button>
+        {isAdmin && (
+          <button
+            className="editInDetail"
+            onClick={() => {
+              setEditProduct(productDetailObject.id);
+              handleCreateProduct(true);
+              setProductShowDetail(false);
+            }}
+          >
+            Edit
+          </button>
+        )}
         <button
           onClick={() => {
             handleProductShow(true);
