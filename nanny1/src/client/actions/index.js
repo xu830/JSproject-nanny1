@@ -70,9 +70,13 @@ export const signOut = (dispatch) => async () => {
   }
 };
 
-export const getProducts = (dispatch) => async () => {
+export const getProducts = (dispatch) => async (page, num) => {
   try {
-    const response = await fetch("/getProducts");
+    const response = await fetch(
+      "/getProducts",
+      ajaxConfigHelper({ page, num })
+    );
+
     const result = await response.json();
     dispatch({
       type: "GETPRODUCTS",

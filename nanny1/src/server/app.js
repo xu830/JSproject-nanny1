@@ -181,9 +181,12 @@ app.post("/signOut", async (_, res) => {
   res.json({ message: "logout successful" });
 });
 //6 modify password
-//7. get products
-app.get("/getProducts", async (_, res) => {
-  const productsRawData = await Product.find({});
+//7. get products req.page:where to start  req.num: how many documents are fetched
+app.post("/getProducts", async (req, res) => {
+  console.log(req.body.page);
+  const productsRawData = await Product.find({})
+    .skip(req.body.page)
+    .limit(req.body.num);
   const productlist = productsRawData.map(
     ({
       productName,

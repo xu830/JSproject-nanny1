@@ -13,6 +13,12 @@
   height: 900px;
   flex-wrap: wrap;
 }
+.infinite-scroll-component {
+  width: 1200px;
+  height: 900px;
+  display: flex;
+  flex-wrap: wrap;
+}
 #addProductBtn {
   position: relative;
   width: 133px;
