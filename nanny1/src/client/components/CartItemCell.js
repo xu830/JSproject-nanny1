@@ -1,10 +1,20 @@
 import "./style/CartItemCell.css";
 import { deleteCart } from "../actions/index";
 import { useDispatch } from "react-redux";
-const CartItemCell = ({ id, productName, price, num, imgSrc }) => {
+const CartItemCell = ({
+  id,
+  productName,
+  price,
+  num,
+  imgSrc,
+  handleSetCart,
+}) => {
   const dispatch = useDispatch();
   const handleRomove = async (id) => {
-    const result = await deleteCart(dispatch)(id);
+    try {
+      const result = await deleteCart(dispatch)(id);
+      handleSetCart();
+    } catch (error) {}
     console.log("onclick");
   };
   return (

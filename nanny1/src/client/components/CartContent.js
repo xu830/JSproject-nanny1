@@ -4,30 +4,30 @@ import "./style/CartContent.css";
 import CartItemCell from "./CartItemCell";
 import { getCart, getProductInfo } from "../actions/index";
 
-const CartContent = ({ cartList, setCartList }) => {
+const CartContent = ({ cartList, handleSetCart }) => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    const GetCartList = async () => {
-      try {
-        const cart = await getCart(dispatch)();
-        const cartlist = await Promise.all(
-          cart.map(async (ele) => {
-            const info = await getProductInfo(dispatch)(ele.id);
-            // console.log("info", info);
-            const product = {
-              ...ele,
-              productName: info.productName,
-              price: info.price,
-              imgSrc: info.imgSrc,
-            };
-            return product;
-          })
-        );
-        setCartList(cartlist);
-      } catch (error) {}
-    };
-    GetCartList();
-  }, []);
+  // useEffect(() => {
+  //   const GetCartList = async () => {
+  //     try {
+  //       const cart = await getCart(dispatch)();
+  //       const cartlist = await Promise.all(
+  //         cart.map(async (ele) => {
+  //           const info = await getProductInfo(dispatch)(ele.id);
+  //           // console.log("info", info);
+  //           const product = {
+  //             ...ele,
+  //             productName: info.productName,
+  //             price: info.price,
+  //             imgSrc: info.imgSrc,
+  //           };
+  //           return product;
+  //         })
+  //       );
+  //       setCartList(cartlist);
+  //     } catch (error) {}
+  //   };
+  //   GetCartList();
+  // }, []);
 
   const cList = cartList.map(
     ({ id, productName, price, num, imgSrc }, index) => {
@@ -39,6 +39,7 @@ const CartContent = ({ cartList, setCartList }) => {
           num={num}
           imgSrc={imgSrc}
           id={id}
+          handleSetCart={handleSetCart}
         />
       );
     }

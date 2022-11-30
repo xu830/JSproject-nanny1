@@ -183,7 +183,7 @@ function App() {
           }
           bottom={<CartFooter totalPrice={totalPrice} />}
         >
-          <CartContent cartList={cartList} setCartList={setCartList} />
+          <CartContent cartList={cartList} handleSetCart={handleSetCart} />
         </CartModal>
       )}
 
