@@ -117,9 +117,10 @@ const CreateProductContent = ({
         <label className="createProductLabels" id="descriptionLable">
           Product Description
         </label>
-        <input
+        <textarea
           id="descriptionInput"
-          type="text"
+          rows="6"
+          cols="50"
           value={descriptionInput}
           onChange={(event) => setDesInput(event.target.value)}
         />
