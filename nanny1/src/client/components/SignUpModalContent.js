@@ -18,7 +18,6 @@ const SignUpModalContent = ({ handleSignUp }) => {
       })
     );
     const result = await resp.json();
-    console.log(result);
     dispatch({
       type: "ADD",
       payload: {
@@ -38,7 +37,6 @@ const SignUpModalContent = ({ handleSignUp }) => {
     } else if (credential.password === "") {
       console.log("error: no password");
     } else {
-      console.log(credential.email, credential.password);
       ajaxHandleSignUp();
     }
     setEmail("");

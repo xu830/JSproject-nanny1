@@ -54,7 +54,6 @@ const ProductCell = ({
       }
     } else if (addnum <= 0) {
       try {
-        console.log("indelete");
         const resp = await deleteCart(dispatch)(id);
         handleSetCart();
       } catch (error) {
@@ -102,7 +101,7 @@ const ProductCell = ({
               id="minus"
               onClick={() => {
                 const afterMinus = numState - 1;
-                console.log("onclice minus", afterMinus);
+
                 handleQuickAdd(afterMinus);
               }}
             >
@@ -114,7 +113,6 @@ const ProductCell = ({
               value={numState}
               onChange={(event) => {
                 setNum(event.target.valueAsNumber);
-                console.log("on change envoke", numState);
               }}
               onBlur={() => {
                 handleQuickAdd(numState);

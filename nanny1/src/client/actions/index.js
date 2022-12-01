@@ -192,7 +192,6 @@ export const deleteCart = (dispatch) => async (id) => {
     );
 
     const result = await response.json();
-    console.log(result);
     dispatch({
       type: "DEL_PRODUCT",
       payload: id,

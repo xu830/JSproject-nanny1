@@ -46,7 +46,7 @@ function App() {
     const getNowUser = async () => {
       try {
         const response = await getUser(dispatch)();
-        console.log("result status", response);
+
         if (response.user) {
           setlogin(true);
         } else {
@@ -75,25 +75,23 @@ function App() {
   }, [cartList]);
 
   const handleSetCart = async () => {
-    console.log("handleSetCartInvoke");
     try {
       const cart = await getCart(dispatch)();
       if (cart.length !== 0) {
         const cartlist = await Promise.all(
           cart.map(async (ele) => {
             const info = await getProductInfo(dispatch)(ele.id);
-            console.log("info", info);
+
             const product = {
               ...ele,
               productName: info.productName,
               price: info.price,
               imgSrc: info.imgSrc,
             };
-            console.log(product);
+
             return product;
           })
         );
-        console.log("incell cartlist", cartlist);
         setCartList(cartlist);
       } else {
         setCartList(cart);

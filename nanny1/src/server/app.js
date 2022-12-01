@@ -141,7 +141,6 @@ app.post("/login", async (req, res) => {
     },
     { id: 1, _id: 0, admin: 1 }
   );
-  console.log("log in result", qureyResult);
   if (!qureyResult) {
     res.status(400).json({ message: "log in failed" });
   } else {
@@ -183,7 +182,6 @@ app.post("/signOut", async (_, res) => {
 //6 modify password
 //7. get products req.page:where to start  req.num: how many documents are fetched
 app.post("/getProducts", async (req, res) => {
-  console.log(req.body.page);
   const productsRawData = await Product.find({})
     .skip(req.body.page)
     .limit(req.body.num);
@@ -256,20 +254,15 @@ app.post("/addProduct", async (req, res) => {
 
 //9.get user's cart
 app.get("/getCart", async (req, res) => {
-  console.log("getcart", userOn);
   if (userOn === undefined) {
-    console.log("userOn not defined");
     const cartInfo = req.cookies["guest-cart"];
-    console.log("in cart info", cartInfo);
     if (
       cartInfo === undefined ||
       cartInfo === "none" ||
       cartInfo.length === 0
     ) {
-      console.log("get", cartInfo);
       res.json([]);
     } else {
-      console.log("here");
       res.json(cartInfo);
     }
 
@@ -397,7 +390,6 @@ app.post("/getProductInfo", async (req, res) => {
   // console.log("get info", req.body);
   if (req.body.id) {
     const id = req.body.id;
-    console.log("call ghet", id);
     const qureyResult = await Product.findOne({ id });
     const product = (({
       productName,

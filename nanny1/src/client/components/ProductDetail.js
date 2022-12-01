@@ -51,7 +51,6 @@ const ProductDetail = ({
       }
     } else if (addnum <= 0) {
       try {
-        console.log("indelete");
         const resp = await deleteCart(dispatch)(productDetailObject.id);
         handleSetCart();
       } catch (error) {
@@ -107,7 +106,6 @@ const ProductDetail = ({
               id="minus"
               onClick={() => {
                 const afterMinus = numState - 1;
-                console.log("onclice minus", afterMinus);
                 handleQuickAdd(afterMinus);
               }}
             >

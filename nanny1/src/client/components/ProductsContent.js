@@ -52,7 +52,6 @@ const ProductsContent = (props) => {
       }
     );
     setPlistMap(pList);
-    console.log("Plist", pList);
   };
   const dispatch = useDispatch();
   useEffect(() => {
@@ -60,14 +59,14 @@ const ProductsContent = (props) => {
       try {
         const Products = await getProducts(dispatch)(0, dataLength);
         productdata.current = Products;
-        console.log(productdata.current);
+
         nextStart.current = productdata.current.length;
-        console.log("next start", nextStart.current);
+
         GetPlist();
       } catch (error) {}
     };
     GetProductsList();
-  }, []);
+  }, [props.cartList]);
   //console.log("productList", productsList);
   const fetchMoreData = () => {
     console.log("fetch more");
@@ -79,16 +78,16 @@ const ProductsContent = (props) => {
           nextStart.current,
           dataLength
         );
-        console.log("get product length", Products.length);
+
         if (Products.length === 0) {
           setHasMore(false);
         } else {
           setHasMore(true);
         }
         productdata.current = [...productdata.current, ...Products];
-        console.log(productdata.current);
+
         nextStart.current = productdata.current.length;
-        console.log("next start in fetch", nextStart.current);
+
         GetPlist();
       } catch (error) {}
     };

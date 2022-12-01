@@ -58,7 +58,6 @@ const SignInModalContent = ({
     } else if (credential.password === "") {
       console.log("error: no password");
     } else {
-      //console.log(credential.email, credential.password);
       ajaxHandleLogin();
     }
     setEmail("");
