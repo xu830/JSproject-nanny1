@@ -1,11 +1,12 @@
-h1 {
-  color: white;
-}
 .flex-header {
   display: flex;
   background-color: black;
   justify-content: space-between;
 }
+.header-content {
+  color: white;
+}
+
 #chuwa-header {
   font-size: small;
 }
