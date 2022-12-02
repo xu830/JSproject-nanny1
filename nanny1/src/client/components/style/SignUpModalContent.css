@@ -1,23 +1,20 @@
 .signUpbody {
   display: flex;
   flex-direction: column;
-  height: 360px;
-  width: 600px;
-  margin-top: 30px;
-  gap: 20px;
+  position: relative;
+  left: 15%;
 }
 
 #createAccountBtn {
   color: white;
   font-size: x-large;
-  width: 504px;
-  height: 56px;
   border-color: transparent;
   border-radius: 4px;
   cursor: pointer;
   background: #5048e5;
-  position: relative;
-  left: 50px;
+  width: 70%;
+  margin: 2% 0% 2% 0%;
+  height: 50px;
 }
 
 #pwd {
@@ -36,12 +33,8 @@
   line-height: 157%;
   /* identical to box height, or 22px */
   color: #6b7280;
-  position: relative;
-  left: 50px;
 }
 #signin {
-  position: relative;
-  left: 50px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;

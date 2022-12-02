@@ -3,23 +3,27 @@
   position: fixed;
   justify-content: center;
   align-items: center;
+  left: 30%;
+  width: 640px;
+  height: 511px;
+  top: 300px;
+  box-shadow: 0px 5px 16px 1px rgba(229, 229, 229, 0.8);
+  border-radius: 10px;
+  background: #ffffff;
 }
 
 .ModalContainer {
   display: flex;
-  box-shadow: 0px 5px 16px 1px rgba(229, 229, 229, 0.8);
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  background: #ffffff;
-  border-radius: 10px;
+  width: 100%;
+  height: 100%;
 }
 
 .title {
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
-  font-size: 32px;
+  font-size: 40px;
   line-height: 137.5%;
   /* identical to box height, or 44px */
 
@@ -41,4 +45,18 @@
   border-color: transparent;
   cursor: pointer;
   float: right;
+}
+
+@media only screen and (max-width: 600px) {
+  /*for phones*/
+  .ModalBackground {
+    left: 10%;
+    width: 80%;
+    height: 45%;
+    top: 16%;
+  }
+
+  .title {
+    font-size: large;
+  }
 }

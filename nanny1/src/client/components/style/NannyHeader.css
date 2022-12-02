@@ -26,5 +26,6 @@
   /*for phones*/
   .header-content {
     font-size: large;
+    align-self: flex-end;
   }
 }

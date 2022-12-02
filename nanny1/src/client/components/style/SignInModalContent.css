@@ -1,32 +1,29 @@
 .doubleInput {
   border-radius: 4px;
-  width: 504px;
-  height: 56px;
-  margin-bottom: 5%;
-  margin-top: 2%;
-  top: 30px;
-  position: relative;
   box-sizing: border-box;
   background: #ffffff;
   border: 1px solid #cccccc;
+  width: 70%;
+  height: 50px;
+  font-size: 100%;
 }
 
 .signInBody {
   display: flex;
   flex-direction: column;
-  height: 360px;
-  width: 600px;
-  margin-top: 30px;
-  gap: 20px;
+  position: relative;
+  left: 15%;
 }
 .footer {
   display: flex;
-  width: 600px;
+  position: relative;
+  left: 15%;
+  width: 70%;
+  justify-content: space-between;
 }
 .labels {
-  top: 30px;
-  position: relative;
-  left: 50px;
+  margin-bottom: 2%;
+  margin-top: 2%;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
@@ -49,24 +46,22 @@
 #signinBtn {
   color: white;
   font-size: x-large;
-  width: 504px;
-  height: 56px;
   border-color: transparent;
   border-radius: 4px;
   cursor: pointer;
   background: #5048e5;
-  position: relative;
-  left: 50px;
+  width: 70%;
+  margin: 2% 0% 2% 0%;
+  height: 50px;
 }
 
 #showBtn {
   cursor: pointer;
   text-decoration: underline;
-  width: 60px;
   margin: 0%;
   position: relative;
-  bottom: 45px;
-  left: 480px;
+  bottom: 37px;
+  left: 402px;
 }
 #pwd {
   position: relative;
@@ -75,8 +70,6 @@
 
 #signUpText {
   width: 155px;
-  height: 22px;
-
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
@@ -84,12 +77,8 @@
   line-height: 157%;
   /* identical to box height, or 22px */
   color: #6b7280;
-  position: relative;
-  left: 50px;
 }
 #signup {
-  position: relative;
-  left: 50px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
@@ -97,10 +86,14 @@
 }
 
 #forget {
-  position: relative;
-  left: 200px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
+}
+
+@media only screen and (max-width: 600px) {
+  #showBtn {
+    left: 183px;
+  }
 }
