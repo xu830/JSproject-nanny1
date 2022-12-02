@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./style/CreateProduct.css";
 import { addProduct, getProductInfo, editProduct } from "../actions/index";
 import { useDispatch } from "react-redux";
-
+import previewicon from "../img/previewicon.png";
 const CreateProductContent = ({
   handleCreateProduct,
   handleProductShow,
@@ -16,6 +16,7 @@ const CreateProductContent = ({
   const [imgLinkInput, setimgLinkInput] = useState("");
   const [categoryInput, setCategory] = useState("category1");
   const [editState, setEdit] = useState(false);
+  const [previewimg, setPrevewimg] = useState(previewicon);
   const dispatch = useDispatch();
   //when rederer, check if editproduct is undefined, if so, input will be empty
   // if not, retrive product info, update existing product
@@ -111,6 +112,7 @@ const CreateProductContent = ({
         <input
           id="nameInput"
           type="text"
+          maxLength="80"
           value={nameInput}
           onChange={(event) => setName(event.target.value)}
         />
@@ -124,68 +126,86 @@ const CreateProductContent = ({
           value={descriptionInput}
           onChange={(event) => setDesInput(event.target.value)}
         />
-        <b id="categoryLabel" className="createProductLabels">
-          Category
-        </b>
-        <select
-          id="categoryInput"
-          value={categoryInput}
-          onChange={(event) => {
-            setCategory(event.target.value);
+        <div className="middlecreate">
+          <b id="categoryLabel" className="createProductLabels">
+            Category
+          </b>
+          <select
+            id="categoryInput"
+            value={categoryInput}
+            onChange={(event) => {
+              setCategory(event.target.value);
+            }}
+          >
+            <option value="c1">category1</option>
+            <option value="c2">category2</option>
+            <option value="c3">category3</option>
+          </select>
+          <label id="priceLabel" className="createProductLabels">
+            Price
+          </label>
+          <input
+            id="priceInput"
+            type="number"
+            value={priceInput}
+            onChange={(event) => setPriceInput(event.target.value)}
+          />
+        </div>
+        <div className="bottomcreate">
+          <label id="quatityLabel" className="createProductLabels">
+            In Stock Quantity
+          </label>
+          <input
+            id="quatityInput"
+            type="number"
+            value={quantityInput}
+            onChange={(event) => setquantityInput(event.target.value)}
+          />
+          <label id="linkLable" className="createProductLabels">
+            Add Image Link
+          </label>
+          <input
+            id="linkInput"
+            type="text"
+            value={imgLinkInput}
+            onChange={(event) => setimgLinkInput(event.target.value)}
+          />
+        </div>
+      </form>
+
+      <div className="previewSection">
+        <img className="previewImg" alt="imge preview" src={previewimg}></img>
+        <button
+          className="previewBtn"
+          onClick={() => {
+            setPrevewimg(imgLinkInput);
           }}
         >
-          <option value="c1">category1</option>
-          <option value="c2">category2</option>
-          <option value="c3">category3</option>
-        </select>
-        <label id="priceLabel" className="createProductLabels">
-          Price
-        </label>
-        <input
-          id="priceInput"
-          type="number"
-          value={priceInput}
-          onChange={(event) => setPriceInput(event.target.value)}
-        />
-        <label id="quatityLabel" className="createProductLabels">
-          In Stock Quantity
-        </label>
-        <input
-          id="quatityInput"
-          type="number"
-          value={quantityInput}
-          onChange={(event) => setquantityInput(event.target.value)}
-        />
-        <label id="linkLable" className="createProductLabels">
-          Add Image Link
-        </label>
-        <input
-          id="linkInput"
-          type="text"
-          value={imgLinkInput}
-          onChange={(event) => setimgLinkInput(event.target.value)}
-        />
-      </form>
-      <button
-        id="backBtninCreate"
-        onClick={() => {
-          handleCreateProduct(false);
-          handleProductShow(true);
-          setEditProduct("");
-        }}
-      >
-        Back
-      </button>
-      {!editState && (
-        <button id="addProdBtninCreate" onClick={addClick}>
-          add product
+          preview
         </button>
-      )}
-      {editState && (
-        <button id="addProdBtninCreate" onClick={addClick}>
-          save
+      </div>
+      <div className="createFooter">
+        <button
+          id="backBtninCreate"
+          onClick={() => {
+            handleCreateProduct(false);
+            handleProductShow(true);
+            setEditProduct("");
+          }}
+        >
+          Back
         </button>
-      )}
+        {!editState && (
+          <button id="addProdBtninCreate" onClick={addClick}>
+            add product
+          </button>
+        )}
+        {editState && (
+          <button id="addProdBtninCreate" onClick={addClick}>
+            save
+          </button>
+        )}
+      </div>
     </div>
   );
 };
