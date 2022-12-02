@@ -8,7 +8,7 @@ const HeaderSignIn = ({
   totalPrice,
 }) => {
   return (
-    <div className="SigninContext">
+    <div className="HeaderRight">
       <button
         className="cartBtn"
         onClick={() => {

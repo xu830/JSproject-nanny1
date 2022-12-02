@@ -3,10 +3,10 @@ import "./style/NannyHeader.css";
 const NannyHeader = ({ children }) => {
   return (
     <header className="flex-header">
-      <h1 className="header-content">
+      <p className="header-content">
         Management
         <span id="chuwa-header">chuwa</span>
-      </h1>
+      </p>
       {/* <button
         onClick={() => {
           openModal(true);

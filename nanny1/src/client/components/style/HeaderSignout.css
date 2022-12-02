@@ -1,8 +1,12 @@
+.HeaderRight {
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+}
 .cartBtn {
-  position: relative;
-  top: 10px;
   background-color: transparent;
   cursor: pointer;
+  border-color: transparent;
 }
 .cartBtnimg {
   width: 40px;
@@ -10,4 +14,32 @@
 }
 .priceHeader {
   color: white;
+  position: relative;
+  top: 9px;
+}
+
+#signout-btn {
+  background-color: black;
+  color: white;
+  align-items: flex-end;
+  cursor: pointer;
+  border-color: transparent;
+}
+
+@media only screen and (max-width: 600px) {
+  .priceHeader {
+    position: relative;
+    top: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  .HeaderRight {
+    flex-direction: column;
+    row-gap: 0px;
+    text-align: center;
+  }
+  .cartBtnimg {
+    width: 30px;
+    height: 30px;
+  }
 }

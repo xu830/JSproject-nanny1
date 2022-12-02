@@ -5,15 +5,26 @@
 }
 .header-content {
   color: white;
+  font-family: "Inter";
+  font-style: normal;
+  font-size: 180%;
+  margin-bottom: 10px;
 }
 
 #chuwa-header {
   font-size: small;
 }
-#signin-btn,
-#signout-btn {
+#signin-btn {
   background-color: black;
   color: white;
   align-items: flex-end;
   cursor: pointer;
+  border-color: transparent;
+}
+
+@media only screen and (max-width: 600px) {
+  /*for phones*/
+  .header-content {
+    font-size: large;
+  }
 }

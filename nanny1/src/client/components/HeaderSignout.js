@@ -20,7 +20,7 @@ const HeaderSignOut = ({
   };
 
   return (
-    <div>
+    <div className="HeaderRight">
       <button
         className="cartBtn"
         onClick={() => {
