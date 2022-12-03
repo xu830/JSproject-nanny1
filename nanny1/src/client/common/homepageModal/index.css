@@ -6,6 +6,8 @@
 .HomeModalContainer {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
 }
 .Hometitle {
   font-family: "Inter";
@@ -13,4 +15,12 @@
   font-weight: 700;
   font-size: 32px;
   line-height: 137.5%;
+  align-self: flex-start;
+  margin-left: 10%;
+}
+
+@media only screen and (max-width: 600px) {
+  .Hometitle {
+    font-size: 20px;
+  }
 }

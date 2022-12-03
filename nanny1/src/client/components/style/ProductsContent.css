@@ -1,9 +1,11 @@
 .ProductPage {
   display: flex;
-  margin-top: 50px;
   height: 905px;
   background: #ffffff;
   border-radius: 4px;
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80%;
 }
 .ProductList {
   display: flex;

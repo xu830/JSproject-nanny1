@@ -1,20 +1,16 @@
 #CreatePage {
-  width: 660px;
-  height: 839px;
-  margin-top: 50px;
-  margin-left: 200px;
-
   background: #ffffff;
   border-radius: 4px;
   display: flex;
   align-items: center;
   flex-direction: column;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 #createProductForm {
   position: relative;
   top: 20px;
-  width: 660px;
-  height: 800px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -31,15 +27,11 @@
 
 #nameLabel {
   position: relative;
-  width: 108px;
-  height: 24px;
 }
 #nameInput {
   box-sizing: border-box;
-
+  width: 70%;
   position: relative;
-  width: 564px;
-  height: 56px;
 
   background: #ffffff;
   border: 1px solid #cccccc;
@@ -47,23 +39,15 @@
 }
 #descriptionLable {
   position: relative;
-  width: 169px;
-  height: 24px;
 }
 #descriptionInput {
-  width: 564px;
-  height: 135px;
-  left: 438px;
-  top: 370px;
   background: #ffffff;
   border: 1px solid #cccccc;
   border-radius: 4px;
 }
 #categoryLabel {
   position: relative;
-  width: 73px;
-  height: 24px;
-  right: 250px;
+
   font-family: "Inter";
   font-style: normal;
   font-weight: 600;
@@ -73,26 +57,17 @@
 #categoryInput {
   box-sizing: border-box;
   position: relative;
-  width: 278px;
-  height: 56px;
-  right: 150px;
+
   background: #ffffff;
   border: 1px solid #cccccc;
   border-radius: 4px;
 }
 #priceLabel {
   position: relative;
-  width: 40px;
-  height: 24px;
-  left: 150px;
-  bottom: 120px;
 }
 #priceInput {
   position: relative;
-  width: 250px;
-  height: 56px;
-  left: 160px;
-  bottom: 120px;
+
   background: #ffffff;
   border: 1px solid #cccccc;
   border-radius: 4px;
@@ -100,54 +75,34 @@
 
 #quatityLabel {
   position: relative;
-  width: 150px;
-  height: 24px;
-  bottom: 120px;
-  right: 150px;
 }
 #quatityInput {
   box-sizing: border-box;
 
   position: relative;
-  width: 196px;
-  height: 56px;
-  bottom: 120px;
-  right: 150px;
+
   background: #ffffff;
   border: 1px solid #cccccc;
   border-radius: 4px;
 }
 #linkLable {
   position: relative;
-  width: 119px;
-  height: 24px;
-  bottom: 240px;
-  left: 150px;
 }
 #linkInput {
   box-sizing: border-box;
 
   position: relative;
-  width: 330px;
-  height: 56px;
-  bottom: 240px;
-  left: 150px;
   background: #ffffff;
   border: 1px solid #cccccc;
   border-radius: 4px;
 }
 #backBtninCreate {
   position: relative;
-  width: 100px;
-  height: 40px;
-  right: 90px;
   background: #5048e5;
 }
 #addProdBtninCreate {
-  position: relative;
-  width: 100px;
-  height: 40px;
-  bottom: 26px;
-  left: 70px;
   background: #5048e5;
+}
+
+@media only screen and (max-width: 600px) {
 }
