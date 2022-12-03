@@ -1,35 +1,31 @@
 .updatebody {
   display: flex;
   flex-direction: column;
-  height: 400px;
-  width: 600px;
-  margin-top: 30px;
+  position: relative;
+  left: 15%;
 }
 
 #updateBtn {
   color: white;
   font-size: x-large;
-  width: 504px;
-  height: 56px;
   border-color: transparent;
   border-radius: 4px;
   cursor: pointer;
   background: #5048e5;
-  position: relative;
-  left: 50px;
+  width: 70%;
+  margin: 2% 0% 2% 0%;
+  height: 50px;
 }
 
 #instruction {
-  width: 504px;
-  position: relative;
-  left: 50px;
+  width: 70%;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-
   color: #6b7280;
+  text-align: center;
 }
 
 #updateEmailLabel {
@@ -44,8 +40,9 @@
   background: #ffffff;
   border: 1px solid #cccccc;
   border-radius: 4px;
-  width: 504px;
-  height: 56px;
+  width: 70%;
+  height: 50px;
+  font-size: 100%;
   margin-bottom: 5%;
   margin-top: 2%;
 }
