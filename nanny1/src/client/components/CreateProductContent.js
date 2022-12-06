@@ -127,29 +127,33 @@ const CreateProductContent = ({
           onChange={(event) => setDesInput(event.target.value)}
         />
         <div className="middlecreate">
-          <b id="categoryLabel" className="createProductLabels">
-            Category
-          </b>
-          <select
-            id="categoryInput"
-            value={categoryInput}
-            onChange={(event) => {
-              setCategory(event.target.value);
-            }}
-          >
-            <option value="c1">category1</option>
-            <option value="c2">category2</option>
-            <option value="c3">category3</option>
-          </select>
-          <label id="priceLabel" className="createProductLabels">
-            Price
-          </label>
-          <input
-            id="priceInput"
-            type="number"
-            value={priceInput}
-            onChange={(event) => setPriceInput(event.target.value)}
-          />
+          <div className="cateSection">
+            <b id="categoryLabel" className="createProductLabels">
+              Category
+            </b>
+            <select
+              id="categoryInput"
+              value={categoryInput}
+              onChange={(event) => {
+                setCategory(event.target.value);
+              }}
+            >
+              <option value="c1">category1</option>
+              <option value="c2">category2</option>
+              <option value="c3">category3</option>
+            </select>
+          </div>
+          <div className="priceSection">
+            <label id="priceLabel" className="createProductLabels">
+              Price
+            </label>
+            <input
+              id="priceInput"
+              type="number"
+              value={priceInput}
+              onChange={(event) => setPriceInput(event.target.value)}
+            />
+          </div>
         </div>
         <div className="bottomcreate">
           <label id="quatityLabel" className="createProductLabels">

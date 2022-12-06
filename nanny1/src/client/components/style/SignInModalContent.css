@@ -8,6 +8,10 @@
   font-size: 100%;
 }
 
+input#doubleInput {
+  padding: 1%;
+}
+
 .signInBody {
   display: flex;
   flex-direction: column;
@@ -61,7 +65,7 @@
   margin: 0%;
   position: relative;
   bottom: 37px;
-  left: 402px;
+  left: 60%;
 }
 #pwd {
   position: relative;

@@ -15,6 +15,7 @@
   align-items: center;
   flex-direction: column;
   row-gap: 20px;
+  width: 100%;
 }
 .createProductLabels {
   font-family: "Inter";
@@ -44,6 +45,7 @@
   background: #ffffff;
   border: 1px solid #cccccc;
   border-radius: 4px;
+  width: 80%;
 }
 #categoryLabel {
   position: relative;
@@ -71,6 +73,7 @@
   background: #ffffff;
   border: 1px solid #cccccc;
   border-radius: 4px;
+  width: 90%;
 }
 
 #quatityLabel {
@@ -103,6 +106,35 @@
 #addProdBtninCreate {
   background: #5048e5;
 }
+input#nameInput,
+input#priceInput,
+input#quatityInput,
+input#linkInput,
+select#categoryInput,
+textarea#descriptionInput {
+  padding: 1%;
+}
+
+.middlecreate {
+  display: flex;
+  gap: 5%;
+  width: 80%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.cateSection,
+.priceSection {
+  display: flex;
+  gap: 5%;
+}
+
+.bottomcreate {
+  display: flex;
+  width: 80%;
+}
 
 @media only screen and (max-width: 600px) {
+  .middlecreate {
+    row-gap: 15px;
+  }
 }
