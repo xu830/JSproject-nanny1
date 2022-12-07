@@ -156,29 +156,35 @@ const CreateProductContent = ({
           </div>
         </div>
         <div className="bottomcreate">
-          <label id="quatityLabel" className="createProductLabels">
-            In Stock Quantity
-          </label>
-          <input
-            id="quatityInput"
-            type="number"
-            value={quantityInput}
-            onChange={(event) => setquantityInput(event.target.value)}
-          />
-          <label id="linkLable" className="createProductLabels">
-            Add Image Link
-          </label>
-          <input
-            id="linkInput"
-            type="text"
-            value={imgLinkInput}
-            onChange={(event) => setimgLinkInput(event.target.value)}
-          />
+          <div className="quantitySection">
+            <label id="quatityLabel" className="createProductLabels">
+              In Stock Quantity
+            </label>
+            <input
+              id="quatityInput"
+              type="number"
+              value={quantityInput}
+              onChange={(event) => setquantityInput(event.target.value)}
+            />
+          </div>
+          <div className="linkSection">
+            <label id="linkLable" className="createProductLabels">
+              Add Image Link
+            </label>
+            <input
+              id="linkInput"
+              type="text"
+              value={imgLinkInput}
+              onChange={(event) => setimgLinkInput(event.target.value)}
+            />
+          </div>
         </div>
       </form>
 
       <div className="previewSection">
-        <img className="previewImg" alt="imge preview" src={previewimg}></img>
+        <div className="imgBg">
+          <img className="previewImg" alt="imge preview" src={previewimg}></img>
+        </div>
         <button
           className="previewBtn"
           onClick={() => {
