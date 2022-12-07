@@ -9,7 +9,7 @@ const ProductsContent = (props) => {
   const [hasMore, setHasMore] = useState(true);
   const [plistMap, setPlistMap] = useState([]);
 
-  const dataLength = 20;
+  const dataLength = 9;
   let productdata = useRef([]);
   let nextStart = useRef(true);
 
@@ -63,6 +63,12 @@ const ProductsContent = (props) => {
         nextStart.current = productdata.current.length;
 
         GetPlist();
+        console.log(
+          "in use effect, productdata",
+          productdata.current,
+          "length",
+          nextStart.current
+        );
       } catch (error) {}
     };
     GetProductsList();
@@ -70,7 +76,13 @@ const ProductsContent = (props) => {
   //console.log("productList", productsList);
   const fetchMoreData = () => {
     console.log("fetch more");
-
+    console.log(
+      "in fetch more productdata",
+      productdata.current,
+      "length",
+      productdata.current.length
+    );
+    console.log("in fetch more nextstart", nextStart.current);
     // //making api call
     const GetProductsList = async () => {
       try {
@@ -83,6 +95,10 @@ const ProductsContent = (props) => {
           setHasMore(false);
         } else {
           setHasMore(true);
+        }
+        console.log("products", Products);
+        if (productdata.current === Products) {
+          console.log("same");
         }
         productdata.current = [...productdata.current, ...Products];
 
@@ -116,13 +132,6 @@ const ProductsContent = (props) => {
           loader={<p>Loading</p>}
           endMessage={<p>There's no more product</p>}
         >
-          {/* {productsList.map(({ index, productName }) => {
-            return (
-              <div>
-                this is a div#{index + 1} #{productName} inside InfiniteScroll
-              </div>
-            );
-          })} */}
           {plistMap}
         </InfiniteScroll>
       </div>
