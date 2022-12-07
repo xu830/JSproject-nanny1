@@ -1,11 +1,10 @@
 .ProductPage {
   display: flex;
   height: 905px;
-  background: #ffffff;
-  border-radius: 4px;
   margin-left: 10%;
   margin-right: 10%;
   width: 80%;
+  flex-direction: column;
 }
 .ProductList {
   display: flex;
@@ -17,19 +16,28 @@
 .infinite-scroll-component {
   display: flex;
   flex-wrap: wrap;
+  background: #ffffff;
+  border-radius: 4px;
 }
 #addProductBtn {
-  position: relative;
-  width: 133px;
-  height: 40px;
+  position: fixed;
+  right: 10%;
+  top: 144px;
 
   background: #5048e5;
   border-radius: 4px;
-
+  border-color: transparent;
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 75%;
   line-height: 137.5%;
   color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  #addProductBtn {
+    width: fit-content;
+    top: 133px;
+  }
 }
