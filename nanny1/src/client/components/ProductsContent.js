@@ -12,7 +12,7 @@ const ProductsContent = (props) => {
 
   const dataLength = 9;
   let productdata = useRef([]);
-  let nextStart = useRef(0);
+  //let nextStart = useRef(0);
 
   const GetPlist = () => {
     console.log("in plist", productdata.current);
@@ -62,7 +62,7 @@ const ProductsContent = (props) => {
         const Products = await getProducts(dispatch)(0, 9);
         productdata.current = Products;
 
-        nextStart.current = productdata.current.length;
+        //nextStart.current = productdata.current.length;
 
         GetPlist();
       } catch (error) {}
