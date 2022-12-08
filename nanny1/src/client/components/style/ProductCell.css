@@ -73,3 +73,27 @@
   border-radius: 4px;
   cursor: pointer;
 }
+.plusMinusCell {
+  display: flex;
+  align-content: flex-start;
+  width: 50%;
+}
+#minusCell,
+#plusCell {
+  width: 40px;
+  height: 26px;
+  color: white;
+  background: #5048e5;
+  border-color: transparent;
+}
+#quantityInCell {
+  color: white;
+  background: #5048e5;
+  width: 50%;
+  height: 26px;
+  border-color: transparent;
+}
+.productBtn {
+  display: flex;
+  justify-content: center;
+}

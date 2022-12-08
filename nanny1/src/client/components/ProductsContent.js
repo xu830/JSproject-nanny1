@@ -8,12 +8,14 @@ import "./style/ProductsContent.css";
 const ProductsContent = (props) => {
   const [hasMore, setHasMore] = useState(true);
   const [plistMap, setPlistMap] = useState([]);
+  const [plist, setpList] = useState([]);
 
   const dataLength = 9;
   let productdata = useRef([]);
-  let nextStart = useRef(true);
+  let nextStart = useRef(0);
 
   const GetPlist = () => {
+    console.log("in plist", productdata.current);
     var pList = productdata.current.map(
       (
         {
@@ -57,59 +59,61 @@ const ProductsContent = (props) => {
   useEffect(() => {
     const GetProductsList = async () => {
       try {
-        const Products = await getProducts(dispatch)(0, dataLength);
+        const Products = await getProducts(dispatch)(0, 9);
         productdata.current = Products;
 
         nextStart.current = productdata.current.length;
 
         GetPlist();
-        console.log(
-          "in use effect, productdata",
-          productdata.current,
-          "length",
-          nextStart.current
-        );
       } catch (error) {}
     };
     GetProductsList();
-  }, [props.cartList]);
+  }, []);
+
+  useEffect(() => {
+    GetPlist();
+  }, [props.isAdmin, props.cartList, productdata.current]);
+
   //console.log("productList", productsList);
   const fetchMoreData = () => {
-    console.log("fetch more");
-    console.log(
-      "in fetch more productdata",
-      productdata.current,
-      "length",
-      productdata.current.length
-    );
-    console.log("in fetch more nextstart", nextStart.current);
-    // //making api call
-    const GetProductsList = async () => {
-      try {
-        const Products = await getProducts(dispatch)(
-          nextStart.current,
-          dataLength
-        );
+    setTimeout(() => {
+      console.log(plistMap.length);
+      const GetProductsList = async () => {
+        try {
+          const Products = await getProducts(dispatch)(
+            plistMap.length,
+            dataLength
+          );
 
-        if (Products.length === 0) {
-          setHasMore(false);
-        } else {
-          setHasMore(true);
-        }
-        console.log("products", Products);
-        if (productdata.current === Products) {
-          console.log("same");
-        }
-        productdata.current = [...productdata.current, ...Products];
-
-        nextStart.current = productdata.current.length;
-
-        GetPlist();
-      } catch (error) {}
-    };
-    GetProductsList();
+          if (Products.length === 0) {
+            setHasMore(false);
+          } else {
+            setHasMore(true);
+          }
+          console.log(
+            "infetch products",
+            Products,
+            "product.current",
+            productdata.current
+          );
+          console.log(
+            "compare",
+            Products.toString() === productdata.current.toString()
+          );
+          if (Products.toString() === productdata.current.toString()) {
+          } else {
+            productdata.current = [...productdata.current, ...Products];
+            GetPlist();
+          }
+          // productdata.current = [...productdata.current, ...Products];
+          // nextStart.current = productdata.current.length;
+          // console.log("here 3");
+          // console.log("in fetch", productdata.current);
+        } catch (error) {}
+      };
+      GetProductsList();
+    }, 10);
   };
-
   return (
     <div className="ProductPage">
       {props.isAdmin && (
@@ -126,7 +130,7 @@ const ProductsContent = (props) => {
       {/* <div className="ProductList">{pList}</div> */}
       <div>
         <InfiniteScroll
-          dataLength={productdata.current.length}
+          dataLength={plistMap.length}
           next={fetchMoreData}
           hasMore={hasMore}
           loader={<p>Loading</p>}

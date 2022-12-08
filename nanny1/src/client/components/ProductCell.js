@@ -92,13 +92,13 @@ const ProductCell = ({
               handleQuickAdd(1);
             }}
           >
-            Add To Cart
+            Add
           </button>
         )}
         {plusState && minusState && (
-          <div className="plusMinus">
+          <div className="plusMinusCell">
             <button
-              id="minus"
+              id="minusCell"
               onClick={() => {
                 const afterMinus = numState - 1;
 
@@ -109,7 +109,7 @@ const ProductCell = ({
             </button>
             <input
               type="number"
-              id="quantityInDetail"
+              id="quantityInCell"
               value={numState}
               onChange={(event) => {
                 setNum(event.target.valueAsNumber);
@@ -119,7 +119,7 @@ const ProductCell = ({
               }}
             />
             <button
-              id="plus"
+              id="plusCell"
               onClick={() => {
                 const afterAdd = numState + 1;
                 handleQuickAdd(afterAdd);

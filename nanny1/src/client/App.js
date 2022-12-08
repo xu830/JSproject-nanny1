@@ -55,6 +55,7 @@ function App() {
         if (response.admin) {
           setAdmin(true);
         } else {
+          console.log("sed admin to false");
           setAdmin(false);
         }
       } catch (error) {}

@@ -185,6 +185,13 @@ app.post("/getProducts", async (req, res) => {
   const productsRawData = await Product.find({})
     .skip(req.body.page)
     .limit(req.body.num);
+  // console.log(
+  //   "page",
+  //   req.body.page,
+  //   req.body.num,
+  //   "in api, query",
+  //   productsRawData
+  // );
   const productlist = productsRawData.map(
     ({
       productName,
@@ -207,6 +214,7 @@ app.post("/getProducts", async (req, res) => {
     }
   );
   res.json(productlist);
+  return;
 });
 
 //8. add a product

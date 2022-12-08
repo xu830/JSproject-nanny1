@@ -72,16 +72,19 @@ export const signOut = (dispatch) => async () => {
 
 export const getProducts = (dispatch) => async (page, num) => {
   try {
+    console.log("page", page, "num", num);
     const response = await fetch(
       "/getProducts",
       ajaxConfigHelper({ page, num })
     );
 
     const result = await response.json();
+    console.log("response", response, "result", result);
     dispatch({
       type: "GETPRODUCTS",
       payload: result,
     });
+    console.log("result in action", result);
     return result;
   } catch (error) {
     console.log(error, "getProducts");

@@ -18,9 +18,10 @@
   flex-wrap: wrap;
   background: #ffffff;
   border-radius: 4px;
+  justify-content: space-between;
 }
 #addProductBtn {
-  position: fixed;
+  position: absolute;
   right: 10%;
   top: 144px;
 
