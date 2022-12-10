@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   width: 242px;
-  height: 310px;
-  margin-top: 20px;
+  height: 308px;
+  margin: 20px 10px 20px;
   box-sizing: border-box;
   background: #ffffff;
   border: 1px solid #cccccc;
@@ -15,7 +15,7 @@
   height: 198px;
 }
 .productName {
-  width: 191px;
+  width: 90%;
   height: 21px;
   margin-top: 0px;
   margin-left: 10px;
@@ -72,6 +72,14 @@
   border: 1px solid #ffffff;
   border-radius: 4px;
   cursor: pointer;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 70%;
+  line-height: 24px;
+
+  color: white;
 }
 .plusMinusCell {
   display: flex;
@@ -96,4 +104,16 @@
 .productBtn {
   display: flex;
   justify-content: center;
+}
+.cellWrap {
+  display: flex;
+  justify-content: center;
+  flex-basis: 20%;
+}
+
+@media only screen and (max-width: 600px) {
+  .itemContainer {
+    width: 304px;
+    height: 309px;
+  }
 }

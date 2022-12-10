@@ -10,7 +10,7 @@ const ProductsContent = (props) => {
   const [plistMap, setPlistMap] = useState([]);
   const [plist, setpList] = useState([]);
 
-  const dataLength = 9;
+  const dataLength = 10;
   let productdata = useRef([]);
   //let nextStart = useRef(0);
 
@@ -59,7 +59,7 @@ const ProductsContent = (props) => {
   useEffect(() => {
     const GetProductsList = async () => {
       try {
-        const Products = await getProducts(dispatch)(0, 9);
+        const Products = await getProducts(dispatch)(0, 10);
         productdata.current = Products;
 
         //nextStart.current = productdata.current.length;
@@ -77,7 +77,7 @@ const ProductsContent = (props) => {
   //console.log("productList", productsList);
   const fetchMoreData = () => {
     setTimeout(() => {
-      console.log(plistMap.length);
+      console.log("plist", plistMap.length);
       const GetProductsList = async () => {
         try {
           const Products = await getProducts(dispatch)(
@@ -133,8 +133,8 @@ const ProductsContent = (props) => {
           dataLength={plistMap.length}
           next={fetchMoreData}
           hasMore={hasMore}
-          loader={<p>Loading</p>}
-          endMessage={<p>There's no more product</p>}
+          loader={<p className="ISMessage">Loading</p>}
+          endMessage={<p className="ISMessage">There's no more product</p>}
         >
           {plistMap}
         </InfiniteScroll>

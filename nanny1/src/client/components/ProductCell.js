@@ -62,85 +62,95 @@ const ProductCell = ({
     }
   };
 
-  return (
-    <div className="itemContainer">
-      <div
-        className="productInfo"
-        onClick={() => {
-          handleProductShow(false);
-          setProductShowDetail(true);
-          setProductDetail({
-            id: id,
-            productName: productName,
-            price: price,
-            imgSrc: imgSrc,
-            productDescription: productDescription,
-            category: category,
-            inStock: inStock,
-          });
-        }}
-      >
-        <img className="itemimg" src={imgSrc}></img>
-        <p className="productName">{productName}</p>
-        <p className="price">${price}</p>
-      </div>
-      <div className="productBtn">
-        {!plusState && !minusState && (
-          <button
-            className="quickAdd"
-            onClick={() => {
-              handleQuickAdd(1);
-            }}
-          >
-            Add
-          </button>
-        )}
-        {plusState && minusState && (
-          <div className="plusMinusCell">
-            <button
-              id="minusCell"
-              onClick={() => {
-                const afterMinus = numState - 1;
+  const shortenName = () => {
+    if (productName.length <= 27) {
+      return productName;
+    } else {
+      return productName.slice(0, 27) + "...";
+    }
+  };
 
-                handleQuickAdd(afterMinus);
-              }}
-            >
-              -
-            </button>
-            <input
-              type="number"
-              id="quantityInCell"
-              value={numState}
-              onChange={(event) => {
-                setNum(event.target.valueAsNumber);
-              }}
-              onBlur={() => {
-                handleQuickAdd(numState);
-              }}
-            />
+  return (
+    <div className="cellWrap">
+      <div className="itemContainer">
+        <div
+          className="productInfo"
+          onClick={() => {
+            handleProductShow(false);
+            setProductShowDetail(true);
+            setProductDetail({
+              id: id,
+              productName: productName,
+              price: price,
+              imgSrc: imgSrc,
+              productDescription: productDescription,
+              category: category,
+              inStock: inStock,
+            });
+          }}
+        >
+          <img className="itemimg" src={imgSrc}></img>
+          <p className="productName">{shortenName()}</p>
+          <p className="price">${price}</p>
+        </div>
+        <div className="productBtn">
+          {!plusState && !minusState && (
             <button
-              id="plusCell"
+              className="quickAdd"
               onClick={() => {
-                const afterAdd = numState + 1;
-                handleQuickAdd(afterAdd);
+                handleQuickAdd(1);
               }}
             >
-              +
+              Add
             </button>
-          </div>
-        )}
-        {isAdmin && (
-          <button
-            className="editBtn"
-            onClick={() => {
-              setEditProduct(id);
-              handleCreateProduct(true);
-              handleProductShow(false);
-            }}
-          >
-            edit
-          </button>
-        )}
+          )}
+          {plusState && minusState && (
+            <div className="plusMinusCell">
+              <button
+                id="minusCell"
+                onClick={() => {
+                  const afterMinus = numState - 1;
+
+                  handleQuickAdd(afterMinus);
+                }}
+              >
+                -
+              </button>
+              <input
+                type="number"
+                id="quantityInCell"
+                value={numState}
+                onChange={(event) => {
+                  setNum(event.target.valueAsNumber);
+                }}
+                onBlur={() => {
+                  handleQuickAdd(numState);
+                }}
+              />
+              <button
+                id="plusCell"
+                onClick={() => {
+                  const afterAdd = numState + 1;
+                  handleQuickAdd(afterAdd);
+                }}
+              >
+                +
+              </button>
+            </div>
+          )}
+          {isAdmin && (
+            <button
+              className="editBtn"
+              onClick={() => {
+                setEditProduct(id);
+                handleCreateProduct(true);
+                handleProductShow(false);
+              }}
+            >
+              edit
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 .ProductPage {
   display: flex;
-  height: 905px;
   margin-left: 10%;
   margin-right: 10%;
   width: 80%;
@@ -18,7 +17,8 @@
   flex-wrap: wrap;
   background: #ffffff;
   border-radius: 4px;
-  justify-content: space-between;
+  justify-content: flex-start;
+  margin-bottom: 10%;
 }
 #addProductBtn {
   position: absolute;
@@ -36,9 +36,28 @@
   color: white;
 }
 
+.ISMessage {
+  flex-basis: 100%;
+  text-align: center;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+}
+/* #scrollableDiv {
+  height: 60%;
+  overflow: auto;
+} */
 @media only screen and (max-width: 600px) {
   #addProductBtn {
     width: fit-content;
     top: 133px;
+  }
+  .infinite-scroll-component {
+    justify-content: center;
+  }
+  .itemimg {
+    align-self: center;
   }
 }
