@@ -1,28 +1,28 @@
 .productDetailContainer {
   display: flex;
-  margin-top: 50px;
-  margin-left: 40px;
-  width: 1200px;
-  height: 682px;
+  margin: 2% 10% 10%;
+  width: 80%;
+  justify-content: space-between;
 
   background: #ffffff;
   border-radius: 4px;
   flex-direction: row;
 }
 .Dleft {
-  width: 600px;
-  height: 600px;
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1%;
 }
 .itemimgInDetail {
-  width: 600px;
-  height: 600px;
-
+  width: 90%;
+  height: 90%;
   background: #c4c4c4;
 }
 .Dright {
-  margin-left: 50px;
-  width: 550px;
-  height: 600px;
+  width: 45%;
+  margin: 1%;
   display: flex;
   flex-direction: column;
 }
@@ -38,13 +38,11 @@
   line-height: 22px;
 
   color: #6b7280;
-  margin-top: 60px;
+  margin-top: 46px;
   align-content: flex-start;
   display: flex;
 }
 .itemNameInDetail {
-  width: 600px;
-  height: 44px;
   /* Typography/H4 */
 
   font-family: "Inter";
@@ -59,9 +57,6 @@
   display: flex;
 }
 .priceInDetail {
-  width: 84px;
-  height: 44px;
-
   /* Typography/H4 */
 
   font-family: "Inter";
@@ -74,6 +69,8 @@
   color: #111827;
   align-content: flex-start;
   display: flex;
+  margin-top: 0%;
+  margin-bottom: 10px;
 }
 .oosBox {
   width: 76px;
@@ -98,7 +95,6 @@
   color: #ea3d2f;
 }
 .descriptionInDetail {
-  width: 500px;
   height: 288px;
   font-family: "Inter";
   font-style: normal;
@@ -109,7 +105,13 @@
   color: #6b7280;
   align-content: flex-start;
   display: flex;
+  overflow-y: auto;
 }
+
+.rightDBtns {
+  display: flex;
+}
+
 .addToCart {
   width: 133px;
   height: 60px;
@@ -117,6 +119,8 @@
   background: #5048e5;
   border-radius: 4px;
   color: white;
+  margin: 10px;
+  border-color: transparent;
 }
 .editInDetail,
 .BackInDetail {
@@ -128,16 +132,19 @@
   background: #ffffff;
   border: 1px solid #cccccc;
   border-radius: 4px;
+  margin: 10px;
 }
 .plusMinus {
   display: flex;
   align-content: flex-start;
+  width: 133px;
+  margin: 10px;
 }
 
 #minus,
 #plus {
   width: 40px;
-  height: 40px;
+  height: 60px;
   color: white;
   background: #5048e5;
   border-color: transparent;
@@ -145,6 +152,32 @@
 #quantityInDetail {
   color: white;
   background: #5048e5;
-  width: 70%;
+  width: 53px;
+  height: 60px;
   border-color: transparent;
+}
+@media only screen and (max-width: 600px) {
+  .productDetailContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .Dleft {
+    width: 90%;
+    margin: 1%;
+  }
+  .Dright {
+    width: 90%;
+    margin: 1%;
+  }
+  .categoryInDetail {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  .itemNameInDetail,
+  .priceInDetail {
+    font-size: 20px;
+  }
+  .descriptionInDetail {
+    font-size: 13px;
+  }
 }

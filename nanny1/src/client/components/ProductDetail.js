@@ -90,71 +90,73 @@ const ProductDetail = ({
         <p className="descriptionInDetail">
           {productDetailObject.productDescription}
         </p>
-        {!plusState && !minusState && (
-          <button
-            className="addToCart"
-            onClick={() => {
-              handleQuickAdd(1);
-            }}
-          >
-            Add To Cart
-          </button>
-        )}
-        {plusState && minusState && (
-          <div className="plusMinus">
+        <div className="rightDBtns">
+          {!plusState && !minusState && (
             <button
-              id="minus"
+              className="addToCart"
               onClick={() => {
-                const afterMinus = numState - 1;
-                handleQuickAdd(afterMinus);
+                handleQuickAdd(1);
               }}
             >
-              -
+              Add
             </button>
-            <input
-              type="number"
-              id="quantityInDetail"
-              value={numState}
-              onChange={(event) => {
-                setNum(event.target.valueAsNumber);
-                //handleAddtoCart(productDetailObject);
-              }}
-              onBlur={() => {
-                handleQuickAdd(numState);
-              }}
-            />
+          )}
+          {plusState && minusState && (
+            <div className="plusMinus">
+              <button
+                id="minus"
+                onClick={() => {
+                  const afterMinus = numState - 1;
+                  handleQuickAdd(afterMinus);
+                }}
+              >
+                -
+              </button>
+              <input
+                type="number"
+                id="quantityInDetail"
+                value={numState}
+                onChange={(event) => {
+                  setNum(event.target.valueAsNumber);
+                  //handleAddtoCart(productDetailObject);
+                }}
+                onBlur={() => {
+                  handleQuickAdd(numState);
+                }}
+              />
+              <button
+                id="plus"
+                onClick={() => {
+                  const afterAdd = numState + 1;
+                  handleQuickAdd(afterAdd);
+                }}
+              >
+                +
+              </button>
+            </div>
+          )}
+          {isAdmin && (
             <button
-              id="plus"
+              className="editInDetail"
               onClick={() => {
-                const afterAdd = numState + 1;
-                handleQuickAdd(afterAdd);
+                setEditProduct(productDetailObject.id);
+                handleCreateProduct(true);
+                setProductShowDetail(false);
               }}
             >
-              +
+              Edit
             </button>
-          </div>
-        )}
-        {isAdmin && (
+          )}
           <button
-            className="editInDetail"
             onClick={() => {
-              setEditProduct(productDetailObject.id);
-              handleCreateProduct(true);
+              handleProductShow(true);
               setProductShowDetail(false);
             }}
+            className="BackInDetail"
           >
-            Edit
+            Back
           </button>
-        )}
-        <button
-          onClick={() => {
-            handleProductShow(true);
-            setProductShowDetail(false);
-          }}
-          className="BackInDetail"
-        >
-          Back
-        </button>
+        </div>
       </div>
     </div>
   );
