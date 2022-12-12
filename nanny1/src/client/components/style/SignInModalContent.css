@@ -98,6 +98,6 @@ input#doubleInput {
 
 @media only screen and (max-width: 600px) {
   #showBtn {
-    left: 183px;
+    left: 50%;
   }
 }
