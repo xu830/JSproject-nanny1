@@ -10,7 +10,7 @@ const ProductsContent = (props) => {
   const [plistMap, setPlistMap] = useState([]);
   const [plist, setpList] = useState([]);
 
-  const dataLength = 10;
+  const dataLength = 15;
   let productdata = useRef([]);
   //let nextStart = useRef(0);
 
@@ -59,7 +59,7 @@ const ProductsContent = (props) => {
   useEffect(() => {
     const GetProductsList = async () => {
       try {
-        const Products = await getProducts(dispatch)(0, 10);
+        const Products = await getProducts(dispatch)(0, 15);
         productdata.current = Products;
 
         //nextStart.current = productdata.current.length;
@@ -101,6 +101,7 @@ const ProductsContent = (props) => {
             Products.toString() === productdata.current.toString()
           );
           if (Products.toString() === productdata.current.toString()) {
+            console.log("same");
           } else {
             productdata.current = [...productdata.current, ...Products];
             GetPlist();
