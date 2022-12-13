@@ -1,6 +1,6 @@
 .cartCell {
   display: flex;
-  height: 120px;
+
   flex-direction: row;
   margin-top: 42px;
 }
@@ -58,4 +58,12 @@
   text-decoration-line: underline;
 
   color: #6b7280;
+}
+@media only screen and (max-width: 600px) {
+  .centerC {
+    width: 10%;
+  }
+  .cartImg {
+    margin-left: 12px;
+  }
 }

@@ -48,8 +48,10 @@ const CartContent = ({ cartList, handleSetCart }) => {
     <div>
       <div className="scroll">{cList}</div>
       <div className="couponSection">
-        <p id="couponLabel">Apply Discount Code</p>
-        <input id="couponInput"></input>
+        <div className="couponform">
+          <p id="couponLabel">Apply Discount Code</p>
+          <input id="couponInput"></input>
+        </div>
         <button id="applyBtn">Apply</button>
       </div>
     </div>

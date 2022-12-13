@@ -2,10 +2,10 @@ import "./style/CartFooter.css";
 const CartFooter = ({ totalPrice }) => {
   const discont = 0;
   const CalcTax = () => {
-    return totalPrice * 0.1;
+    return Math.round(totalPrice * 0.1 * 100) / 100;
   };
   const CalcTotal = () => {
-    return totalPrice + CalcTax() - discont;
+    return Math.round((totalPrice + CalcTax() - discont) * 0.1 * 100) / 100;
   };
   return (
     <div className="CartFooter">

@@ -26,3 +26,11 @@
   margin-left: 350px;
   cursor: pointer;
 }
+@media only screen and (max-width: 600px) {
+  .cartHeader {
+    width: 100%;
+  }
+  .cartCloseBtn {
+    margin-left: 200px;
+  }
+}
