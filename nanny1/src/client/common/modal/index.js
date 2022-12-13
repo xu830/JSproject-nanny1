@@ -6,10 +6,10 @@ const MyModal = (props) => {
     <div className="ModalBackground">
       <div className="ModalContainer">
         <div className="title">
-          <button id="closeBtn" onClick={() => props.closeModal(false)}>
+          <button className="McloseBtn" onClick={() => props.closeModal(false)}>
             X
           </button>
-          <p>{props.titleText}</p>
+          <p className="titleP">{props.titleText}</p>
         </div>
         {props.children}
       </div>

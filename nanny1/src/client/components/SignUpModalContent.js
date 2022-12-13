@@ -7,6 +7,7 @@ const SignUpModalContent = ({ handleSignUp }) => {
   const [emailInput, setEmail] = useState("");
   const [passwordInput, setPassword] = useState("");
   const [pwdVisible, setPwdVisible] = useState("password");
+  const [error, seterror] = useState(null);
   const dispatch = useDispatch();
 
   const ajaxHandleSignUp = async () => {
@@ -18,6 +19,13 @@ const SignUpModalContent = ({ handleSignUp }) => {
       })
     );
     const result = await resp.json();
+    console.log("sign up result", result);
+    if (result.error) {
+      seterror(result.error);
+      return;
+    } else {
+      seterror(null);
+    }
     dispatch({
       type: "ADD",
       payload: {
@@ -32,9 +40,7 @@ const SignUpModalContent = ({ handleSignUp }) => {
       email: emailInput,
       password: passwordInput,
     };
-    if (credential.email === "") {
-      console.log("error: no email");
-    } else if (credential.password === "") {
+    if (credential.password === "") {
       console.log("error: no password");
     } else {
       ajaxHandleSignUp();
@@ -51,9 +57,15 @@ const SignUpModalContent = ({ handleSignUp }) => {
     }
   };
 
+  const isEmail = (str) => {
+    const emailRegex =
+      /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    return emailRegex.test(str);
+  };
   return (
     <div>
       <div className="signUpbody">
+        {error && <p className="signError">{error}</p>}
         <form>
           <label htmlFor="email" className="labels">
             Email
@@ -65,6 +77,13 @@ const SignUpModalContent = ({ handleSignUp }) => {
             name="email"
             value={emailInput}
             onChange={(event) => setEmail(event.target.value)}
+            onBlur={() => {
+              if (!isEmail(emailInput)) {
+                seterror("please enter a valid email");
+              } else {
+                seterror(null);
+              }
+            }}
           />
           <label htmlFor="pwd" className="labels">
             Password

@@ -39,12 +39,15 @@
   order: 0;
   flex-grow: 0;
 }
-#closeBtn {
+.McloseBtn {
   position: relative;
   background-color: transparent;
   border-color: transparent;
   cursor: pointer;
   float: right;
+}
+#titleP {
+  position: relative;
 }
 
 @media only screen and (max-width: 600px) {
@@ -57,5 +60,14 @@
 
   .title {
     font-size: large;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .McloseBtn {
+    align-self: flex-start;
+  }
+  #titleP {
+    position: relative;
+    left: 3%;
   }
 }

@@ -105,6 +105,12 @@ app.get("/userlist", async (_, res) => {
 app.post("/signUp", async (req, res) => {
   if (req.body && req.body.email && req.body.password) {
     // userlist = [...userlist, req.body];
+    //check if user already exist
+    const existingUser = await User.findOne({ email: req.body.email });
+    if (existingUser) {
+      res.json({ error: "email is already taken." });
+      return;
+    }
     const user = new User({
       email: req.body.email,
       password: req.body.password,
